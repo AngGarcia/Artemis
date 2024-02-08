@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{8b2094ad-68a5-4059-b68f-9b5d6f100d94}">
+		<property name="assetPath">
+			<value>3_BirdsSinging2.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>125.5360625</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{aec0e1de-a493-4a88-8c0a-db3ed9714560}</destination>
+		</relationship>
+	</object>
+</objects>
