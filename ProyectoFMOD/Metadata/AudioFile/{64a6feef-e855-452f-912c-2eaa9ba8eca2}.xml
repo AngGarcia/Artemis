@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{64a6feef-e855-452f-912c-2eaa9ba8eca2}">
+		<property name="assetPath">
+			<value>Xilofono_Octava3.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>12</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{aec0e1de-a493-4a88-8c0a-db3ed9714560}</destination>
+		</relationship>
+	</object>
+</objects>

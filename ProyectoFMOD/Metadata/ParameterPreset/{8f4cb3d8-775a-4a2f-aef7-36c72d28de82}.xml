@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{8f4cb3d8-775a-4a2f-aef7-36c72d28de82}">
+		<property name="name">
+			<value>Gamestate</value>
+		</property>
+		<relationship name="folder">
+			<destination>{63e7f88d-0dc0-46b4-8b71-5c69d4bc165c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{979e42b2-2121-44c7-9177-4603eeeee3e0}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{979e42b2-2121-44c7-9177-4603eeeee3e0}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>8</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Level 1</value>
+			<value>Level 2</value>
+			<value>Level 3</value>
+			<value>Level 4</value>
+			<value>Level 5</value>
+			<value>Level 6</value>
+			<value>Level 7</value>
+			<value>Silence</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

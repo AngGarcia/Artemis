@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{3b7e2513-b45a-448d-9b79-987393ef43d9}">
+		<property name="name">
+			<value>PopRockDrums</value>
+		</property>
+		<relationship name="folder">
+			<destination>{63e7f88d-0dc0-46b4-8b71-5c69d4bc165c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{cd3721d1-11e1-4661-8e26-84cf4e6a9c5a}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{cd3721d1-11e1-4661-8e26-84cf4e6a9c5a}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Option 1</value>
+			<value>Option 2</value>
+			<value>Option 3</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

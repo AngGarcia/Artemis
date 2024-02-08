@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{7490300f-1922-4ed8-825b-5e8ba183e494}">
+		<property name="assetPath">
+			<value>Oboe_Negras_1.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>52.012698412698413</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{aec0e1de-a493-4a88-8c0a-db3ed9714560}</destination>
+		</relationship>
+	</object>
+</objects>

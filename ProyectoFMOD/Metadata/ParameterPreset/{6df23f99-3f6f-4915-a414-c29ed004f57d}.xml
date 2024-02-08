@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{6df23f99-3f6f-4915-a414-c29ed004f57d}">
+		<property name="name">
+			<value>LatinPercu02</value>
+		</property>
+		<relationship name="folder">
+			<destination>{63e7f88d-0dc0-46b4-8b71-5c69d4bc165c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{f06613dc-292d-49e8-95ae-037183fd4ebb}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{f06613dc-292d-49e8-95ae-037183fd4ebb}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Option 1</value>
+			<value>Option 2</value>
+			<value>Option 3</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

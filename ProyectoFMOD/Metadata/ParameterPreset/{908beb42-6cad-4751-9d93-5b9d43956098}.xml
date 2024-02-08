@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{908beb42-6cad-4751-9d93-5b9d43956098}">
+		<property name="name">
+			<value>LatinTrompeta</value>
+		</property>
+		<relationship name="folder">
+			<destination>{63e7f88d-0dc0-46b4-8b71-5c69d4bc165c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{69cf8c8f-2f8d-44e0-b01e-250af3c7f8c6}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{69cf8c8f-2f8d-44e0-b01e-250af3c7f8c6}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Option 1</value>
+			<value>Option 2</value>
+			<value>Option 3</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

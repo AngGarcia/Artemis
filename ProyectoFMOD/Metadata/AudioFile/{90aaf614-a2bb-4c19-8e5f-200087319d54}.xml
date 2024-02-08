@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{90aaf614-a2bb-4c19-8e5f-200087319d54}">
+		<property name="assetPath">
+			<value>Beat_Capa3_1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>8.1724263038548752</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{aec0e1de-a493-4a88-8c0a-db3ed9714560}</destination>
+		</relationship>
+	</object>
+</objects>

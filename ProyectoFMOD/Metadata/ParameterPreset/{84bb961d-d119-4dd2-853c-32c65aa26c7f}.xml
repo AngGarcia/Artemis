@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{84bb961d-d119-4dd2-853c-32c65aa26c7f}">
+		<property name="name">
+			<value>ClassicViolin</value>
+		</property>
+		<relationship name="folder">
+			<destination>{63e7f88d-0dc0-46b4-8b71-5c69d4bc165c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{bc979c44-a6e2-4c62-8038-7a765911c78a}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{bc979c44-a6e2-4c62-8038-7a765911c78a}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Option 1</value>
+			<value>Option 2</value>
+			<value>Option 3</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
