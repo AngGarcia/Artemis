@@ -16,10 +16,10 @@ namespace AlteracionMelodia
     public class VelocidadNotas
     {
         public static float SILENCIO = 1f;
-        public static float REDONDA = 1.2f;
-        public static float BLANCA = 1f;
-        public static float NEGRA = 0.3f;
-        public static float CORCHEA = 0.2f;
+        public static float REDONDA = 4f;
+        public static float BLANCA = 2f;
+        public static float NEGRA = 1f;
+        public static float CORCHEA = 0.5f;
     }
 
     public class Intrumentos

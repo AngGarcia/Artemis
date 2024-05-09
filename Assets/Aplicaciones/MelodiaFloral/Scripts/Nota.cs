@@ -17,7 +17,10 @@ namespace AlteracionMelodia
             Corchea = 4
         }
 
-        public AudioClip[] notas;
+
+        public ListaNotasFMOD listaNotasFMOD;
+
+        [Header("VARIABLES GENERALES")]
         public GestionNota gestorNota; //gestor del panel/menú de cada nota (es el mismo para todas)
         public GestionPentagrama gestionPentagrama; //gestor del pentagrama general, que dice qué notas estan activadas en cada momento
 
@@ -42,6 +45,7 @@ namespace AlteracionMelodia
                                         //lo hice así porque no se si se puede ajustar el sprite de la nota en tiempo real para que cuadre
         public GameObject[] palosPentagrama;  //al igual que con los tipos de notas, si la nota se dibuja fuera de los límites del pentagrama, hay que añadir
                                               // pequeñas líneas para indicar que hay más pentagrama por arriba y por abajo
+
 
         void Start()
         {
@@ -155,7 +159,8 @@ namespace AlteracionMelodia
             {
                 sonidoActual = num;
             }
-            nota.clip = notas[sonidoActual];
+            tocarNota();
+            //nota.clip = notas[sonidoActual];
             //nota.Play();
         }
 
@@ -186,16 +191,19 @@ namespace AlteracionMelodia
 
             //Aquí, en vez de esa línea de código, pondríamos la del FMOD
             //primero comprobamos el instrumento y después la nota
+
+            listaNotasFMOD.tocarNotaFMOD(instrumentoActual, sonidoActual, (int)tipoNotaActual);
            
-            if (instrumentoActual == 0) //piano
+           /* if (instrumentoActual == 0) //piano
             {
                 switch (sonidoActual)
                 {
                     case 0:
-                        nota.clip = null;
+                        //nota.clip = null;
                         break;
                     case 1:
-                        MusicManager.Instance.PlaySound(AppSounds.DO_P);
+                       // MusicManager.Instance.PlaySound(AppSounds.DO_P);
+                        //FMODUnity.RuntimeManager.PlayOneShot(soundEventPath);
                         break;
                     case 2:
                         MusicManager.Instance.PlaySound(AppSounds.RE_P);
@@ -243,7 +251,7 @@ namespace AlteracionMelodia
                 switch (sonidoActual)
                 {
                     case 0:
-                        nota.clip = null;
+                       // nota.clip = null;
                         break;
                 }
             }
@@ -252,7 +260,7 @@ namespace AlteracionMelodia
                 switch (sonidoActual)
                 {
                     case 0:
-                        nota.clip = null;
+                        //nota.clip = null;
                         break;
                 }
             }
@@ -261,11 +269,11 @@ namespace AlteracionMelodia
                 switch (sonidoActual)
                 {
                     case 0:
-                        nota.clip = null;
+                       // nota.clip = null;
                         break;
                 }
             }
-
+           */
         }
 
         public void agregarPalitoPentagrama(int tipoPalo)
@@ -283,7 +291,7 @@ namespace AlteracionMelodia
                     palosPentagrama[i].SetActive(false);
                 }
             }
-
+           
         }
 
         public void establecerTipoNota(int numTipo)

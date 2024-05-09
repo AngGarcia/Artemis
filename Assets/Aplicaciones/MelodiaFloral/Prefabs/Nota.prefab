@@ -124,16 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b0634d65f9f8447bdaedbe4f3048ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notas:
-  - {fileID: 0}
-  - {fileID: 8300000, guid: b4836532198026c41892e67e0640caf8, type: 3}
-  - {fileID: 8300000, guid: f74001886847d6248a1edc66b367e7ac, type: 3}
-  - {fileID: 8300000, guid: 7d8c18235c7446f479ab7edb0cd8de5b, type: 3}
-  - {fileID: 8300000, guid: 1205bb8790af17646b2eba74864002d5, type: 3}
-  - {fileID: 8300000, guid: 79d66cd30130e15499aa58fb957a471e, type: 3}
-  - {fileID: 8300000, guid: 7980958b37c19f04b8400bbccd788d49, type: 3}
-  - {fileID: 8300000, guid: 19458e7a1556add44ac991350c61c2f9, type: 3}
-  - {fileID: 8300000, guid: d566ddac7ba625c4da04d0f01c86180e, type: 3}
+  listaNotasFMOD: {fileID: 0}
   gestorNota: {fileID: 0}
   gestionPentagrama: {fileID: 0}
   brillo: {fileID: 8911392246669538501}
@@ -494,35 +485,6 @@ MonoBehaviour:
   m_ShadowIntensity: 0.75
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
-  m_Vertices:
-  - position: {x: 0.9985302, y: 0.9985302, z: 0}
-    color: {r: 0.70710677, g: 0.70710677, b: 0, a: 0}
-    uv: {x: 0, y: 0}
-  - position: {x: 0.9985302, y: 0.9985302, z: 0}
-    color: {r: 0, g: 0, b: 0, a: 1}
-    uv: {x: 0, y: 0}
-  - position: {x: -0.9985302, y: 0.9985302, z: 0}
-    color: {r: -0.70710677, g: 0.70710677, b: 0, a: 0}
-    uv: {x: 0, y: 0}
-  - position: {x: -0.9985302, y: 0.9985302, z: 0}
-    color: {r: 0, g: 0, b: 0, a: 1}
-    uv: {x: 0, y: 0}
-  - position: {x: -0.99853003, y: -0.9985304, z: 0}
-    color: {r: -0.70710665, g: -0.7071069, b: 0, a: 0}
-    uv: {x: 0, y: 0}
-  - position: {x: -0.99853003, y: -0.9985304, z: 0}
-    color: {r: 0, g: 0, b: 0, a: 1}
-    uv: {x: 0, y: 0}
-  - position: {x: 0.99853003, y: -0.9985304, z: 0}
-    color: {r: 0.70710665, g: -0.7071069, b: 0, a: 0}
-    uv: {x: 0, y: 0}
-  - position: {x: 0.99853003, y: -0.9985304, z: 0}
-    color: {r: 0, g: 0, b: 0, a: 1}
-    uv: {x: 0, y: 0}
-  - position: {x: 0, y: 0, z: 0}
-    color: {r: 0, g: 0, b: 0, a: 1}
-    uv: {x: 0, y: 0}
-  m_Triangles: 030001000800020000000100030002000100050003000800040002000300050004000300070005000800060004000500070006000500010007000800000006000700010000000700
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}

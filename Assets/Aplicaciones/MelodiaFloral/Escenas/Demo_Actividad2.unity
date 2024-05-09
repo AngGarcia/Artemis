@@ -1344,16 +1344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b0634d65f9f8447bdaedbe4f3048ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notas:
-  - {fileID: 0}
-  - {fileID: 8300000, guid: b4836532198026c41892e67e0640caf8, type: 3}
-  - {fileID: 8300000, guid: f74001886847d6248a1edc66b367e7ac, type: 3}
-  - {fileID: 8300000, guid: 7d8c18235c7446f479ab7edb0cd8de5b, type: 3}
-  - {fileID: 8300000, guid: 1205bb8790af17646b2eba74864002d5, type: 3}
-  - {fileID: 8300000, guid: 79d66cd30130e15499aa58fb957a471e, type: 3}
-  - {fileID: 8300000, guid: 7980958b37c19f04b8400bbccd788d49, type: 3}
-  - {fileID: 8300000, guid: 19458e7a1556add44ac991350c61c2f9, type: 3}
-  - {fileID: 8300000, guid: d566ddac7ba625c4da04d0f01c86180e, type: 3}
+  listaNotasFMOD: {fileID: 1686455226}
   gestorNota: {fileID: 1831673447}
   gestionPentagrama: {fileID: 29385844}
   brillo: {fileID: 1212908835}
@@ -2042,16 +2033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b0634d65f9f8447bdaedbe4f3048ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notas:
-  - {fileID: 0}
-  - {fileID: 8300000, guid: b4836532198026c41892e67e0640caf8, type: 3}
-  - {fileID: 8300000, guid: f74001886847d6248a1edc66b367e7ac, type: 3}
-  - {fileID: 8300000, guid: 7d8c18235c7446f479ab7edb0cd8de5b, type: 3}
-  - {fileID: 8300000, guid: 1205bb8790af17646b2eba74864002d5, type: 3}
-  - {fileID: 8300000, guid: 79d66cd30130e15499aa58fb957a471e, type: 3}
-  - {fileID: 8300000, guid: 7980958b37c19f04b8400bbccd788d49, type: 3}
-  - {fileID: 8300000, guid: 19458e7a1556add44ac991350c61c2f9, type: 3}
-  - {fileID: 8300000, guid: d566ddac7ba625c4da04d0f01c86180e, type: 3}
+  listaNotasFMOD: {fileID: 1686455226}
   gestorNota: {fileID: 1831673447}
   gestionPentagrama: {fileID: 29385844}
   brillo: {fileID: 2102000827}
@@ -3523,16 +3505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b0634d65f9f8447bdaedbe4f3048ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notas:
-  - {fileID: 0}
-  - {fileID: 8300000, guid: b4836532198026c41892e67e0640caf8, type: 3}
-  - {fileID: 8300000, guid: f74001886847d6248a1edc66b367e7ac, type: 3}
-  - {fileID: 8300000, guid: 7d8c18235c7446f479ab7edb0cd8de5b, type: 3}
-  - {fileID: 8300000, guid: 1205bb8790af17646b2eba74864002d5, type: 3}
-  - {fileID: 8300000, guid: 79d66cd30130e15499aa58fb957a471e, type: 3}
-  - {fileID: 8300000, guid: 7980958b37c19f04b8400bbccd788d49, type: 3}
-  - {fileID: 8300000, guid: 19458e7a1556add44ac991350c61c2f9, type: 3}
-  - {fileID: 8300000, guid: d566ddac7ba625c4da04d0f01c86180e, type: 3}
+  listaNotasFMOD: {fileID: 1686455226}
   gestorNota: {fileID: 1831673447}
   gestionPentagrama: {fileID: 29385844}
   brillo: {fileID: 2047176106}
@@ -5606,6 +5579,7 @@ Transform:
   - {fileID: 1909945223}
   - {fileID: 1831673446}
   - {fileID: 123457983}
+  - {fileID: 1686455225}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11186,16 +11160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b0634d65f9f8447bdaedbe4f3048ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notas:
-  - {fileID: 0}
-  - {fileID: 8300000, guid: b4836532198026c41892e67e0640caf8, type: 3}
-  - {fileID: 8300000, guid: f74001886847d6248a1edc66b367e7ac, type: 3}
-  - {fileID: 8300000, guid: 7d8c18235c7446f479ab7edb0cd8de5b, type: 3}
-  - {fileID: 8300000, guid: 1205bb8790af17646b2eba74864002d5, type: 3}
-  - {fileID: 8300000, guid: 79d66cd30130e15499aa58fb957a471e, type: 3}
-  - {fileID: 8300000, guid: 7980958b37c19f04b8400bbccd788d49, type: 3}
-  - {fileID: 8300000, guid: 19458e7a1556add44ac991350c61c2f9, type: 3}
-  - {fileID: 8300000, guid: d566ddac7ba625c4da04d0f01c86180e, type: 3}
+  listaNotasFMOD: {fileID: 1686455226}
   gestorNota: {fileID: 1831673447}
   gestionPentagrama: {fileID: 29385844}
   brillo: {fileID: 1405149940}
@@ -12260,16 +12225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b0634d65f9f8447bdaedbe4f3048ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notas:
-  - {fileID: 0}
-  - {fileID: 8300000, guid: b4836532198026c41892e67e0640caf8, type: 3}
-  - {fileID: 8300000, guid: f74001886847d6248a1edc66b367e7ac, type: 3}
-  - {fileID: 8300000, guid: 7d8c18235c7446f479ab7edb0cd8de5b, type: 3}
-  - {fileID: 8300000, guid: 1205bb8790af17646b2eba74864002d5, type: 3}
-  - {fileID: 8300000, guid: 79d66cd30130e15499aa58fb957a471e, type: 3}
-  - {fileID: 8300000, guid: 7980958b37c19f04b8400bbccd788d49, type: 3}
-  - {fileID: 8300000, guid: 19458e7a1556add44ac991350c61c2f9, type: 3}
-  - {fileID: 8300000, guid: d566ddac7ba625c4da04d0f01c86180e, type: 3}
+  listaNotasFMOD: {fileID: 1686455226}
   gestorNota: {fileID: 1831673447}
   gestionPentagrama: {fileID: 29385844}
   brillo: {fileID: 1710936293}
@@ -13917,16 +13873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b0634d65f9f8447bdaedbe4f3048ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notas:
-  - {fileID: 0}
-  - {fileID: 8300000, guid: b4836532198026c41892e67e0640caf8, type: 3}
-  - {fileID: 8300000, guid: f74001886847d6248a1edc66b367e7ac, type: 3}
-  - {fileID: 8300000, guid: 7d8c18235c7446f479ab7edb0cd8de5b, type: 3}
-  - {fileID: 8300000, guid: 1205bb8790af17646b2eba74864002d5, type: 3}
-  - {fileID: 8300000, guid: 79d66cd30130e15499aa58fb957a471e, type: 3}
-  - {fileID: 8300000, guid: 7980958b37c19f04b8400bbccd788d49, type: 3}
-  - {fileID: 8300000, guid: 19458e7a1556add44ac991350c61c2f9, type: 3}
-  - {fileID: 8300000, guid: d566ddac7ba625c4da04d0f01c86180e, type: 3}
+  listaNotasFMOD: {fileID: 1686455226}
   gestorNota: {fileID: 1831673447}
   gestionPentagrama: {fileID: 29385844}
   brillo: {fileID: 466003770}
@@ -14265,6 +14212,250 @@ Transform:
   m_Father: {fileID: 1856256619}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1686455224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1686455225}
+  - component: {fileID: 1686455226}
+  m_Layer: 0
+  m_Name: MusicManagerFMOD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1686455225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686455224}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 672295814}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1686455226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686455224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0140dd878c06b1448954a8e4b7347d2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notasRedondasPiano:
+  - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/00Si3
+  - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/01Do4
+  - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/02Re4
+  - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/03Mi4
+  - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/04Fa4
+  - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/05Sol4
+  - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/06La4
+  - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/07Si4
+  - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/08Do5
+  notasBlancasPiano:
+  - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/00Si3
+  - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/01Do4
+  - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/02Re4
+  - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/03Mi4
+  - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/04Fa4
+  - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/05Sol4
+  - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/06La4
+  - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/07Si4
+  - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/08Do5
+  notasNegrasPiano:
+  - event:/04MelodiaFloralApp5/Piano/11PianoNegras/00Si3
+  - event:/04MelodiaFloralApp5/Piano/11PianoNegras/01Do4
+  - event:/04MelodiaFloralApp5/Piano/11PianoNegras/02Re4
+  - event:/04MelodiaFloralApp5/Piano/11PianoNegras/03Mi4
+  - event:/04MelodiaFloralApp5/Piano/11PianoNegras/04Fa4
+  - event:/04MelodiaFloralApp5/Piano/11PianoNegras/05Sol4
+  - event:/04MelodiaFloralApp5/Piano/11PianoNegras/06La4
+  - event:/04MelodiaFloralApp5/Piano/11PianoNegras/07Si4
+  - event:/04MelodiaFloralApp5/Piano/11PianoNegras/08Do5
+  notasCorcheasPiano:
+  - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/00Si3
+  - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/01Do4
+  - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/02Re4
+  - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/03Mi4
+  - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/04Fa4
+  - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/05Sol4
+  - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/06La4
+  - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/07Si4
+  - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/08Do5
+  notasRedondasFlauta:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  notasBlancasFlauta:
+  - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/00Si3
+  - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/01Do4
+  - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/02Re4
+  - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/03Mi4
+  - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/04Fa4
+  - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/05Sol4
+  - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/06La4
+  - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/07Si4
+  - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/08Do5
+  notasNegrasFlauta:
+  - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/00Si3
+  - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/01Do4
+  - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/02Re4
+  - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/03Mi4
+  - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/04Fa4
+  - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/05Sol4
+  - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/06La4
+  - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/07Si4
+  - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/08Do5
+  notasCorcheasFlauta:
+  - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Si3
+  - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Do4
+  - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Re4
+  - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Mi4
+  - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Fa4
+  - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Sol4
+  - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/La4
+  - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Si4
+  - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Do5
+  notasRedondasClarinete:
+  - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/00Si3
+  - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/01Do4
+  - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/02Re4
+  - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/03Mi4
+  - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/04Fa4
+  - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/05Sol4
+  - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/06La4
+  - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/07Si4
+  - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/08Do5
+  notasBlancasClarinete:
+  - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/00Si3
+  - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/01Do4
+  - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/02Re4
+  - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/03Mi4
+  - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/04Fa4
+  - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/05Sol4
+  - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/06La4
+  - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/07Si4
+  - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/08Do5
+  notasNegrasClarinete:
+  - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/00Si3
+  - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/01Do4
+  - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/02Re4
+  - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/03Mi4
+  - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/04Fa4
+  - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/05Sol4
+  - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/06La4
+  - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/07Si4
+  - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/08Do5
+  notasCorcheasClarinete:
+  - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/00Si3
+  - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/01Do4
+  - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/02Re4
+  - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/03Mi4
+  - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/04Fa4
+  - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/05Sol4
+  - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/06La4
+  - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/07Si4
+  - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/08Do5
+  notasRedondasOboe:
+  - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/00Si3
+  - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/01Do4
+  - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/02Re4
+  - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/03Mi4
+  - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/04Fa4
+  - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/05Sol4
+  - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/06La4
+  - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/07Si4
+  - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/08Do5
+  notasBlancasOboe:
+  - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/00Si3
+  - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/01Do4
+  - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/02Re4
+  - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/03Mi4
+  - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/04Fa4
+  - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/05Sol4
+  - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/06La4
+  - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/07Si4
+  - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/08Do5
+  notasNegrasOboe:
+  - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/00Si3
+  - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/01Do4
+  - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/02Re4
+  - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/03Mi4
+  - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/04Fa4
+  - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/05Sol4
+  - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/06La4
+  - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/07Si4
+  - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/08Do5
+  notasCorcheasOboe:
+  - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/00Si3
+  - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/01Do4
+  - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/02Re4
+  - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/03Mi4
+  - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/04Fa4
+  - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/05Sol4
+  - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/06La4
+  - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/07Si4
+  - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/08Do5
+  notasRedondasViolin:
+  - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/00Si3
+  - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/01Do4
+  - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/02Re4
+  - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/03Mi4
+  - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/04Fa4
+  - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/05Sol4
+  - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/06La4
+  - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/07Si4
+  - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/08Do5
+  notasBlancasViolin:
+  - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/00Si3
+  - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/01Do4
+  - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/02Re4
+  - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/03Mi4
+  - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/04Fa4
+  - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/05Sol4
+  - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/06La4
+  - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/07Si4
+  - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/08Do5
+  notasNegrasViolin:
+  - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/00Si3
+  - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/01Do4
+  - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/02Re4
+  - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/03Mi4
+  - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/04Fa4
+  - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/05Sol4
+  - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/06La4
+  - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/07Si4
+  - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/08Do5
+  notasCorcheasViolin:
+  - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/00Si3
+  - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/01Do4
+  - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/02Re4
+  - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/03Mi4
+  - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/04Fa4
+  - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/05Sol4
+  - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/06La4
+  - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/07Si4
+  - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/08Do5
 --- !u!1 &1689431936
 GameObject:
   m_ObjectHideFlags: 0
@@ -14582,16 +14773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b0634d65f9f8447bdaedbe4f3048ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notas:
-  - {fileID: 0}
-  - {fileID: 8300000, guid: b4836532198026c41892e67e0640caf8, type: 3}
-  - {fileID: 8300000, guid: f74001886847d6248a1edc66b367e7ac, type: 3}
-  - {fileID: 8300000, guid: 7d8c18235c7446f479ab7edb0cd8de5b, type: 3}
-  - {fileID: 8300000, guid: 1205bb8790af17646b2eba74864002d5, type: 3}
-  - {fileID: 8300000, guid: 79d66cd30130e15499aa58fb957a471e, type: 3}
-  - {fileID: 8300000, guid: 7980958b37c19f04b8400bbccd788d49, type: 3}
-  - {fileID: 8300000, guid: 19458e7a1556add44ac991350c61c2f9, type: 3}
-  - {fileID: 8300000, guid: d566ddac7ba625c4da04d0f01c86180e, type: 3}
+  listaNotasFMOD: {fileID: 1686455226}
   gestorNota: {fileID: 1831673447}
   gestionPentagrama: {fileID: 29385844}
   brillo: {fileID: 1012082182}
@@ -15753,16 +15935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b0634d65f9f8447bdaedbe4f3048ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notas:
-  - {fileID: 0}
-  - {fileID: 8300000, guid: b4836532198026c41892e67e0640caf8, type: 3}
-  - {fileID: 8300000, guid: f74001886847d6248a1edc66b367e7ac, type: 3}
-  - {fileID: 8300000, guid: 7d8c18235c7446f479ab7edb0cd8de5b, type: 3}
-  - {fileID: 8300000, guid: 1205bb8790af17646b2eba74864002d5, type: 3}
-  - {fileID: 8300000, guid: 79d66cd30130e15499aa58fb957a471e, type: 3}
-  - {fileID: 8300000, guid: 7980958b37c19f04b8400bbccd788d49, type: 3}
-  - {fileID: 8300000, guid: 19458e7a1556add44ac991350c61c2f9, type: 3}
-  - {fileID: 8300000, guid: d566ddac7ba625c4da04d0f01c86180e, type: 3}
+  listaNotasFMOD: {fileID: 1686455226}
   gestorNota: {fileID: 1831673447}
   gestionPentagrama: {fileID: 29385844}
   brillo: {fileID: 1084352574}
@@ -17979,16 +18152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b0634d65f9f8447bdaedbe4f3048ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notas:
-  - {fileID: 0}
-  - {fileID: 8300000, guid: b4836532198026c41892e67e0640caf8, type: 3}
-  - {fileID: 8300000, guid: f74001886847d6248a1edc66b367e7ac, type: 3}
-  - {fileID: 8300000, guid: 7d8c18235c7446f479ab7edb0cd8de5b, type: 3}
-  - {fileID: 8300000, guid: 1205bb8790af17646b2eba74864002d5, type: 3}
-  - {fileID: 8300000, guid: 79d66cd30130e15499aa58fb957a471e, type: 3}
-  - {fileID: 8300000, guid: 7980958b37c19f04b8400bbccd788d49, type: 3}
-  - {fileID: 8300000, guid: 19458e7a1556add44ac991350c61c2f9, type: 3}
-  - {fileID: 8300000, guid: d566ddac7ba625c4da04d0f01c86180e, type: 3}
+  listaNotasFMOD: {fileID: 1686455226}
   gestorNota: {fileID: 1831673447}
   gestionPentagrama: {fileID: 29385844}
   brillo: {fileID: 950264276}
@@ -18594,6 +18758,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1831673447}
     - target: {fileID: 8911392246245029577, guid: 7c17450cb56aa0040998f29233d68bb7, type: 3}
+      propertyPath: listaNotasFMOD
+      value: 
+      objectReference: {fileID: 1686455226}
+    - target: {fileID: 8911392246245029577, guid: 7c17450cb56aa0040998f29233d68bb7, type: 3}
       propertyPath: gestionPentagrama
       value: 
       objectReference: {fileID: 29385844}
@@ -18645,5 +18813,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8911392246245029580, guid: 7c17450cb56aa0040998f29233d68bb7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1007164906248327427, guid: 7c17450cb56aa0040998f29233d68bb7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7c17450cb56aa0040998f29233d68bb7, type: 3}
