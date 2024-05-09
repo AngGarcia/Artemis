@@ -12,15 +12,15 @@ EditorBuildSettings:
     path: "Assets/Aplicaciones/Respiraci\xF3n/Escenas/Respiraci\xF3n.unity"
     guid: 6625cf058f6270c41aaacf21e3c24b59
   - enabled: 1
-    path: Assets/Aplicaciones/PaisajeSonoro/Escenas/PaisajeSonoro.unity
-    guid: c147a01a98f29084bac2c82e8f574e51
-  - enabled: 1
-    path: Assets/Aplicaciones/MelodiaFloral/Escenas/Demo_Actividad2.unity
-    guid: 7a364eca75755a541a8de2538dff20ec
-  - enabled: 1
     path: Assets/Aplicaciones/HarmonyHeaven/Scenes/EscenaDeJuego.unity
     guid: 60105a88be80e774b953c9170a813c67
   - enabled: 1
     path: Assets/Aplicaciones/RitmoVegetal/Scenes/TestSceneV2.unity
     guid: 2f9503f0b88e1904e9b4ad010f878679
+  - enabled: 1
+    path: Assets/Aplicaciones/PaisajeSonoro/Escenas/PaisajeSonoro.unity
+    guid: c147a01a98f29084bac2c82e8f574e51
+  - enabled: 1
+    path: Assets/Aplicaciones/MelodiaFloral/Escenas/MelodiaFloral.unity
+    guid: 7a364eca75755a541a8de2538dff20ec
   m_configObjects: {}
