@@ -19,9 +19,9 @@ MonoBehaviour:
     width: 1706.6667
     height: 869.3334
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 350}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 1
-  controlID: 11911
+  controlID: 19
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 11912
+  controlID: 20
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 11749
+  controlID: 87
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -190,11 +190,11 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1367.3334
-    height: 554.6667
+    height: 572.6667
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 11750
+  controlID: 88
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -212,15 +212,16 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 563.3333
-    height: 554.6667
+    width: 382
+    height: 572.6667
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 17}
+  m_ActualView: {fileID: 18}
   m_Panes:
-  - {fileID: 17}
+  - {fileID: 18}
+  - {fileID: 16}
   m_Selected: 0
-  m_LastSelected: 0
+  m_LastSelected: 1
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -236,15 +237,15 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 563.3333
+    x: 382
     y: 0
-    width: 556.6667
-    height: 554.6667
+    width: 738
+    height: 572.6667
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 16}
+  m_ActualView: {fileID: 17}
   m_Panes:
-  - {fileID: 16}
+  - {fileID: 17}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &11
@@ -265,12 +266,12 @@ MonoBehaviour:
     x: 1120
     y: 0
     width: 247.33337
-    height: 554.6667
+    height: 572.6667
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 18}
+  m_ActualView: {fileID: 19}
   m_Panes:
-  - {fileID: 18}
+  - {fileID: 19}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &12
@@ -291,13 +292,13 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 554.6667
+    y: 572.6667
     width: 1367.3334
-    height: 264.66663
+    height: 246.66663
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 11860
+  controlID: 110
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -316,12 +317,12 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 476.66666
-    height: 264.66663
+    height: 246.66663
   m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 19}
+  m_ActualView: {fileID: 20}
   m_Panes:
-  - {fileID: 19}
+  - {fileID: 20}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &14
@@ -342,12 +343,12 @@ MonoBehaviour:
     x: 476.66666
     y: 0
     width: 890.66675
-    height: 264.66663
+    height: 246.66663
   m_MinSize: {x: 232, y: 271}
   m_MaxSize: {x: 10002, y: 10021}
-  m_ActualView: {fileID: 20}
+  m_ActualView: {fileID: 21}
   m_Panes:
-  - {fileID: 20}
+  - {fileID: 21}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &15
@@ -371,12 +372,409 @@ MonoBehaviour:
     height: 819.3333
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 21}
+  m_ActualView: {fileID: 22}
   m_Panes:
-  - {fileID: 21}
+  - {fileID: 22}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &16
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5332ad2baabb58844975479e906001c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 380, y: 600}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: FMOD Events
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 0
+    y: 72.66667
+    width: 499
+    height: 551.6667
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+    m_OverlaysVisible: 1
+  isStandaloneWindow: 1
+  previewArea: {}
+  treeViewState:
+    baseState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 6e000000
+      m_LastClickedID: 110
+      m_ExpandedIDs: 00000000080000000a000000a3000000
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    noSearchExpandState: 
+    selectedObject: {fileID: 0}
+    itemPaths:
+    - folder:event:/
+    - folder:snapshot:/
+    - folder:bank:/
+    - folder:parameter:/
+    - event:/00TemasArtemis
+    - folder:event:/01SFXLibroInteractivoYHarmonyHeavenApp2
+    - folder:event:/02RitmoVegetalApp3
+    - folder:event:/03PaisajeSonoroApp4
+    - folder:event:/04MelodiaFloralApp5
+    - folder:event:/04MelodiaFloralApp5/Clarinete
+    - folder:event:/04MelodiaFloralApp5/Flauta
+    - folder:event:/04MelodiaFloralApp5/Oboe
+    - folder:event:/04MelodiaFloralApp5/Piano
+    - folder:event:/04MelodiaFloralApp5/Violin
+    - folder:event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas
+    - folder:event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas
+    - folder:event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras
+    - folder:event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas
+    - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/00Si3
+    - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/01Do4
+    - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/02Re4
+    - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/03Mi4
+    - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/04Fa4
+    - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/05Sol4
+    - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/06La4
+    - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/07Si4
+    - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/08Do5
+    - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/09Re5
+    - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/10Mi5
+    - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/11Fa5
+    - event:/04MelodiaFloralApp5/Clarinete/01ClarineteRedondas/12Sol5
+    - event:/01SFXLibroInteractivoYHarmonyHeavenApp2/BirdsSingning
+    - event:/01SFXLibroInteractivoYHarmonyHeavenApp2/BookTurningPage
+    - event:/01SFXLibroInteractivoYHarmonyHeavenApp2/Button
+    - event:/01SFXLibroInteractivoYHarmonyHeavenApp2/CrecerFlores
+    - event:/01SFXLibroInteractivoYHarmonyHeavenApp2/CricketsForest
+    - event:/01SFXLibroInteractivoYHarmonyHeavenApp2/Fall
+    - event:/01SFXLibroInteractivoYHarmonyHeavenApp2/Jump
+    - event:/01SFXLibroInteractivoYHarmonyHeavenApp2/Nature1
+    - event:/01SFXLibroInteractivoYHarmonyHeavenApp2/Nature2
+    - event:/01SFXLibroInteractivoYHarmonyHeavenApp2/OpeningBook
+    - event:/01SFXLibroInteractivoYHarmonyHeavenApp2/RewardSemillas
+    - event:/01SFXLibroInteractivoYHarmonyHeavenApp2/River
+    - event:/01SFXLibroInteractivoYHarmonyHeavenApp2/StartGame
+    - event:/01SFXLibroInteractivoYHarmonyHeavenApp2/Steps
+    - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/00Si3
+    - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/01Do4
+    - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/02Re4
+    - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/03Mi4
+    - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/04Fa4
+    - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/05Sol4
+    - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/06La4
+    - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/07Si4
+    - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/08Do5
+    - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/09Re5
+    - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/10Mi5
+    - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/11Fa5
+    - event:/04MelodiaFloralApp5/Clarinete/03ClarineteNegras/12Sol5
+    - event:/02RitmoVegetalApp3/MelodiaRelajante
+    - folder:event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones1
+    - folder:event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2
+    - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/00Si3
+    - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/01Do4
+    - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/02Re4
+    - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/03Mi4
+    - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/04Fa4
+    - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/05Sol4
+    - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/06La4
+    - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/07Si4
+    - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/08Do5
+    - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/09Re5
+    - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/10Mi5
+    - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/11Fa5
+    - event:/04MelodiaFloralApp5/Clarinete/04ClarineteCorcheas/12Sol5
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/00XilofonoDO4
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/01XilofonoDO#4
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/02XilofonoRE4
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/03XilofonoRE#4
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/04XilofonoMI4
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/05XilofonoFA4
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/06XilofonoFA#4
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/07XilofonoSOL4
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/08XilofonoSOL#4
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/09XilofonoLA4
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/10XilofonoLA#4
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/11XilofonoSI4
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/12XilofonoDO5
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/13XilofonoDO#5
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/14XilofonoRE5
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/15XilofonoRE#5
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/16XilofonoMI5
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/17XilofonOFA5
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/18XilofonoFA#5
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/19XilofonoSOL5
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/20XilofonoSOL#5
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/21XilofonoLA5
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/22XilofonoLA#5
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/23XilofonoSI5
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/24XilofonoDO6
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/25XilofonoDO#6
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/26XilofonoRE6
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/27XilofonoRE#6
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/28XilofonoMI6
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/29XilofonOFA6
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/30XilofonoFA#6
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/31XilofonoSOL6
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/32XilofonoSOL#6
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/33XilofonoLA6
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/34XilofonoLA#6
+    - event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones2/35XilofonoSI6
+    - folder:event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas
+    - folder:event:/04MelodiaFloralApp5/Flauta/07FlautaNegras
+    - folder:event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas
+    - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/00Si3
+    - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/01Do4
+    - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/02Re4
+    - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/03Mi4
+    - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/04Fa4
+    - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/05Sol4
+    - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/06La4
+    - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/07Si4
+    - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/08Do5
+    - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/09Re5
+    - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/10Mi5
+    - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/11Fa5
+    - event:/04MelodiaFloralApp5/Flauta/06FlautaBlancas/12sol5
+    - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/00Si3
+    - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/01Do4
+    - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/02Re4
+    - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/03Mi4
+    - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/04Fa4
+    - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/05Sol4
+    - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/06La4
+    - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/07Si4
+    - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/08Do5
+    - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/09Re5
+    - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/10Mi5
+    - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/11Fa5
+    - event:/04MelodiaFloralApp5/Flauta/07FlautaNegras/12Sol5
+    - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Do4
+    - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Do5
+    - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Fa4
+    - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Fa5
+    - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/La4
+    - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Mi4
+    - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Mi5
+    - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Re4
+    - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Re5
+    - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Si3
+    - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Si4
+    - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Sol4
+    - event:/04MelodiaFloralApp5/Flauta/08FlautaCorcheas/Sol5
+    - folder:event:/04MelodiaFloralApp5/Oboe/17OboeRedondas
+    - folder:event:/04MelodiaFloralApp5/Oboe/18OboeBlancas
+    - folder:event:/04MelodiaFloralApp5/Oboe/19OboeNegra
+    - folder:event:/04MelodiaFloralApp5/Oboe/20OboeCorchea
+    - folder:event:/04MelodiaFloralApp5/Piano/09PianoRedondas
+    - folder:event:/04MelodiaFloralApp5/Piano/10PianoBlancas
+    - folder:event:/04MelodiaFloralApp5/Piano/11PianoNegras
+    - folder:event:/04MelodiaFloralApp5/Piano/12PianoCorcheas
+    - folder:event:/04MelodiaFloralApp5/Violin/13ViolinRedondas
+    - folder:event:/04MelodiaFloralApp5/Violin/14ViolinBlancas
+    - folder:event:/04MelodiaFloralApp5/Violin/15ViolinNegras
+    - folder:event:/04MelodiaFloralApp5/Violin/16ViolinCorchea
+    - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/00Si3
+    - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/01Do4
+    - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/02Re4
+    - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/03Mi4
+    - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/04Fa4
+    - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/05Sol4
+    - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/06La4
+    - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/07Si4
+    - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/08Do5
+    - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/09Re5
+    - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/10Mi5
+    - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/11Fa5
+    - event:/04MelodiaFloralApp5/Piano/10PianoBlancas/12Sol5
+    - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/00Si3
+    - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/01Do4
+    - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/02Re4
+    - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/03Mi4
+    - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/04Fa4
+    - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/05Sol4
+    - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/06La4
+    - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/07Si4
+    - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/08Do5
+    - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/09Re5
+    - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/10Mi5
+    - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/11Fa5
+    - event:/04MelodiaFloralApp5/Piano/09PianoRedondas/12Sol5
+    - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/00Si3
+    - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/01Do4
+    - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/02Re4
+    - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/03Mi4
+    - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/04Fa4
+    - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/05Sol4
+    - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/06La4
+    - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/07Si4
+    - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/08Do5
+    - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/09Re5
+    - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/10Mi5
+    - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/11Fa5
+    - event:/04MelodiaFloralApp5/Piano/12PianoCorcheas/12Sol5
+    - event:/04MelodiaFloralApp5/Piano/11PianoNegras/00Si3
+    - event:/04MelodiaFloralApp5/Piano/11PianoNegras/01Do4
+    - event:/04MelodiaFloralApp5/Piano/11PianoNegras/02Re4
+    - event:/04MelodiaFloralApp5/Piano/11PianoNegras/03Mi4
+    - event:/04MelodiaFloralApp5/Piano/11PianoNegras/04Fa4
+    - event:/04MelodiaFloralApp5/Piano/11PianoNegras/05Sol4
+    - event:/04MelodiaFloralApp5/Piano/11PianoNegras/06La4
+    - event:/04MelodiaFloralApp5/Piano/11PianoNegras/07Si4
+    - event:/04MelodiaFloralApp5/Piano/11PianoNegras/08Do5
+    - event:/04MelodiaFloralApp5/Piano/11PianoNegras/09Re5
+    - event:/04MelodiaFloralApp5/Piano/11PianoNegras/10Mi5
+    - event:/04MelodiaFloralApp5/Piano/11PianoNegras/11Fa5
+    - event:/04MelodiaFloralApp5/Piano/11PianoNegras/12Sol5
+    - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/00Si3
+    - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/01Do4
+    - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/02Re4
+    - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/03Mi4
+    - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/04Fa4
+    - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/05Sol4
+    - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/06La4
+    - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/07Si4
+    - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/08Do5
+    - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/09Re5
+    - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/10Mi5
+    - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/11Fa5
+    - event:/04MelodiaFloralApp5/Violin/13ViolinRedondas/12Sol5
+    - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/00Si3
+    - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/01Do4
+    - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/02Re4
+    - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/03Mi4
+    - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/04Fa4
+    - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/05Sol4
+    - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/06La4
+    - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/07Si4
+    - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/08Do5
+    - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/09Re5
+    - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/10Mi5
+    - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/11Fa5
+    - event:/04MelodiaFloralApp5/Violin/14ViolinBlancas/12Sol5
+    - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/00Si3
+    - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/01Do4
+    - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/02Re4
+    - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/03Mi4
+    - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/04Fa4
+    - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/05Sol4
+    - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/06La4
+    - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/07Si4
+    - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/08Do5
+    - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/09Re5
+    - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/10Mi5
+    - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/11Fa5
+    - event:/04MelodiaFloralApp5/Violin/15ViolinNegras/12Sol5
+    - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/00Si3
+    - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/01Do4
+    - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/02Re4
+    - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/03Mi4
+    - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/04Fa4
+    - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/05Sol4
+    - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/06La4
+    - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/07Si4
+    - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/08Do5
+    - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/09Re5
+    - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/10Mi5
+    - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/11Fa5
+    - event:/04MelodiaFloralApp5/Oboe/17OboeRedondas/12Sol5
+    - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/00Si3
+    - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/01Do4
+    - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/02Re4
+    - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/03Mi4
+    - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/04Fa4
+    - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/05Sol4
+    - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/06La4
+    - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/07Si4
+    - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/08Do5
+    - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/09Re5
+    - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/10Mi5
+    - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/11Fa5
+    - event:/04MelodiaFloralApp5/Oboe/18OboeBlancas/12Sol5
+    - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/00Si3
+    - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/01Do4
+    - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/02Re4
+    - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/03Mi4
+    - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/04Fa4
+    - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/05Sol4
+    - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/06La4
+    - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/07Si4
+    - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/08Do5
+    - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/09Re5
+    - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/10Mi5
+    - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/11Fa5
+    - event:/04MelodiaFloralApp5/Oboe/19OboeNegra/12Sol5
+    - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/00Si3
+    - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/01Do4
+    - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/02Re4
+    - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/03Mi4
+    - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/04Fa4
+    - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/05Sol4
+    - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/06La4
+    - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/07Si4
+    - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/08Do5
+    - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/09Re5
+    - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/10Mi5
+    - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/11Fa5
+    - event:/04MelodiaFloralApp5/Oboe/20OboeCorchea/12Sol5
+    - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/00Si3
+    - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/01Do4
+    - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/02Re4
+    - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/03Mi4
+    - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/04Fa4
+    - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/05Sol4
+    - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/06La4
+    - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/07Si4
+    - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/08Do5
+    - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/09Re5
+    - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/10Mi5
+    - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/11Fa5
+    - event:/04MelodiaFloralApp5/Clarinete/02ClarineteBlancas/12Sol5
+    - event:/03PaisajeSonoroApp4/PaisajeSonoroApp4Classic
+    - event:/03PaisajeSonoroApp4/PaisajeSonoroApp4Electronic
+    - event:/03PaisajeSonoroApp4/PaisajeSonoroApp4Latin
+    - event:/03PaisajeSonoroApp4/PaisajeSonoroApp4PopRock
+    - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/00Si3
+    - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/01Do4
+    - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/02Re4
+    - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/03Mi4
+    - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/04Fa4
+    - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/05Sol4
+    - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/06La4
+    - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/07Si4
+    - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/08Do5
+    - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/09Re5
+    - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/10Mi5
+    - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/11Fa5
+    - event:/04MelodiaFloralApp5/Violin/16ViolinCorchea/12Sol5
+    itemIDs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f000000800000008100000082000000830000008400000085000000860000008700000088000000890000008a0000008b0000008c0000008d0000008e0000008f000000900000009100000092000000930000009400000095000000960000009700000098000000990000009a0000009b0000009c0000009d0000009e0000009f000000a0000000a1000000a2000000a3000000a4000000a5000000a6000000a7000000a8000000a9000000aa000000ab000000ac000000ad000000ae000000af000000b0000000b1000000b2000000b3000000b4000000b5000000b6000000b7000000b8000000b9000000ba000000bb000000bc000000bd000000be000000bf000000c0000000c1000000c2000000c3000000c4000000c5000000c6000000c7000000c8000000c9000000ca000000cb000000cc000000cd000000ce000000cf000000d0000000d1000000d2000000d3000000d4000000d5000000d6000000d7000000d8000000d9000000da000000db000000dc000000dd000000de000000df000000e0000000e1000000e2000000e3000000e4000000e5000000e6000000e7000000e8000000e9000000ea000000eb000000ec000000ed000000ee000000ef000000f0000000f1000000f2000000f3000000f4000000f5000000f6000000f7000000f8000000f9000000fa000000fb000000fc000000fd000000fe000000ff000000000100000101000002010000030100000401000005010000060100000701000008010000090100000a0100000b0100000c0100000d0100000e0100000f010000100100001101000012010000130100001401000015010000160100001701000018010000190100001a0100001b0100001c0100001d0100001e0100001f010000200100002101000022010000230100002401000025010000260100002701000028010000290100002a0100002b0100002c0100002d0100002e0100002f010000300100003101000032010000330100003401000035010000360100003701000038010000390100003a0100003b0100003c0100003d0100003e0100003f010000400100004101000042010000430100004401000045010000460100004701000048010000490100004a0100004b0100004c0100004d0100004e0100004f01000050010000
+    typeFilter: 7
+    dragEnabled: 1
+--- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -396,10 +794,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 563.3334
+    x: 382
     y: 72.66667
-    width: 554.6667
-    height: 533.6667
+    width: 736
+    height: 551.6667
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -429,14 +827,14 @@ MonoBehaviour:
     - UnityEditor.DeviceSimulation.ApplicationSettingsPlugin
     pluginStates:
     - '{}'
-    scale: 31
+    scale: 42
     fitToScreenEnabled: 1
     rotationDegree: 270
     highlightSafeAreaEnabled: 0
     friendlyName: Apple iPhone 6
     networkReachability: 1
     systemLanguage: 10
---- !u!114 &17
+--- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -458,8 +856,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 72.66667
-    width: 562.3333
-    height: 533.6667
+    width: 381
+    height: 551.6667
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -470,7 +868,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 1
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: -98.66666, y: -1.333313}
+      snapOffsetDelta: {x: -98.66666, y: -26}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -492,7 +890,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 1
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-scene-view-toolbar
       index: 0
@@ -503,7 +901,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 1
       id: unity-search-toolbar
       index: 1
@@ -513,8 +911,8 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffset: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-transform-toolbar
       index: 0
@@ -547,7 +945,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Light Settings
       index: 0
@@ -558,7 +956,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Camera
       index: 1
@@ -569,7 +967,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Cloth Constraints
       index: 2
@@ -580,7 +978,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Cloth Collisions
       index: 3
@@ -591,7 +989,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Navmesh Display
       index: 4
@@ -602,7 +1000,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Agent Display
       index: 5
@@ -613,7 +1011,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Obstacle Display
       index: 6
@@ -624,7 +1022,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Occlusion Culling
       index: 7
@@ -635,7 +1033,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Physics Debugger
       index: 8
@@ -646,7 +1044,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Scene Visibility
       index: 9
@@ -657,7 +1055,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Particles
       index: 10
@@ -690,7 +1088,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Open Tile Palette
       index: 2
@@ -701,7 +1099,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 24.666666}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Tilemap Focus
       index: 3
@@ -709,17 +1107,17 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
   m_Gizmos: 1
-  m_OverrideSceneCullingMask: 0
-  m_SceneIsLit: 0
+  m_OverrideSceneCullingMask: 6917529027641081856
+  m_SceneIsLit: 1
   m_SceneLighting: 1
   m_2DMode: 1
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -7.653583, y: -5.18041, z: -0.04686281}
+    m_Target: {x: -0.6326258, y: 0.0063850284, z: -5.6496105}
     speed: 2
-    m_Value: {x: -7.777466, y: -5.1634398, z: -0.049320094}
+    m_Value: {x: -0.6326258, y: 0.0063850284, z: -5.6496105}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -731,7 +1129,7 @@ MonoBehaviour:
   m_SceneViewState:
     m_AlwaysRefresh: 0
     showFog: 1
-    showSkybox: 0
+    showSkybox: 1
     showFlares: 1
     showImageEffects: 1
     showParticleSystems: 1
@@ -770,9 +1168,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 5.2149143
+    m_Target: 9.834151
     speed: 2
-    m_Value: 5.4606433
+    m_Value: 9.834151
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -797,7 +1195,7 @@ MonoBehaviour:
   m_SceneVisActive: 1
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
---- !u!114 &18
+--- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -820,7 +1218,7 @@ MonoBehaviour:
     x: 1120
     y: 72.66667
     width: 245.33337
-    height: 533.6667
+    height: 551.6667
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -829,9 +1227,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 94d20000
-      m_LastClickedID: 53908
-      m_ExpandedIDs: 26b8ffff94d20000
+      m_SelectedIDs: 046d0000
+      m_LastClickedID: 27908
+      m_ExpandedIDs: 20fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -847,7 +1245,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 11}
+        m_ClientGUIView: {fileID: 10}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -855,7 +1253,7 @@ MonoBehaviour:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: 4c969a2b90040154d917609493e03593
---- !u!114 &19
+--- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -876,15 +1274,15 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 627.3334
+    y: 645.3334
     width: 475.66666
-    height: 243.66663
+    height: 225.66663
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
     m_OverlaysVisible: 1
---- !u!114 &20
+--- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -905,9 +1303,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 476.6667
-    y: 627.3334
+    y: 645.3334
     width: 888.66675
-    height: 243.66663
+    height: 225.66663
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -924,23 +1322,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Aplicaciones/MelodiaFloral/Prefabs
+    - Assets/Aplicaciones/General/Scenes
     m_Globs: []
     m_OriginalText: 
     m_FilterByTypeIntersection: 0
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Aplicaciones/MelodiaFloral/Prefabs
+  - Assets/Aplicaciones/General/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\User\ARTEMIS_PROYECTO\Artemis
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 200.33337}
-    m_SelectedIDs: 407e0000
-    m_LastClickedID: 32320
-    m_ExpandedIDs: 000000003474000036740000387400003a740000427400004e740000567c0000a890000000ca9a3b
+    scrollPos: {x: 0, y: 10.333313}
+    m_SelectedIDs: 52720000
+    m_LastClickedID: 29266
+    m_ExpandedIDs: 000000000c7200000e72000010720000127200001472000016720000187200001a7200003472000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -968,7 +1366,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000003474000036740000387400003a74000042740000567c0000a890000000ca9a3b
+    m_ExpandedIDs: 000000000c7200000e72000010720000127200001472000016720000187200001a720000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1024,7 +1422,7 @@ MonoBehaviour:
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 327
---- !u!114 &21
+--- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1060,7 +1458,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 963.33325
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

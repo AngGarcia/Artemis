@@ -1,0 +1,31 @@
+{
+  "project_info": {
+    "project_number": "836341125309",
+    "project_id": "artemis-1e186",
+    "storage_bucket": "artemis-1e186.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836341125309:ios:f4f17f13c4d2a20840a7d4",
+        "android_client_info": {
+          "package_name": "com.Artemis.ProyectoArtemis"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEIALq3uIm_orjTY7FLmCA_rGuCJunkSw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 0
+        },
+        "appinvite_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

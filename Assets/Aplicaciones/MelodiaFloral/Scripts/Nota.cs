@@ -28,7 +28,6 @@ namespace AlteracionMelodia
         private GameObject brillo;
         private Vector3 lastTouchPosition; //última posición del dedo
 
-        private AudioSource nota;
         private int sonidoActual;  //tendríamos que usar enumerados aquí
         private bool sePuedeMover; //booleano para indicar si se puede arrastrar la nota o no en ese momento
         private bool notaMoviendose;  //booleano para indicar que estamos moviendo/pulsando la nota
@@ -52,7 +51,6 @@ namespace AlteracionMelodia
             notaMoviendose = false;
             sePuedeModificar = false;
             bloqueada = false;
-            nota = GetComponent<AudioSource>();
             sonidoActual = 0;
             sePuedeMover = false;
             tipoNotaActual = TiposNotasLocal.Negra;
@@ -193,87 +191,6 @@ namespace AlteracionMelodia
             //primero comprobamos el instrumento y después la nota
 
             listaNotasFMOD.tocarNotaFMOD(instrumentoActual, sonidoActual, (int)tipoNotaActual);
-           
-           /* if (instrumentoActual == 0) //piano
-            {
-                switch (sonidoActual)
-                {
-                    case 0:
-                        //nota.clip = null;
-                        break;
-                    case 1:
-                       // MusicManager.Instance.PlaySound(AppSounds.DO_P);
-                        //FMODUnity.RuntimeManager.PlayOneShot(soundEventPath);
-                        break;
-                    case 2:
-                        MusicManager.Instance.PlaySound(AppSounds.RE_P);
-                        break;
-                    case 3:
-                        MusicManager.Instance.PlaySound(AppSounds.MI_P);
-                        break;
-                    case 4:
-                        MusicManager.Instance.PlaySound(AppSounds.FA_P);
-                        break;
-                    case 5:
-                        MusicManager.Instance.PlaySound(AppSounds.SOL_P);
-                        break;
-                    case 6:
-                        MusicManager.Instance.PlaySound(AppSounds.LA_P);
-                        break;
-                    case 7:
-                        MusicManager.Instance.PlaySound(AppSounds.SI_P);
-                        break;
-                    case 8:
-                        MusicManager.Instance.PlaySound(AppSounds.DO_OCT_P);
-                        break;
-                }
-            }
-            else if (instrumentoActual == 1) //flauta
-            {
-                switch (sonidoActual)
-                {
-                    case 0:
-                        nota.clip = null;
-                        break;
-                    case 2:
-                        MusicManager.Instance.PlaySound(AppSounds.RE_FLAUTA);
-                        break;
-                    case 3:
-                        MusicManager.Instance.PlaySound(AppSounds.MI_FLAUTA);
-                        break;
-                    case 4:
-                        MusicManager.Instance.PlaySound(AppSounds.FA_FLAUTA);
-                        break;
-                }
-            }
-            else if (instrumentoActual == 2) //clarinete
-            {
-                switch (sonidoActual)
-                {
-                    case 0:
-                       // nota.clip = null;
-                        break;
-                }
-            }
-            else if (instrumentoActual == 3) //oboe
-            {
-                switch (sonidoActual)
-                {
-                    case 0:
-                        //nota.clip = null;
-                        break;
-                }
-            }
-            else if (instrumentoActual == 4) //violin
-            {
-                switch (sonidoActual)
-                {
-                    case 0:
-                       // nota.clip = null;
-                        break;
-                }
-            }
-           */
         }
 
         public void agregarPalitoPentagrama(int tipoPalo)
