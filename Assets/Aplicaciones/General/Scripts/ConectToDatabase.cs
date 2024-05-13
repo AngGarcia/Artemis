@@ -131,8 +131,8 @@ namespace General
                 DocumentReference docRef = db.Collection("Medicos").Document(id);
 
                 Medico nuevoMedico = new Medico(id, email);
-                //Debug.Log(nuevoMedico);
-                docRef.SetAsync(nuevoMedico.returnDatosMedico()).ContinueWithOnMainThread(task =>
+                
+                docRef.UpdateAsync(nuevoMedico.returnDatosMedico()).ContinueWithOnMainThread(task =>
                 {
                     if (task.IsCanceled)
                     {
@@ -155,7 +155,7 @@ namespace General
 
                 Paciente nuevoPaciente = new Paciente(id, email);
                // Debug.Log(nuevoPaciente);
-                docRef.SetAsync(nuevoPaciente.returnDatosPaciente()).ContinueWithOnMainThread(task =>
+                docRef.UpdateAsync(nuevoPaciente.returnDatosPaciente()).ContinueWithOnMainThread(task =>
                 {
                     if (task.IsCanceled)
                     {
@@ -171,6 +171,30 @@ namespace General
                     Debug.Log("Paciente " + id + "añadido con éxito a la colección Pacientes");
                 });
             }
+        }
+
+        public void readAllData()
+        {
+            CollectionReference usersRef = db.Collection("users");
+            usersRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+            {
+                QuerySnapshot snapshot = task.Result;
+                foreach (DocumentSnapshot document in snapshot.Documents)
+                {
+                    Debug.Log("User: " + document.Id);
+                    Dictionary<string, object> documentDictionary = document.ToDictionary();
+                    Debug.Log("First: " +  documentDictionary["First"]);
+                    if (documentDictionary.ContainsKey("Middle"))
+                    {
+                        Debug.Log("Middle: " + documentDictionary["Middle"]);
+                    }
+
+                    Debug.Log("Last: " + documentDictionary["Last"]);
+                    Debug.Log("Born: " + documentDictionary["Born"]);
+                }
+
+                Debug.Log("Read all data from the users collection.");
+            });
         }
 
     }
