@@ -7,22 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:836341125309:ios:f4f17f13c4d2a20840a7d4",
+        "mobilesdk_app_id": "1:836341125309:android:f95e9829ca0fff8040a7d4",
         "android_client_info": {
           "package_name": "com.Artemis.ProyectoArtemis"
         }
       },
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCEIALq3uIm_orjTY7FLmCA_rGuCJunkSw"
+          "current_key": "AIzaSyAZcSKci_imlTIROFlgD97WAq0xFrs25G4"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 0
-        },
         "appinvite_service": {
-          "status": 1
+          "other_platform_oauth_client": []
         }
       }
     }
