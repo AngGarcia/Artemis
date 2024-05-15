@@ -27,10 +27,13 @@ public class SceneChanger : PersistentSingleton<SceneChanger>
         SceneManager.LoadScene((int) actualScene);
     }
 
-    public void GoToScene(int s)
+    public void GoToScene(Scenes s)
     {
-        actualScene = (Scenes) s;
-        prevScene = actualScene--;
+        actualScene = s;
+        Debug.Log(actualScene);
+        prevScene = actualScene - 1;
+
+        Debug.Log(actualScene);
 
         SceneManager.LoadScene((int)actualScene);
     }
