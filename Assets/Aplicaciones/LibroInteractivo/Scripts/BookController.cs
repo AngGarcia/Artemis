@@ -11,7 +11,7 @@ public class BookController : MonoBehaviour
     [SerializeField] private Button _nextSceneButton;
 
     private Book _activeBook;
-    private Scenes _nextScene = Scenes.Database;
+    private Scenes _nextScene = Scenes.MainMenu;
 
     void Start()
     {
@@ -21,25 +21,25 @@ public class BookController : MonoBehaviour
         }
         _nextSceneButton.gameObject.SetActive(false);
 
-        if (prevScene == Scenes.Respiracion) //Si viene de respiración, activamos el libro 2
+        if (SceneChanger.Instance.prevScene == Scenes.Respiracion) //Si viene de respiración, activamos el libro 2
         {
             _books[1].gameObject.SetActive(true);
             _activeBook = _books[1];
             _nextScene = Scenes.HarmonyHeaven;
         }
-        else if (prevScene == Scenes.HarmonyHeaven || prevScene == Scenes.RitmoVejetal)
+        else if (SceneChanger.Instance.prevScene == Scenes.HarmonyHeaven || SceneChanger.Instance.prevScene == Scenes.RitmoVegetal)
         {
             _books[2].gameObject.SetActive(true);
             _activeBook = _books[2];
             _nextScene = Scenes.PaisajeSonoro;
         }
-        else if (prevScene == Scenes.PaisajeSonoro)
+        else if (SceneChanger.Instance.prevScene == Scenes.PaisajeSonoro)
         {
             _books[3].gameObject.SetActive(true);
             _activeBook = _books[3];
             _nextScene = Scenes.MelodiaFloral;
         }
-        else if (prevScene == Scenes.MelodiaFloral)
+        else if (SceneChanger.Instance.prevScene == Scenes.MelodiaFloral)
         {
             _books[4].gameObject.SetActive(true);
             _activeBook = _books[4];
@@ -71,6 +71,6 @@ public class BookController : MonoBehaviour
 
     private void NextScene()
     {
-        _sceneChanger.GoToScene(_nextScene);
+        SceneChanger.Instance.GoToScene(_nextScene);
     }
 }

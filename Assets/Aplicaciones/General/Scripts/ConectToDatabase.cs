@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Extensions;
 using Firebase.Firestore;
-
+using System.Threading.Tasks;
 
 namespace General
 {
-    //LO HAREMOS 'PersistentSingleton' EN VEZ DE MONOBEHAVIOUR PARA QUE PODAMOS ACCEDER A LOS DATOS DESDE TODA LA APLICACIÓN
     public class ConectToDatabase : PersistentSingleton<ConectToDatabase>
     {
         Firebase.Auth.FirebaseAuth auth;
         FirebaseFirestore db;
+
+        //lso 2 tipos de usuarios que pueden estar loggeados en la aplicación
+        private Medico currentMedico;
+        private Paciente currentPaciente;
 
         void Start()
         {
@@ -35,12 +38,15 @@ namespace General
                     // Firebase Unity SDK is not safe to use here.
                 }
             });
+
+            currentMedico = new Medico();
+            currentPaciente = new Paciente();
         }
 
         //en este script crearemos todas las funciones que tengan que ver con conectarse a la BBDD
 
         //los parámetros los pasaremos cuando llamemos a esta función en el menú de login
-        public void CreateUser(string email, string password, bool esMedico)
+        public void CreateUser(string email, string password, string nombre, string apellidos, bool esMedico)
         {
             auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
             {
@@ -61,23 +67,19 @@ namespace General
                  result.User.DisplayName, result.User.UserId);
 
                 //además, añadimos este usuario a nuestra base de datos
-                initializeNewUser(result.User.UserId, email, esMedico);
-
-                Debug.Log("HOLAAAAAAAA");
+                initializeNewUser(result.User.UserId, email, nombre, apellidos, esMedico);
 
             });
         }
 
-        public void Login(string email, string password)
+        public async Task LoginMedico(string email, string password)
         {
+            //hacemos login normal y luego establecemos el currentMedico 
+            Debug.Log("Loggeandonos como PSICOLOGO");
 
-            if(auth.CurrentUser != null)
-            {
-                Debug.Log("Ya hay un usuario loggeado!");
-                return;
-            }
+            //buscamos en la tabla de Medicos el paciente que coincida con el ID del currentUser
 
-            auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
+            await auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
                 if (task.IsCanceled)
                 {
                     Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
@@ -92,14 +94,73 @@ namespace General
                 Firebase.Auth.AuthResult result = task.Result;
                 Debug.LogFormat("User signed in successfully: {0} ({1})",
                     result.User.DisplayName, result.User.UserId);
-            });
 
+                //ahora hacer lo de antes aquí
+                CollectionReference medicosRef = db.Collection("Medicos");
+                medicosRef.GetSnapshotAsync().ContinueWithOnMainThread(task => {
+
+                    Debug.Log("Antes de ver los medicos");
+                    QuerySnapshot snapshot = task.Result;
+                    foreach (DocumentSnapshot document in snapshot.Documents)
+                    {
+                         if (auth.CurrentUser.UserId == document.Id)
+                         {
+                            Dictionary<string, object> documentDictionary = document.ToDictionary();
+                            //establecemos el objeto 'currentMedico' con el usuario actual para poder usuarlo en el resto de la aplicación
+                            currentMedico = currentMedico.DictionaryToMedico(documentDictionary);
+                            currentMedico.printValues();
+                         }
+                    }
+
+                });
+            });
+        }
+
+        public async Task LoginPaciente(string email, string password)
+        {
+            //hacemos login normal y luego establecemos el currentPaciente 
+            Debug.Log("Loggeandonos como PACIENTE");
+
+            await auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
+                if (task.IsCanceled)
+                {
+                    Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
+                    return;
+                }
+                if (task.IsFaulted)
+                {
+                    Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+                    return;
+                }
+
+                Firebase.Auth.AuthResult result = task.Result;
+                Debug.LogFormat("User signed in successfully: {0} ({1})",
+                    result.User.DisplayName, result.User.UserId);
+
+                //ahora hacer lo de antes aquí
+                CollectionReference pacientesRef = db.Collection("Pacientes");
+                pacientesRef.GetSnapshotAsync().ContinueWithOnMainThread(task => {
+
+                    Debug.Log("Antes de ver los pacientes");
+                    QuerySnapshot snapshot = task.Result;
+                    foreach (DocumentSnapshot document in snapshot.Documents)
+                    {
+                        if (auth.CurrentUser.UserId == document.Id)
+                        {
+                            Dictionary<string, object> documentDictionary = document.ToDictionary();
+                            //establecemos el objeto 'currentPaciente' con el usuario actual para poder usuarlo en el resto de la aplicación
+                            currentPaciente = currentPaciente.DictionaryToPaciente(documentDictionary);
+                            currentPaciente.printValues();
+                        }
+                    }
+
+                });
+            });
         }
 
         public void LogOut()
         {
             //Para salir de la sesión de un usuario
-            Debug.LogFormat("User log out in succesfully: " + auth.CurrentUser.UserId);
             auth.SignOut();
         }
 
@@ -121,18 +182,30 @@ namespace General
             return uid;
         }
 
-        private void initializeNewUser(string id, string email, bool esMedico)
+        public bool isLogged()
         {
-            //además, añadimos este usuario a nuestra base de datos
-            //indicar si es médico o paciente en el Login
+            if (auth.CurrentUser != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void initializeNewUser(string id, string email, string nombre, string apellidos, bool esMedico)
+        {
             if (esMedico)
             {
                 Debug.Log("Soy un medico");
                 DocumentReference docRef = db.Collection("Medicos").Document(id);
 
-                Medico nuevoMedico = new Medico(id, email);
+                Medico nuevoMedico = new Medico();
+                nuevoMedico.initMedico(id, email, nombre, apellidos);
                 
-                docRef.UpdateAsync(nuevoMedico.returnDatosMedico()).ContinueWithOnMainThread(task =>
+                //UpdateAsync lo usaremos cuando queramos modificar datos
+                docRef.SetAsync(nuevoMedico.returnDatosMedico()).ContinueWithOnMainThread(task =>
                 {
                     if (task.IsCanceled)
                     {
@@ -153,9 +226,11 @@ namespace General
                 Debug.Log("Soy un paciente");
                 DocumentReference docRef = db.Collection("Pacientes").Document(id);
 
-                Paciente nuevoPaciente = new Paciente(id, email);
-               // Debug.Log(nuevoPaciente);
-                docRef.UpdateAsync(nuevoPaciente.returnDatosPaciente()).ContinueWithOnMainThread(task =>
+                Paciente nuevoPaciente = new Paciente();
+                nuevoPaciente.initPaciente(id, email, nombre, apellidos);
+
+                //UpdateAsync lo usaremos cuando queramos modificar datos
+                docRef.SetAsync(nuevoPaciente.returnDatosPaciente()).ContinueWithOnMainThread(task =>
                 {
                     if (task.IsCanceled)
                     {
@@ -173,7 +248,11 @@ namespace General
             }
         }
 
-        public void readAllData()
+        //HACER FUNCIONES DE VER SI HAY USUARIO LOGGEADO
+
+
+        //NO ES OFICIAL, ES DE PRUEBA
+       /* public void readAllData()
         {
             CollectionReference usersRef = db.Collection("users");
             usersRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
@@ -195,7 +274,7 @@ namespace General
 
                 Debug.Log("Read all data from the users collection.");
             });
-        }
+        }*/
 
     }
 }

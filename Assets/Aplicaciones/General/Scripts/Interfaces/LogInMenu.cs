@@ -51,7 +51,7 @@ namespace General
                 string email = inputEmail.text;
                 string password = inputPassword.text;
                 Debug.Log("Creando usuario...");
-                ConectToDatabase.Instance.CreateUser(email, password, esMedico);
+                ConectToDatabase.Instance.CreateUser(email, password, "", "", esMedico);
             }
 
         }
@@ -61,7 +61,7 @@ namespace General
             string email = inputEmail.text;
             string password = inputPassword.text;
 
-            ConectToDatabase.Instance.Login(email, password);
+            //ConectToDatabase.Instance.Login(email, password);
         }
 
         //DE PRUEBA, NO VA AQUÍ

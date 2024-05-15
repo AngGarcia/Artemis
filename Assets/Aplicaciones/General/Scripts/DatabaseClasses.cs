@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace General
     {
         public string id = "";
         public string email = "";
+        public bool esMedico = false;
 
         public string idMedico = "";
         public string nombre = "";
@@ -21,11 +23,12 @@ namespace General
 
         public int numVecesPausa = 0;
 
-        //constructor para usar al crear el usuario en la BBDD
-        public Paciente(string id, string email)
+        public void initPaciente(string id, string email, string nombre, string apellidos)
         {
             this.id = id;
             this.email = email;
+            this.nombre = nombre;
+            this.apellidos = apellidos;
         }
 
         public Dictionary<string, object> returnDatosPaciente()
@@ -33,6 +36,7 @@ namespace General
             Dictionary<string, object> paciente = new Dictionary<string, object>
             {
                 { "id" , id },
+                { "esMedico", esMedico },
                 { "email" , email },
                 { "isMedico" , idMedico },
                 { "nombre" , nombre },
@@ -42,10 +46,44 @@ namespace General
                 { "tiempoEnRitmoVegetal" , tiempoEnRitmoVegetal },
                 { "tiempoEnPaisajeSonoro" , tiempoEnPaisajeSonoro },
                 { "tiempoEnMelodiaFloral" , tiempoEnMelodiaFloral },
-                { "numvecesPausa" , numVecesPausa },
+                { "numVecesPausa" , numVecesPausa },
             };
 
             return paciente;
+        }
+
+        //lo usamos para convertir los datos que nos llegan de la base de datos al tipo de clase que queremos
+        public Paciente DictionaryToPaciente(Dictionary<string, object> dictionary)
+        {
+            Paciente paciente = new Paciente();
+
+            paciente.id = dictionary["id"].ToString();
+            paciente.email = dictionary["email"].ToString();
+            paciente.nombre = dictionary["nombre"].ToString();
+            paciente.apellidos = dictionary["apellidos"].ToString();
+
+            paciente.tiempoEnRespiracion = System.Convert.ToSingle(dictionary["tiempoEnRespiracion"]);
+            paciente.tiempoEnHarmonyHeaven = System.Convert.ToSingle(dictionary["tiempoEnHarmonyHeaven"]);
+            paciente.tiempoEnRitmoVegetal = System.Convert.ToSingle(dictionary["tiempoEnRitmoVegetal"]);
+            paciente.tiempoEnPaisajeSonoro = System.Convert.ToSingle(dictionary["tiempoEnPaisajeSonoro"]);
+            paciente.tiempoEnMelodiaFloral = System.Convert.ToSingle(dictionary["tiempoEnMelodiaFloral"]);
+            paciente.numVecesPausa = Convert.ToInt32(dictionary["numVecesPausa"]);
+
+            return paciente;
+        }
+
+        public void printValues()
+        {
+            Debug.Log("ID: " + id);
+            Debug.Log("Email: " + email);
+            Debug.Log("Nombre: " + nombre);
+            Debug.Log("Apellidos: " + apellidos);
+            Debug.Log("TiempoEnRespiracion: " + tiempoEnRespiracion);
+            Debug.Log("TiempoEnHarmonyHeaven: " + tiempoEnHarmonyHeaven);
+            Debug.Log("TiempoEnRitmoVegetal: " + tiempoEnRitmoVegetal);
+            Debug.Log("TiempoEnPaisajeSonoro: " + tiempoEnPaisajeSonoro);
+            Debug.Log("TiempoEnMelodiaFloral: " + tiempoEnMelodiaFloral);
+            Debug.Log("NumVecesPausa: " + numVecesPausa);
         }
     }
 
@@ -53,17 +91,19 @@ namespace General
     {
         public string id = "";
         public string email = "";
+        public bool esMedico = true;
 
         public string nombre = "";
         public string apellidos = "";
 
         public List<Paciente> pacientes;
 
-        //constructor para usar al crear el usuario en la BBDD
-        public Medico(string id, string email)
+        public void initMedico(string id, string email, string nombre, string apellidos)
         {
             this.id = id;
             this.email = email;
+            this.nombre = nombre;
+            this.apellidos = apellidos;
             pacientes = new List<Paciente>();
         }
 
@@ -72,6 +112,7 @@ namespace General
             Dictionary<string, object> medico = new Dictionary<string, object>
             {
                 { "id" , id },
+                { "esMedico", esMedico },
                 { "email" , email },
                 { "nombre" , nombre },
                 { "apellidos" , apellidos },
@@ -79,6 +120,35 @@ namespace General
             };
 
             return medico;
+        }
+
+        //lo usamos para convertir los datos que nos llegan de la base de datos al tipo de clase que queremos
+        public Medico DictionaryToMedico(Dictionary<string, object> dictionary)
+        {
+            Medico medico = new Medico();
+
+            medico.id = dictionary["id"].ToString();
+            medico.email = dictionary["email"].ToString();
+            medico.nombre = dictionary["nombre"].ToString();
+            medico.apellidos = dictionary["apellidos"].ToString();
+            medico.pacientes = dictionary["pacientes"] as List<Paciente>;
+
+            return medico;
+        }
+
+        public void printValues()
+        {
+            Debug.Log("ID: " + id);
+            Debug.Log("Email: " + email);
+            Debug.Log("Nombre: " + nombre);
+            Debug.Log("Apellidos: " + apellidos);
+            Debug.Log("Lista de pacientes:");
+
+            for(int i=0; i < pacientes.Count; i++)
+            {
+                Debug.Log("\t-" + pacientes[i].nombre);
+            }
+           
         }
     }
 }

@@ -7,17 +7,17 @@ public class SceneChanger : PersistentSingleton<SceneChanger>
 {
     public enum Scenes
     {
-        Database,
+        MainMenu,
         LibroInteractivo,
         Respiracion,
         HarmonyHeaven,
-        RitmoVejetal,
+        RitmoVegetal,
         PaisajeSonoro,
         MelodiaFloral
     }
 
-    public static Scenes actualScene;
-    public static Scenes prevScene = Scenes.LibroInteractivo;
+    public Scenes actualScene;
+    public Scenes prevScene = Scenes.LibroInteractivo;
 
     public void NextScene()
     {
@@ -29,11 +29,11 @@ public class SceneChanger : PersistentSingleton<SceneChanger>
 
     public void GoToScene(Scenes s)
     {
+        prevScene = actualScene;
         actualScene = s;
-        Debug.Log(actualScene);
-        prevScene = actualScene - 1;
 
         Debug.Log(actualScene);
+        Debug.Log(prevScene);
 
         SceneManager.LoadScene((int)actualScene);
     }

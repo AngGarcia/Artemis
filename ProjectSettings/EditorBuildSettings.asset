@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Aplicaciones/General/Scenes/PruebasDatabase.unity
-    guid: dad31ebcdc6a6fe4080e3dd7ce965516
+    path: Assets/Aplicaciones/General/Scenes/MenuPrincipal.unity
+    guid: eaeb7eae20190384bb0f28ed8eb666c8
   - enabled: 1
     path: Assets/Aplicaciones/LibroInteractivo/Escenas/LibroInteractivo.unity
     guid: fd17a5b89d95cb54eb190edb8558758a
