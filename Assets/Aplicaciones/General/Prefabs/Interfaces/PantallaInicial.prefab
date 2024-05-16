@@ -2464,12 +2464,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoPanel: {fileID: 4183460252630014092}
+  seleccionUsuario: {fileID: 0}
+  login: {fileID: 0}
+  mapa: {fileID: 0}
+  btnPaciente: {fileID: 0}
+  btnMedico: {fileID: 0}
+  btnAyuda: {fileID: 0}
+  btnLogin: {fileID: 0}
   msgErrorPaciente: {fileID: 4183460251289999747}
   msgErrorMedico: {fileID: 4183460252867720062}
-  loginInputEmailPaciente: {fileID: 4183460251639584314}
-  loginInputPwdPaciente: {fileID: 4183460251848282337}
-  loginInputEmailMedico: {fileID: 4183460252662765781}
-  loginInputPwdMedico: {fileID: 4183460251488092675}
+  loginInputEmail: {fileID: 0}
+  loginInputPwd: {fileID: 0}
   createInputEmailPaciente: {fileID: 4183460252712196139}
   createInputPwdPaciente: {fileID: 4183460252976282126}
   createInputNombrePaciente: {fileID: 4183460253386952102}
@@ -2546,7 +2551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4183460251632132596
 RectTransform:
   m_ObjectHideFlags: 0

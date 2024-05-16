@@ -22,6 +22,8 @@ namespace General
         public float tiempoEnMelodiaFloral = 0f;
 
         public int numVecesPausa = 0;
+        
+        public Dictionary<int, bool> nivelesSuperados;
 
         public void initPaciente(string id, string email, string nombre, string apellidos)
         {
@@ -29,6 +31,15 @@ namespace General
             this.email = email;
             this.nombre = nombre;
             this.apellidos = apellidos;
+
+            nivelesSuperados = new Dictionary<int, bool>
+            {
+                { 2, false },
+                { 3, false },
+                { 4, false },
+                { 5, false },
+                { 6, false }
+            };
         }
 
         public Dictionary<string, object> returnDatosPaciente()
@@ -38,7 +49,7 @@ namespace General
                 { "id" , id },
                 { "esMedico", esMedico },
                 { "email" , email },
-                { "isMedico" , idMedico },
+                { "idMedico" , idMedico },
                 { "nombre" , nombre },
                 { "apellidos" , apellidos },
                 { "tiempoEnRespiracion" , tiempoEnRespiracion },
@@ -47,6 +58,7 @@ namespace General
                 { "tiempoEnPaisajeSonoro" , tiempoEnPaisajeSonoro },
                 { "tiempoEnMelodiaFloral" , tiempoEnMelodiaFloral },
                 { "numVecesPausa" , numVecesPausa },
+                //{ "nivelesSuperados", nivelesSuperados }
             };
 
             return paciente;
@@ -69,6 +81,8 @@ namespace General
             paciente.tiempoEnMelodiaFloral = System.Convert.ToSingle(dictionary["tiempoEnMelodiaFloral"]);
             paciente.numVecesPausa = Convert.ToInt32(dictionary["numVecesPausa"]);
 
+            //paciente.nivelesSuperados = dictionary["nivelesSuperados"] as Dictionary<int, bool>;
+
             return paciente;
         }
 
@@ -84,6 +98,7 @@ namespace General
             Debug.Log("TiempoEnPaisajeSonoro: " + tiempoEnPaisajeSonoro);
             Debug.Log("TiempoEnMelodiaFloral: " + tiempoEnMelodiaFloral);
             Debug.Log("NumVecesPausa: " + numVecesPausa);
+            //Debug.Log("Niveles superados: " + nivelesSuperados);
         }
     }
 

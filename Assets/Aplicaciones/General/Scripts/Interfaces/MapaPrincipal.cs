@@ -1,11 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using static SceneChanger;
 
 namespace General
 {
     public class MapaPrincipal : MonoBehaviour
     {
+        [SerializeField] private TMP_Text nombrePaciente;
+        [SerializeField] private GameObject seleccionUser;
+        [SerializeField] private GameObject mapa;
+        [SerializeField] private LogInMenuManager menuManager;
         [Header("BOTONES")]
         [SerializeField] private Button btnPopUpLogOut;
         [SerializeField] private Button btnPopUpSave;
@@ -15,9 +20,19 @@ namespace General
         [SerializeField] private Button btnRitmoVegetal;
         [SerializeField] private Button btnPaisajeSonoro;
         [SerializeField] private Button btnMelodiaFloral;
+        [Header("POP-UPS")]
+        [SerializeField] private GameObject popLogOut;
+        [SerializeField] private GameObject popSaveData;
+        [SerializeField] private GameObject popDataSaved;
+
 
         //En Awake, comprobar datos de guardado y activar los botones de nivel segun cuales esten desbloqueados
         //Faltarian asignar las funciones de logout y save
+
+        private void OnEnable()
+        {
+            nombrePaciente.text = ConectToDatabase.Instance.getCurrentPaciente().nombre;
+        }
 
         void Start()
         {
@@ -27,6 +42,7 @@ namespace General
             btnRitmoVegetal.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.RitmoVegetal); });
             btnPaisajeSonoro.onClick.AddListener(goToPaisajeSonoro);
             btnMelodiaFloral.onClick.AddListener(goToMelodiaFloral);
+            btnPopUpLogOut.onClick.AddListener(LogOut);
         }
 
         private void OnDestroy()
@@ -37,6 +53,16 @@ namespace General
             btnRitmoVegetal.onClick.RemoveListener(delegate { SceneChanger.Instance.GoToScene(Scenes.RitmoVegetal); });
             btnPaisajeSonoro.onClick.RemoveListener(goToPaisajeSonoro);
             btnMelodiaFloral.onClick.RemoveListener(goToMelodiaFloral);
+            btnPopUpLogOut.onClick.RemoveListener(LogOut);
+        }
+
+        private void LogOut()
+        {
+            ConectToDatabase.Instance.LogOut();
+            menuManager.resetInputs();
+            seleccionUser.SetActive(true);
+            mapa.SetActive(false);
+            popLogOut.SetActive(false);
         }
 
         private void goToHarmonyHeaven()
@@ -55,6 +81,12 @@ namespace General
         {
             SceneChanger.Instance.actualScene = Scenes.PaisajeSonoro;
             SceneChanger.Instance.GoToScene(Scenes.LibroInteractivo);
+        }
+
+        public void establecerNombrePaciente(string nombre)
+        {
+            Debug.Log("PONEMOS EL NOMBRE DEL PACIENTE: " + nombre);
+            nombrePaciente.text = nombre;
         }
     }
 }

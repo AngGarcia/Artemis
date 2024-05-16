@@ -16,6 +16,8 @@ namespace General
         private Medico currentMedico;
         private Paciente currentPaciente;
 
+        private bool esMedico; //variable para saber si tenemos que usar currentMedico o currentPaciente
+
         void Start()
         {
             auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
@@ -43,12 +45,32 @@ namespace General
             currentPaciente = new Paciente();
         }
 
-        //en este script crearemos todas las funciones que tengan que ver con conectarse a la BBDD
-
-        //los parámetros los pasaremos cuando llamemos a esta función en el menú de login
-        public void CreateUser(string email, string password, string nombre, string apellidos, bool esMedico)
+        public async Task obtenerUsuario()
         {
-            auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
+            await getActualUser();
+            Debug.Log("USUARIO CONSEGUIDO");
+        }
+
+        public bool getEsMedico()
+        {
+            return esMedico;
+        }
+
+        public Medico getCurrentMedico()
+        {
+            return currentMedico;
+        }
+
+        public Paciente getCurrentPaciente()
+        {
+            return currentPaciente;
+        }
+
+        //en este script crearemos todas las funciones que tengan que ver con conectarse a la BBDD
+        //los parámetros los pasaremos cuando llamemos a esta función en el menú de login
+        public async Task CreateUser(string email, string password, string nombre, string apellidos, bool esMedico)
+        {
+            await auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
             {
                 if (task.IsCanceled)
                 {
@@ -96,6 +118,7 @@ namespace General
                     result.User.DisplayName, result.User.UserId);
 
                 //ahora hacer lo de antes aquí
+                esMedico = true;
                 CollectionReference medicosRef = db.Collection("Medicos");
                 medicosRef.GetSnapshotAsync().ContinueWithOnMainThread(task => {
 
@@ -138,6 +161,7 @@ namespace General
                     result.User.DisplayName, result.User.UserId);
 
                 //ahora hacer lo de antes aquí
+                esMedico = false;
                 CollectionReference pacientesRef = db.Collection("Pacientes");
                 pacientesRef.GetSnapshotAsync().ContinueWithOnMainThread(task => {
 
@@ -248,33 +272,52 @@ namespace General
             }
         }
 
-        //HACER FUNCIONES DE VER SI HAY USUARIO LOGGEADO
-
-
-        //NO ES OFICIAL, ES DE PRUEBA
-       /* public void readAllData()
+        private async Task getActualUser()
         {
-            CollectionReference usersRef = db.Collection("users");
-            usersRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-            {
+            //recorremos las 2 tablas hasta encontrar al que queremos
+            bool esPaciente = false;//variable local para ver si tenemos que buscar tambiñen entre los médicos
+
+            CollectionReference pacientesRef = db.Collection("Pacientes");
+            await pacientesRef.GetSnapshotAsync().ContinueWithOnMainThread(task => {
+
                 QuerySnapshot snapshot = task.Result;
                 foreach (DocumentSnapshot document in snapshot.Documents)
                 {
-                    Debug.Log("User: " + document.Id);
-                    Dictionary<string, object> documentDictionary = document.ToDictionary();
-                    Debug.Log("First: " +  documentDictionary["First"]);
-                    if (documentDictionary.ContainsKey("Middle"))
+                    if (auth.CurrentUser.UserId == document.Id)
                     {
-                        Debug.Log("Middle: " + documentDictionary["Middle"]);
-                    }
+                        esPaciente = true;
+                        esMedico = false; //la variable global de la clase
 
-                    Debug.Log("Last: " + documentDictionary["Last"]);
-                    Debug.Log("Born: " + documentDictionary["Born"]);
+                        Dictionary<string, object> documentDictionary = document.ToDictionary();
+                        currentPaciente = currentPaciente.DictionaryToPaciente(documentDictionary);
+                    }
                 }
 
-                Debug.Log("Read all data from the users collection.");
+                if (!esPaciente)
+                {
+                    //hacemos lo mismo para el médico
+                    CollectionReference medicosRef = db.Collection("Medicos");
+                    medicosRef.GetSnapshotAsync().ContinueWithOnMainThread(task => {
+
+                        QuerySnapshot snapshot = task.Result;
+                        foreach (DocumentSnapshot document in snapshot.Documents)
+                        {
+                            if (auth.CurrentUser.UserId == document.Id)
+                            {
+                                esMedico = true;//la variable global de la clase
+
+                                Dictionary<string, object> documentDictionary = document.ToDictionary();
+                                currentMedico = currentMedico.DictionaryToMedico(documentDictionary);
+                            }
+                        }
+
+                    });
+                }
+
             });
-        }*/
+
+
+        }
 
     }
 }
