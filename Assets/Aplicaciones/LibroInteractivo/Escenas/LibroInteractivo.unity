@@ -1354,6 +1354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a2d0bd41346184caac35de99440649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actualScene: 0
+  prevScene: 1
 --- !u!4 &1695897633
 Transform:
   m_ObjectHideFlags: 0
@@ -1362,7 +1364,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1695897631}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2207, y: 0.31079692, z: 1611.0422}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1703,8 +1705,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 195.21, y: -139.76}
-  m_SizeDelta: {x: 77.95, y: 30.81}
+  m_AnchoredPosition: {x: 172.7, y: -138.2}
+  m_SizeDelta: {x: 107.39, y: 31.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1993241353
 MonoBehaviour:
@@ -1725,7 +1727,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1736,7 +1738,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 07296f432e39f0541b939827bcb26646, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -1770,8 +1772,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: e01b1525aded6e242b94112d34922b80, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2173,13 +2175,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneChanger: {fileID: 1695897632}
+  _nextSceneButton: {fileID: 1993241353}
   _books:
   - {fileID: 1034750728}
   - {fileID: 2096473767}
   - {fileID: 1906203275}
   - {fileID: 1868354783}
   - {fileID: 1258292581}
-  _nextSceneButton: {fileID: 1993241353}
+  EventReference:
+    Guid:
+      Data1: -636210805
+      Data2: 1207933921
+      Data3: 2062889874
+      Data4: 1220367153
+    Path: event:/01SFXLibroInteractivoYHarmonyHeavenApp2/BookTurningPage
 --- !u!114 &2096473767 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 11415212, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}

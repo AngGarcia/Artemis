@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,11 @@ using static SceneChanger;
 public class BookController : MonoBehaviour
 {
     [SerializeField] private SceneChanger _sceneChanger;
-    [SerializeField] private List<Book> _books;
     [SerializeField] private Button _nextSceneButton;
+    [Space]
+    [SerializeField] private List<Book> _books;
+    [Space]
+    [SerializeField] private EventReference EventReference;
 
     private Book _activeBook;
     private Scenes _nextScene = Scenes.MainMenu;
@@ -63,7 +67,9 @@ public class BookController : MonoBehaviour
 
     private void CheckPage()
     {
-        if(_activeBook.currentPage >= _activeBook.bookPages.Length)
+        RuntimeManager.PlayOneShot(EventReference);
+
+        if (_activeBook.currentPage >= _activeBook.bookPages.Length)
         {
             _nextSceneButton.gameObject.SetActive(true);
         }
