@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace General
 {
-    public class LogInMenuManager : MonoBehaviour
+    public class MainMenuManager : MonoBehaviour
     {
         [SerializeField]
         private GameObject infoPanel;

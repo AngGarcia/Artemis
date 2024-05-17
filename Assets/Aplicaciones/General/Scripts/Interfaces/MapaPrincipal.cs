@@ -10,7 +10,7 @@ namespace General
         [SerializeField] private TMP_Text nombrePaciente;
         [SerializeField] private GameObject seleccionUser;
         [SerializeField] private GameObject mapa;
-        [SerializeField] private LogInMenuManager menuManager;
+        [SerializeField] private MainMenuManager menuManager;
         [Header("BOTONES")]
         [SerializeField] private Button btnPopUpLogOut;
         [SerializeField] private Button btnPopUpSave;
@@ -43,6 +43,7 @@ namespace General
             btnPaisajeSonoro.onClick.AddListener(goToPaisajeSonoro);
             btnMelodiaFloral.onClick.AddListener(goToMelodiaFloral);
             btnPopUpLogOut.onClick.AddListener(LogOut);
+            btnPopUpSave.onClick.AddListener(SaveData);
         }
 
         private void OnDestroy()
@@ -54,6 +55,7 @@ namespace General
             btnPaisajeSonoro.onClick.RemoveListener(goToPaisajeSonoro);
             btnMelodiaFloral.onClick.RemoveListener(goToMelodiaFloral);
             btnPopUpLogOut.onClick.RemoveListener(LogOut);
+            btnPopUpSave.onClick.RemoveListener(SaveData);
         }
 
         private void LogOut()
@@ -63,6 +65,15 @@ namespace General
             seleccionUser.SetActive(true);
             mapa.SetActive(false);
             popLogOut.SetActive(false);
+        }
+        
+        private async void SaveData()
+        {
+            //guardamos los datos
+            await ConectToDatabase.Instance.SaveData();
+            popSaveData.SetActive(false);
+            popDataSaved.SetActive(true);
+
         }
 
         private void goToHarmonyHeaven()

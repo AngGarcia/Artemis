@@ -182,6 +182,56 @@ namespace General
             });
         }
 
+        public async Task SaveData()
+        {
+            if (esMedico)
+            {
+                //guardamos los datos del médico
+                DocumentReference docRef = db.Collection("Medicos").Document(currentMedico.id);
+
+                //UpdateAsync lo usaremos cuando queramos modificar datos
+                await docRef.UpdateAsync(currentMedico.returnDatosMedico()).ContinueWithOnMainThread(task =>
+                {
+                    if (task.IsCanceled)
+                    {
+                        Debug.LogError("Proceso de 'Guardar datos del médico' cancelado: " + task.Exception);
+                        return;
+                    }
+                    if (task.IsFaulted)
+                    {
+                        Debug.LogError("Proceso de 'Guardar datos del médico' encontró un error: " + task.Exception);
+                        return;
+                    }
+
+                    Debug.Log("Médico " + currentMedico.id + "actualizado con éxito.");
+                });
+
+            }
+            else
+            {
+                //guardamos los datos del paciente
+                DocumentReference docRef = db.Collection("Pacientes").Document(currentPaciente.id);
+
+                //UpdateAsync lo usaremos cuando queramos modificar datos
+                await docRef.UpdateAsync(currentPaciente.returnDatosPaciente()).ContinueWithOnMainThread(task =>
+                {
+                    if (task.IsCanceled)
+                    {
+                        Debug.LogError("Proceso de 'Guardar datos del paciente' cancelado: " + task.Exception);
+                        return;
+                    }
+                    if (task.IsFaulted)
+                    {
+                        Debug.LogError("Proceso de 'Guardar datos del paciente' encontró un error: " + task.Exception);
+                        return;
+                    }
+
+                    Debug.Log("Paciente " + currentPaciente.id + "actualizado con éxito.");
+                });
+            }
+        }
+
+
         public void LogOut()
         {
             //Para salir de la sesión de un usuario
