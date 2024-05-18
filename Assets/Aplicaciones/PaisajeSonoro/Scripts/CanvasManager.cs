@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace PaisajeSonoro
 {
@@ -9,6 +8,10 @@ namespace PaisajeSonoro
         public Camera camara;
         public GameObject ClassicEmitter, LatinEmitter, PopRockEmitter, ElectronicEmitter;
         //public MusicManager manager;
+        public UnityEvent<bool> OnClassical;
+        public UnityEvent<bool> OnLatin;
+        public UnityEvent<bool> OnPopRock;
+        public UnityEvent<bool> OnElectronic;
 
         public void OnBackButtonPressed()
         {
@@ -20,6 +23,11 @@ namespace PaisajeSonoro
             LatinEmitter.SetActive(false);
             PopRockEmitter.SetActive(false);
             ElectronicEmitter.SetActive(false);
+
+            OnClassical.Invoke(false);
+            OnLatin.Invoke(false);
+            OnPopRock.Invoke(false);
+            OnElectronic.Invoke(false);
         }
 
         public void OnClassicalSelected()
@@ -28,6 +36,7 @@ namespace PaisajeSonoro
             camara.backgroundColor = new Color(234f / 255f, 150f / 255f, 67f / 255f, 1);
 
             ClassicEmitter.SetActive(true);
+            OnClassical.Invoke(true);
         }
 
         public void OnLatinSelected()
@@ -36,6 +45,7 @@ namespace PaisajeSonoro
             camara.backgroundColor = new Color(190f / 255f, 92f / 255f, 89f / 255f, 1);
 
             LatinEmitter.SetActive(true);
+            OnLatin.Invoke(true);
         }
 
         public void OnPopRockSelected()
@@ -44,6 +54,7 @@ namespace PaisajeSonoro
             camara.backgroundColor = new Color(127f / 255f, 46f / 255f, 116f / 255f, 1);
 
             PopRockEmitter.SetActive(true);
+            OnPopRock.Invoke(true);
         }
 
         public void OnElectronicSelected()
@@ -52,6 +63,7 @@ namespace PaisajeSonoro
             camara.backgroundColor = new Color(88f / 255f, 86f / 255f, 218f / 255f, 1);
 
             ElectronicEmitter.SetActive(true);
+            OnElectronic.Invoke(true);
         }
     }
 }
