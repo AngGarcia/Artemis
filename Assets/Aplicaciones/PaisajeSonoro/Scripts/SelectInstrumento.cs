@@ -21,6 +21,7 @@ namespace PaisajeSonoro
 
         [SerializeField] private CanvasManager canvasManager;
         [SerializeField] private GameObject panel;
+        [SerializeField] private Button closeButton;
         [SerializeField] private GameObject item;
         [Space]
         [SerializeField] private Generos genero;
@@ -31,7 +32,10 @@ namespace PaisajeSonoro
 
         private Transform spawnParent;
         private Image image;
+
         private bool hover = false;
+        private bool visible = false;
+
         private List<Toggle> toggles = new List<Toggle>();
         private List<string> options = new List<string>();
 
@@ -64,7 +68,9 @@ namespace PaisajeSonoro
 
             image.sprite = ImageList[0];
             item.SetActive(false);
+
             panel.SetActive(false);
+            visible = false;
 
             switch (genero)
             {
@@ -81,6 +87,8 @@ namespace PaisajeSonoro
                     canvasManager.OnElectronic.AddListener(OnSelected);
                     break;
             }
+
+            closeButton.onClick.AddListener(ClosePanel);
         }
 
         private void OnDestroy()
@@ -89,6 +97,24 @@ namespace PaisajeSonoro
             {
                 t.onValueChanged.RemoveListener(ToggleValueChanged);
             }
+
+            switch (genero)
+            {
+                case Generos.Classical:
+                    canvasManager.OnClassical.RemoveListener(OnSelected);
+                    break;
+                case Generos.Latin:
+                    canvasManager.OnLatin.RemoveListener(OnSelected);
+                    break;
+                case Generos.PopRock:
+                    canvasManager.OnPopRock.RemoveListener(OnSelected);
+                    break;
+                case Generos.Electronic:
+                    canvasManager.OnElectronic.RemoveListener(OnSelected);
+                    break;
+            }
+
+            closeButton.onClick.RemoveListener(ClosePanel);
         }
 
         private void OnSelected(bool active)
@@ -105,34 +131,54 @@ namespace PaisajeSonoro
 
         private void ToggleValueChanged(bool _)
         {
+            EventSystem.current.SetSelectedGameObject(gameObject);
+
             for (int i = 0; i < toggles.Count; i++)
             {
                 if (toggles[i].isOn)
                 {
-                    float p;
                     image.sprite = ImageList[i];
 
                     studioEventEmitter.EventInstance.setParameterByNameWithLabel(paramName, options[i]);
                 }
             }
+        }
 
-            Selection.activeGameObject = gameObject;
+        private void ClosePanel()
+        {
+            panel.SetActive(false);
+            visible = false;
+        }
+
+        private void TogglePanelVisibility()
+        {
+            visible = !visible;
+
+            panel.SetActive(visible);
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            panel.SetActive(true);
-            Selection.activeGameObject = gameObject;
+            TogglePanelVisibility();
+
+            if (visible)
+            {
+                EventSystem.current.SetSelectedGameObject(gameObject);
+            }
+            
+            Debug.Log(gameObject.name + " Click");
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
             hover = true;
+            Debug.Log(gameObject.name + " Hover true");
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             hover = false;
+            Debug.Log(gameObject.name + " Hover false");
         }
 
         public void OnDeselect(BaseEventData eventData)
@@ -140,7 +186,10 @@ namespace PaisajeSonoro
             if (!hover)
             {
                 panel.SetActive(false);
+                visible = false;
+                Debug.Log(gameObject.name + " Deselect");
             }
+
         }
     }
 }
