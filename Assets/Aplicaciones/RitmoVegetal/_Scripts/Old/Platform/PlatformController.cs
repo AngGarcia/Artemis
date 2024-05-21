@@ -35,11 +35,11 @@ public class PlatformController : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (placed && !GameManager.Instance.gameMode)
-        {
-            GUIManager.Instance.canPick = true;
-            GUIManager.Instance.platform = gameObject;
-            GUIManager.Instance.PlacePlatform(false);
-        }
+        // if (placed && !GameManager.Instance.gameMode)
+        // {
+        //     GUIManager.Instance.canPick = true;
+        //     GUIManager.Instance.platform = gameObject;
+        //     GUIManager.Instance.PlacePlatform(false);
+        // }
     }
 }

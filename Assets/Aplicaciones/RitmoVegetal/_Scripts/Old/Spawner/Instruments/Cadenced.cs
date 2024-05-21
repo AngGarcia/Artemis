@@ -20,23 +20,23 @@ public class Cadenced : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.gameStarted)
-        {
-            if (!delayDone) startDelay -= Time.deltaTime;
-
-            if (startDelay <= 0) 
-            {
-                if (!delayDone) Spawn();
-                delayDone = true;
-
-                spawnTime -= Time.deltaTime;
-                if (spawnTime <= 0)
-                {
-                    Spawn();
-                    spawnTime = spawnTimer;
-                }
-            }
-        }
+        // if (GameManager.Instance.gameStarted)
+        // {
+        //     if (!delayDone) startDelay -= Time.deltaTime;
+        // 
+        //     if (startDelay <= 0) 
+        //     {
+        //         if (!delayDone) Spawn();
+        //         delayDone = true;
+        // 
+        //         spawnTime -= Time.deltaTime;
+        //         if (spawnTime <= 0)
+        //         {
+        //             Spawn();
+        //             spawnTime = spawnTimer;
+        //         }
+        //     }
+        // }
     }
 
     private void Spawn()

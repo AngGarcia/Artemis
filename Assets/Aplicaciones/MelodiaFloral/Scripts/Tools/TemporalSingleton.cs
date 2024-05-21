@@ -13,7 +13,6 @@ public class TemporalSingleton<T> : MonoBehaviour where T : Component
 				if (_instance == null)
 				{
 					GameObject obj = new GameObject();
-					//obj.hideFlags = HideFlags.HideAndDontSave;
 					_instance = obj.AddComponent<T>();
 				}
 			}
@@ -23,13 +22,9 @@ public class TemporalSingleton<T> : MonoBehaviour where T : Component
 
 	public virtual void Awake()
 	{
-		if (_instance == null)
-		{
-			_instance = this as T;
-		}
-		else if (_instance != this)
-		{
-			Debug.LogWarning("Destroying duplicate TemporalSingleton");
+		if (_instance == null) { _instance = this as T;	}
+		else if (_instance != this)	{ 
+			Debug.LogWarning("Destroying duplicate TemporalSingleton"); 
 			Destroy(gameObject);
 		}
 	}

@@ -44,7 +44,7 @@ public class GUIManager : TemporalSingleton<GUIManager>
     public void ChangeMode(bool button)
     {
         editModeButton.gameObject.SetActive(button);
-        GameManager.Instance.gameMode = button;
+        // GameManager.Instance.gameMode = button;
         
         grid.SetActive(!button);
         gameModeButton.gameObject.SetActive(!button);

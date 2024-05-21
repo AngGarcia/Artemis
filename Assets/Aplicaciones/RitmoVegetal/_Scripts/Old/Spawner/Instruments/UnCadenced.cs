@@ -24,28 +24,28 @@ public class UnCadenced : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.gameStarted)
-        {
-            spawnTime -= Time.deltaTime;
-            if (spawnTime <= 0)
-            {
-                if (canSpawn)
-                {
-                    Spawn();
-                    canSpawn = false;
-                }
-            
-                innerDelay -= Time.deltaTime;
-                if (innerDelay <= 0)
-                {
-                    Spawn();
-            
-                    spawnTime = spawnTimer;
-                    innerDelay = innerTimer;
-                    canSpawn = true;
-                }
-            }
-        }
+        // if (GameManager.Instance.gameStarted)
+        // {
+        //     spawnTime -= Time.deltaTime;
+        //     if (spawnTime <= 0)
+        //     {
+        //         if (canSpawn)
+        //         {
+        //             Spawn();
+        //             canSpawn = false;
+        //         }
+        //     
+        //         innerDelay -= Time.deltaTime;
+        //         if (innerDelay <= 0)
+        //         {
+        //             Spawn();
+        //     
+        //             spawnTime = spawnTimer;
+        //             innerDelay = innerTimer;
+        //             canSpawn = true;
+        //         }
+        //     }
+        // }
     }
 
     private void Spawn()
