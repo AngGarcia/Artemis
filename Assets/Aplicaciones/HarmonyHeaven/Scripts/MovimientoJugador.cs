@@ -36,9 +36,15 @@ public class MovimientoJugador : MonoBehaviour
 
     private bool salto = false;
 
+    private bool caidaSound = false;
+    FMOD.Studio.EventInstance caminarSound;
+
+    private bool movimientoSound = false;
+
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        
     }
 
     public void Awake()
@@ -50,16 +56,35 @@ public class MovimientoJugador : MonoBehaviour
     void Update()
     {
         movimientoHorizontal = Input.GetAxisRaw("Horizontal") * velocidadDeMovimiento;
+        if(movimientoHorizontal != 0 && !movimientoSound && enSuelo)
+        {
+            caminarSound = FMODUnity.RuntimeManager.CreateInstance("event:/01SFXLibroInteractivoYHarmonyHeavenApp2/Steps");
+            caminarSound.start();
+            movimientoSound = true;
+        }
+        if(movimientoHorizontal == 0)
+        {
+            caminarSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            movimientoSound = false;
+        }
 
         if(Input.GetButtonDown("Jump"))
         {
             salto = true;
+            caminarSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/01SFXLibroInteractivoYHarmonyHeavenApp2/Jump"); 
         }
+
     }
 
     private void FixedUpdate()
     {
         enSuelo = Physics2D.OverlapBox(controladorSuelo.position, dimensionesCaja, 0f, queEsSuelo);
+        if(enSuelo && !caidaSound)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/01SFXLibroInteractivoYHarmonyHeavenApp2/Fall");
+            caidaSound = true;  
+        }
 
         Mover(movimientoHorizontal * Time.fixedDeltaTime, salto);
 
@@ -83,7 +108,9 @@ public class MovimientoJugador : MonoBehaviour
         if(enSuelo && saltar)
         {
             enSuelo = false;
+            caidaSound = false; 
             rb2D.AddForce(new Vector2(0f, fuerzaDeSalto));
+            
         }
     }
 
