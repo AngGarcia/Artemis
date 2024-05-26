@@ -1585,76 +1585,76 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GreenKnight_14: -984698480
-      GreenKnight_45: 869204059
-      GreenKnight_62: -919720407
-      GreenKnight_19: 1514505654
-      GreenKnight_15: -579376104
-      GreenKnight_69: -1654874674
-      GreenKnight_26: -2101713236
-      GreenKnight_37: 721199406
-      GreenKnight_11: -1457776323
-      GreenKnight_8: 1342158310
-      GreenKnight_55: -1523831351
-      GreenKnight_43: -492841151
-      GreenKnight_50: -290784983
-      GreenKnight_48: -1083576678
-      GreenKnight_46: 1446438741
-      GreenKnight_49: -1019850905
-      GreenKnight_41: 1606715371
-      GreenKnight_51: 2059827342
-      GreenKnight_64: -924315262
-      GreenKnight_60: 1364740355
-      GreenKnight_22: 1906024014
       GreenKnight_0: 735436052
-      GreenKnight_36: -420581288
-      GreenKnight_33: 1492941598
-      GreenKnight_54: 925932177
-      GreenKnight_42: -643556288
-      GreenKnight_16: 2147174587
-      GreenKnight_56: 4279063
-      GreenKnight_58: -2101710536
-      GreenKnight_38: 804948289
-      GreenKnight_66: -294306446
-      GreenKnight_67: 811039270
-      GreenKnight_28: -626448608
+      GreenKnight_1: -1072291204
       GreenKnight_10: 48527517
-      GreenKnight_23: 945072141
-      GreenKnight_32: 148761527
-      GreenKnight_59: -406801832
-      GreenKnight_29: -1712810143
-      GreenKnight_61: 1108719070
+      GreenKnight_11: -1457776323
       GreenKnight_12: 1779248642
       GreenKnight_13: -450364403
-      GreenKnight_30: -1707040805
-      GreenKnight_39: 744665359
-      GreenKnight_25: 1738390338
-      GreenKnight_31: -1117844986
-      GreenKnight_65: 1797482626
-      GreenKnight_4: 437273460
-      GreenKnight_5: 355695207
-      GreenKnight_24: 1719358335
-      GreenKnight_1: -1072291204
-      GreenKnight_57: -349361442
-      GreenKnight_44: 495393219
-      GreenKnight_40: 538578067
-      GreenKnight_63: 2388765
-      GreenKnight_68: 1309174952
-      GreenKnight_7: 210138236
-      GreenKnight_35: -132865191
-      GreenKnight_2: 1890974255
-      GreenKnight_6: -1546357471
-      GreenKnight_52: 794894618
-      GreenKnight_9: -555384416
-      GreenKnight_21: -1966048004
+      GreenKnight_14: -984698480
+      GreenKnight_15: -579376104
+      GreenKnight_16: 2147174587
       GreenKnight_17: -1843886131
-      GreenKnight_47: 98088122
-      GreenKnight_53: 1575648690
-      GreenKnight_34: 602757505
-      GreenKnight_3: -650702100
       GreenKnight_18: 1115710610
+      GreenKnight_19: 1514505654
+      GreenKnight_2: 1890974255
       GreenKnight_20: 125416575
+      GreenKnight_21: -1966048004
+      GreenKnight_22: 1906024014
+      GreenKnight_23: 945072141
+      GreenKnight_24: 1719358335
+      GreenKnight_25: 1738390338
+      GreenKnight_26: -2101713236
       GreenKnight_27: -1977453886
+      GreenKnight_28: -626448608
+      GreenKnight_29: -1712810143
+      GreenKnight_3: -650702100
+      GreenKnight_30: -1707040805
+      GreenKnight_31: -1117844986
+      GreenKnight_32: 148761527
+      GreenKnight_33: 1492941598
+      GreenKnight_34: 602757505
+      GreenKnight_35: -132865191
+      GreenKnight_36: -420581288
+      GreenKnight_37: 721199406
+      GreenKnight_38: 804948289
+      GreenKnight_39: 744665359
+      GreenKnight_4: 437273460
+      GreenKnight_40: 538578067
+      GreenKnight_41: 1606715371
+      GreenKnight_42: -643556288
+      GreenKnight_43: -492841151
+      GreenKnight_44: 495393219
+      GreenKnight_45: 869204059
+      GreenKnight_46: 1446438741
+      GreenKnight_47: 98088122
+      GreenKnight_48: -1083576678
+      GreenKnight_49: -1019850905
+      GreenKnight_5: 355695207
+      GreenKnight_50: -290784983
+      GreenKnight_51: 2059827342
+      GreenKnight_52: 794894618
+      GreenKnight_53: 1575648690
+      GreenKnight_54: 925932177
+      GreenKnight_55: -1523831351
+      GreenKnight_56: 4279063
+      GreenKnight_57: -349361442
+      GreenKnight_58: -2101710536
+      GreenKnight_59: -406801832
+      GreenKnight_6: -1546357471
+      GreenKnight_60: 1364740355
+      GreenKnight_61: 1108719070
+      GreenKnight_62: -919720407
+      GreenKnight_63: 2388765
+      GreenKnight_64: -924315262
+      GreenKnight_65: 1797482626
+      GreenKnight_66: -294306446
+      GreenKnight_67: 811039270
+      GreenKnight_68: 1309174952
+      GreenKnight_69: -1654874674
+      GreenKnight_7: 210138236
+      GreenKnight_8: 1342158310
+      GreenKnight_9: -555384416
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

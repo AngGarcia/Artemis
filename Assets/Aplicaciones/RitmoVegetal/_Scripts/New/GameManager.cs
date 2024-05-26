@@ -8,18 +8,24 @@ public class GameManager : TemporalSingleton<GameManager>
     [SerializeField] private Transform cannonTransform;
     [SerializeField] private float cannonForce;
 
+    [SerializeField] GameObject temporalCharacter;
+
+    public void Start()
+    {
+        ResetTransform(temporalCharacter);
+    }
+
     public void ResetTransform(GameObject gameObject) {
         gameObject.transform.position = cannonTransform.position;
         gameObject.transform.rotation = cannonTransform.rotation;
 
-        if (gameObject.GetComponent<Rigidbody2D>() != null) { Launch(gameObject.GetComponent<Rigidbody2D>()); }
+        if (gameObject.GetComponent<Rigidbody2D>() != null) { 
+            ResetGravity(gameObject.GetComponent<Rigidbody2D>());
+            Launch(gameObject.GetComponent<Rigidbody2D>()); 
+        }
     }
 
-    public void Launch(Rigidbody2D cmpRb) {
-        Vector2 velocity2D = cmpRb.velocity;
-        float angle = Mathf.Atan2(velocity2D.y, velocity2D.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    private void ResetGravity(Rigidbody2D cmpRb) { cmpRb.velocity = Vector3.zero; }
 
-        cmpRb.AddForce(cannonTransform.forward * cannonForce, ForceMode2D.Impulse);
-    }
+    private void Launch(Rigidbody2D cmpRb) { cmpRb.AddForce(cannonTransform.up * cannonForce, ForceMode2D.Impulse); }
 }
