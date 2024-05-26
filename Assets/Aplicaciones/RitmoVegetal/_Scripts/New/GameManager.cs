@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class GameManager : TemporalSingleton<GameManager>
 {
-   
+    public float spawnTime;
+
+    public void Spawn() { 
+        // Spawn
+    }
 }
