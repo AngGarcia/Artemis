@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9358f82244ed6344eb0ca45861543473
+guid: c4c32e1fbf9fce247b22726b50403543
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -103,112 +103,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Trasladar_0
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 48
-        width: 45
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d8cf89f30bf62d54fb6875796053897d
-      internalID: -282868940
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trasladar_1
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 78
-        width: 31
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3f5c9debed2c4634494c1e6faf1b7c09
-      internalID: -1157591145
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trasladar_2
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 48
-        width: 46
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 133c4e8a46775bc4d939e029450a6c9d
-      internalID: 300287916
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trasladar_3
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 53
-        width: 21
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9eea8b7c343c4044d8e088e7a3eae4a0
-      internalID: -606868019
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trasladar_4
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 2
-        width: 31
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 057396062af5ddd418f8e4e5926dd27c
-      internalID: -1990170458
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -219,12 +114,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Trasladar_0: -282868940
-      Trasladar_1: -1157591145
-      Trasladar_2: 300287916
-      Trasladar_3: -606868019
-      Trasladar_4: -1990170458
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
