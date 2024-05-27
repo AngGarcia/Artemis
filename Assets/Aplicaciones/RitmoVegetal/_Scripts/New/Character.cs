@@ -8,8 +8,5 @@ public class Character : MonoBehaviour
 
     private void Awake() { cmpRb = GetComponent<Rigidbody2D>(); }
 
-    private void Update()
-    {
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, cmpRb.velocity);
-    }
+    private void Update() { transform.rotation = Quaternion.LookRotation(Vector3.forward, cmpRb.velocity); }
 }
