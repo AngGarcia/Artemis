@@ -56,7 +56,7 @@ public class InterfazJuego : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 0.0001f;
+            Time.timeScale = 0;
             botonPausa.GetComponent<Image>().sprite = spritePausaPressed;
             juegoPausa.SetActive(true);
             btnPausaClicked = true;
