@@ -189,7 +189,6 @@ namespace General
                 //guardamos los datos del médico
                 DocumentReference docRef = db.Collection("Medicos").Document(currentMedico.id);
 
-                //UpdateAsync lo usaremos cuando queramos modificar datos
                 await docRef.UpdateAsync(currentMedico.returnDatosMedico()).ContinueWithOnMainThread(task =>
                 {
                     if (task.IsCanceled)
@@ -212,7 +211,6 @@ namespace General
                 //guardamos los datos del paciente
                 DocumentReference docRef = db.Collection("Pacientes").Document(currentPaciente.id);
 
-                //UpdateAsync lo usaremos cuando queramos modificar datos
                 await docRef.UpdateAsync(currentPaciente.returnDatosPaciente()).ContinueWithOnMainThread(task =>
                 {
                     if (task.IsCanceled)

@@ -27,7 +27,6 @@ namespace General
 
 
         //En Awake, comprobar datos de guardado y activar los botones de nivel segun cuales esten desbloqueados
-        //Faltarian asignar las funciones de logout y save
 
         private void OnEnable()
         {

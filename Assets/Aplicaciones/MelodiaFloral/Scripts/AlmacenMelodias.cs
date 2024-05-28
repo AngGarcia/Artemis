@@ -14,13 +14,11 @@ namespace AlteracionMelodia
             public List<int> tipoNotas;
         }
 
-        //private int numMelodias = 2; //nº de melodías almacenadas, por ahora solo van a ser 2
-        private List<Melodia> melodiasDisponibles;
-
-
         [SerializeField]
-        private GameObject menu;
+        private GameObject menu; 
         public GameObject[] notas; //las notas físicas del pentagrama
+
+        private List<Melodia> melodiasDisponibles;
 
         private bool menuActivado;
         private bool ultimoToqueSobreMenu = false; // necesitamos saber si en el toque anterior hemos pulsado el menú o no

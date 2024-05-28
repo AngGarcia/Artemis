@@ -921,7 +921,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8395657612376088171}
         m_TargetAssemblyTypeName: InterfazJuego, Assembly-CSharp
         m_MethodName: pausarJuego
         m_Mode: 1

@@ -18,7 +18,7 @@ public class InterfazJuego : MonoBehaviour
     [SerializeField] private GameObject juegoPausa;
 
     [Space]
-    [SerializeField] private Scenes nextScene; 
+    [SerializeField] private Scenes nextScene;
 
     private bool btnPausaClicked;
     private bool btnMapaClicked;
@@ -56,7 +56,7 @@ public class InterfazJuego : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 0;
+            Time.timeScale = 0.0001f;
             botonPausa.GetComponent<Image>().sprite = spritePausaPressed;
             juegoPausa.SetActive(true);
             btnPausaClicked = true;
