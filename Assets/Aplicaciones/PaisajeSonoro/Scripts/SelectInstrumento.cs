@@ -1,9 +1,6 @@
-using FMOD.Studio;
 using FMODUnity;
-using PaisajeSonoro;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -165,20 +162,16 @@ namespace PaisajeSonoro
             {
                 EventSystem.current.SetSelectedGameObject(gameObject);
             }
-            
-            Debug.Log(gameObject.name + " Click");
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
             hover = true;
-            Debug.Log(gameObject.name + " Hover true");
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             hover = false;
-            Debug.Log(gameObject.name + " Hover false");
         }
 
         public void OnDeselect(BaseEventData eventData)
@@ -187,9 +180,7 @@ namespace PaisajeSonoro
             {
                 panel.SetActive(false);
                 visible = false;
-                Debug.Log(gameObject.name + " Deselect");
             }
-
         }
     }
 }

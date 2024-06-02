@@ -7,7 +7,7 @@ namespace PaisajeSonoro
     {
         public Camera camara;
         public GameObject ClassicEmitter, LatinEmitter, PopRockEmitter, ElectronicEmitter;
-        //public MusicManager manager;
+
         public UnityEvent<bool> OnClassical;
         public UnityEvent<bool> OnLatin;
         public UnityEvent<bool> OnPopRock;
@@ -15,9 +15,8 @@ namespace PaisajeSonoro
 
         public void OnBackButtonPressed()
         {
-            //manager.StopBackgroundMusic();
             camara.transform.position = new Vector3(0f, 0f, -10f);
-            camara.backgroundColor = new Color(62f / 255f, 16f / 255f, 144f / 255f, 1);
+            camara.backgroundColor = new Color(89f / 255f, 56f / 255f, 149f / 255f, 1);
 
             ClassicEmitter.SetActive(false);
             LatinEmitter.SetActive(false);
@@ -33,7 +32,7 @@ namespace PaisajeSonoro
         public void OnClassicalSelected()
         {
             camara.transform.position = new Vector3(20, 0f, -10);
-            camara.backgroundColor = new Color(234f / 255f, 150f / 255f, 67f / 255f, 1);
+            camara.backgroundColor = new Color(201f / 255f, 159f / 255f, 78f / 255f, 1);
 
             ClassicEmitter.SetActive(true);
             OnClassical.Invoke(true);
@@ -42,7 +41,7 @@ namespace PaisajeSonoro
         public void OnLatinSelected()
         {
             camara.transform.position = new Vector3(40, 0f, -10);
-            camara.backgroundColor = new Color(190f / 255f, 92f / 255f, 89f / 255f, 1);
+            camara.backgroundColor = new Color(203f / 255f, 127f / 255f, 74f / 255f, 1);
 
             LatinEmitter.SetActive(true);
             OnLatin.Invoke(true);
@@ -51,7 +50,7 @@ namespace PaisajeSonoro
         public void OnPopRockSelected()
         {
             camara.transform.position = new Vector3(60, 0f, -10);
-            camara.backgroundColor = new Color(127f / 255f, 46f / 255f, 116f / 255f, 1);
+            camara.backgroundColor = new Color(183f / 255f, 86f / 255f, 159f / 255f, 1);
 
             PopRockEmitter.SetActive(true);
             OnPopRock.Invoke(true);
@@ -60,7 +59,7 @@ namespace PaisajeSonoro
         public void OnElectronicSelected()
         {
             camara.transform.position = new Vector3(80, 0f, -10);
-            camara.backgroundColor = new Color(88f / 255f, 86f / 255f, 218f / 255f, 1);
+            camara.backgroundColor = new Color(81f / 255f, 81f / 255f, 163f / 255f, 1);
 
             ElectronicEmitter.SetActive(true);
             OnElectronic.Invoke(true);

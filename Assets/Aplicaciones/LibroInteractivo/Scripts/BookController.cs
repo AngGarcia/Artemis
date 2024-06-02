@@ -7,7 +7,6 @@ using static SceneChanger;
 
 public class BookController : MonoBehaviour
 {
-    [SerializeField] private SceneChanger _sceneChanger;
     [SerializeField] private Button _nextSceneButton;
     [Space]
     [SerializeField] private List<Book> _books;
