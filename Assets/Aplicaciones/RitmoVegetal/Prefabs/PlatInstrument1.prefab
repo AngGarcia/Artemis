@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 4632266850934720556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.5, y: 4, z: 0}
-  m_LocalScale: {x: 1.5, y: 0.5, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5372549, g: 0.5372549, b: 0.73333335, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 8ed10a2586b2244469156481b10b9fe4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,11 +102,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -1255747215
-      Data2: 1080924959
-      Data3: 1759596200
-      Data4: -2000892601
-    Path: event:/CongaBounceHigh
+      Data1: 1437443980
+      Data2: 1288705735
+      Data3: 40598972
+      Data4: 1477055478
+    Path: event:/02RitmoVegetalApp3/RitmoVegetalApp3Colisiones1/CongaSonido1Agudo
   Event: 
   PlayEvent: 9
   StopEvent: 0
@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceForce: 500
+  placed: 1
 --- !u!61 &4632266850934720555
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -140,7 +141,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 4632266850934720556}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1e33a6b5f673153479f7d9ab82b06802, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -148,12 +149,12 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 186.36, y: 60.603397}
     newSize: {x: 0.32, y: 0.1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 180, y: 50}
   m_EdgeRadius: 0

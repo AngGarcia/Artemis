@@ -22,14 +22,10 @@ public class PlatformController : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Rigidbody2D>() != null)
         {
-            if (collision.gameObject.transform.position.y < transform.position.y)
-            {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-Vector2.up * bounceForce);
-            }
-            else
-            {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * bounceForce);
-            }
+            if (collision.gameObject.GetComponentInChildren<ParticleSystem>() != null) { collision.gameObject.GetComponentInChildren<ParticleSystem>().Play(); }
+
+            if (collision.gameObject.transform.position.y < transform.position.y) { collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-transform.up * bounceForce); }
+            else { collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * bounceForce); }
         }
     }
 
