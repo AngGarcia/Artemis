@@ -5,13 +5,9 @@ using UnityEngine;
 public interface IInteractable { }
 
 public interface IRotational : IInteractable {
-    public Quaternion Rotate(Quaternion actualRotation) {
-        return actualRotation;
-    }
+    public void Rotate();
 }
 
 public interface ITranslational : IInteractable {
-    public Vector3 Translate(Vector3 actualPosition) {
-        return actualPosition;
-    }
+    public void Translate();
 }

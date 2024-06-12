@@ -24,8 +24,11 @@ public class GameManager : TemporalSingleton<GameManager>
             Launch(gameObject.GetComponent<Rigidbody2D>()); 
         }
     }
-
+        
     private void ResetGravity(Rigidbody2D cmpRb) { cmpRb.velocity = Vector3.zero; }
 
-    private void Launch(Rigidbody2D cmpRb) { cmpRb.AddForce(cannonTransform.up * cannonForce, ForceMode2D.Impulse); }
+    private void Launch(Rigidbody2D cmpRb) { 
+        cmpRb.AddForce(cannonTransform.up * cannonForce, ForceMode2D.Impulse);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/02RitmoVegetalApp3/CannonShoot");
+    }
 }
