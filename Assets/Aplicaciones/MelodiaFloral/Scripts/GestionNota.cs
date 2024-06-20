@@ -12,6 +12,10 @@ namespace AlteracionMelodia
         private GameObject menuTipoNota;
         [SerializeField]
         private GameObject menuInstrumento;
+
+        [SerializeField] private Sprite spriteBTNPressed;
+        [SerializeField] private Sprite spriteBTNNormal;
+
         [SerializeField]
         private GameObject[] botonesTiposNotas;
         [SerializeField]
@@ -77,11 +81,13 @@ namespace AlteracionMelodia
             {
                 if (i == instrumentoActual) //tenemos que guardar en orden los tipos de notas
                 {
-                    botonesInstrumentos[i].GetComponent<Image>().color = Color.red;
+                    //botonesInstrumentos[i].GetComponent<Image>().color = Color.red;
+                    botonesInstrumentos[i].GetComponent<Image>().sprite = spriteBTNPressed;
                 }
                 else
                 {
-                    botonesInstrumentos[i].GetComponent<Image>().color = Color.white;
+                    //botonesInstrumentos[i].GetComponent<Image>().color = Color.white;
+                    botonesInstrumentos[i].GetComponent<Image>().sprite = spriteBTNNormal;
                 }
 
             }
@@ -129,11 +135,13 @@ namespace AlteracionMelodia
             {
                 if (i == instrumentoActual) //tenemos que guardar en orden los tipos de notas
                 {
-                    botonesInstrumentos[i].GetComponent<Image>().color = Color.red;
+                    //botonesInstrumentos[i].GetComponent<Image>().color = Color.red;
+                    botonesInstrumentos[i].GetComponent<Image>().sprite = spriteBTNPressed;
                 }
                 else
                 {
-                    botonesInstrumentos[i].GetComponent<Image>().color = Color.white;
+                    //botonesInstrumentos[i].GetComponent<Image>().color = Color.white;
+                    botonesInstrumentos[i].GetComponent<Image>().sprite = spriteBTNNormal;
                 }
 
             }

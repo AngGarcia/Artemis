@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace AlteracionMelodia
 {
@@ -15,6 +16,8 @@ namespace AlteracionMelodia
         }
 
         [SerializeField]
+        private GameObject btnBibliotecaMelodias;
+        [SerializeField]
         private GameObject menu; 
         public GameObject[] notas; //las notas físicas del pentagrama
 
@@ -23,10 +26,16 @@ namespace AlteracionMelodia
         private bool menuActivado;
         private bool ultimoToqueSobreMenu = false; // necesitamos saber si en el toque anterior hemos pulsado el menú o no
 
+        private Sprite spriteBTNPressed;
+        private Sprite spriteBTNNormal;
+
         private void Start()
         {
             menuActivado = false;
             melodiasDisponibles = new List<Melodia>();
+
+            spriteBTNPressed = btnBibliotecaMelodias.GetComponent<Button>().spriteState.pressedSprite;
+            spriteBTNNormal = btnBibliotecaMelodias.GetComponent<Image>().sprite;
 
             inicializarMelodias();
         }
@@ -43,6 +52,7 @@ namespace AlteracionMelodia
         {
             menu.SetActive(true);
             menuActivado = true;
+            btnBibliotecaMelodias.GetComponent<Image>().sprite = spriteBTNPressed;
 
         }
 
@@ -50,6 +60,7 @@ namespace AlteracionMelodia
         {
             menu.SetActive(false);
             menuActivado = false;
+            btnBibliotecaMelodias.GetComponent<Image>().sprite = spriteBTNNormal;
         }
 
 

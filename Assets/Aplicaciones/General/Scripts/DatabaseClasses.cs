@@ -7,8 +7,8 @@ namespace General
 {
     public class Paciente
     {
-        public string id = "";
-        public string email = "";
+        //public string id = "";
+        public string nick = "";
         public bool esMedico = false;
 
         public string idMedico = "";
@@ -25,12 +25,13 @@ namespace General
         
         public Dictionary<int, bool> nivelesSuperados;
 
-        public void initPaciente(string id, string email, string nombre, string apellidos)
+        public void initPaciente(string nick, string nombre, string apellidos, string idMedico)
         {
-            this.id = id;
-            this.email = email;
+            //this.id = id;
+            this.nick = nick;
             this.nombre = nombre;
             this.apellidos = apellidos;
+            this.idMedico = idMedico;
 
             nivelesSuperados = new Dictionary<int, bool>
             {
@@ -46,9 +47,9 @@ namespace General
         {
             Dictionary<string, object> paciente = new Dictionary<string, object>
             {
-                { "id" , id },
+               // { "id" , id },
                 { "esMedico", esMedico },
-                { "email" , email },
+                { "nick" , nick },
                 { "idMedico" , idMedico },
                 { "nombre" , nombre },
                 { "apellidos" , apellidos },
@@ -69,8 +70,8 @@ namespace General
         {
             Paciente paciente = new Paciente();
 
-            paciente.id = dictionary["id"].ToString();
-            paciente.email = dictionary["email"].ToString();
+           // paciente.id = dictionary["id"].ToString();
+            paciente.nick = dictionary["nick"].ToString();
             paciente.nombre = dictionary["nombre"].ToString();
             paciente.apellidos = dictionary["apellidos"].ToString();
 
@@ -88,8 +89,8 @@ namespace General
 
         public void printValues()
         {
-            Debug.Log("ID: " + id);
-            Debug.Log("Email: " + email);
+            //Debug.Log("ID: " + id);
+            Debug.Log("Nick: " + nick);
             Debug.Log("Nombre: " + nombre);
             Debug.Log("Apellidos: " + apellidos);
             Debug.Log("TiempoEnRespiracion: " + tiempoEnRespiracion);
@@ -157,6 +158,8 @@ namespace General
             Debug.Log("Email: " + email);
             Debug.Log("Nombre: " + nombre);
             Debug.Log("Apellidos: " + apellidos);
+            Debug.Log("Nº pacientes: " + pacientes.Count);
+            //A PARTIR DE AQUÍ NO PRINTA, PROBLEMAS CON EL ARRAY
             Debug.Log("Lista de pacientes:");
 
             for(int i=0; i < pacientes.Count; i++)

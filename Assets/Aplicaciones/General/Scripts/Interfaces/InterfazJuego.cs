@@ -8,20 +8,25 @@ public class InterfazJuego : MonoBehaviour
 {
     // Start is called before the first frame update
     [Header("Botones")]
+    [SerializeField] private GameObject botonSalir;
     [SerializeField] private GameObject botonPausa;
     [SerializeField] private GameObject botonMapa;
-    [SerializeField] private Button botonPopUpIrMapa;
     [SerializeField] private Button botonSiguiente;
+    [SerializeField] private Button botonPopUpIrMapa;
+    [SerializeField] private Button botonPopUpExitActividad;
     
     [Header("Elementos")]
+    [SerializeField] private GameObject popExit;
     [SerializeField] private GameObject popMapa;
     [SerializeField] private GameObject juegoPausa;
+    [SerializeField] private GameObject fondoPausa;
 
     [Space]
     [SerializeField] private Scenes nextScene;
 
     private bool btnPausaClicked;
     private bool btnMapaClicked;
+    private bool btnExitClicked;
 
     private Sprite spriteMapaPressed;
     private Sprite spriteMapaNormal;
@@ -31,8 +36,11 @@ public class InterfazJuego : MonoBehaviour
     {
         juegoPausa.SetActive(false);
         popMapa.SetActive(false);
+        popExit.SetActive(false);
+        fondoPausa.SetActive(false);
         btnMapaClicked = false;
         btnPausaClicked = false;
+        btnExitClicked = false;
 
         spriteMapaNormal = botonMapa.GetComponent<Image>().sprite;
         spriteMapaPressed = botonMapa.GetComponent<Button>().spriteState.pressedSprite;
@@ -43,6 +51,8 @@ public class InterfazJuego : MonoBehaviour
         botonPopUpIrMapa.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.MainMenu); });
 
         botonSiguiente.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(nextScene); });
+
+        botonPopUpExitActividad.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.MainMenu); });
     }
 
     public void pausarJuego()
@@ -67,16 +77,55 @@ public class InterfazJuego : MonoBehaviour
     {
         if (btnMapaClicked)
         {
+            Time.timeScale = 1;
+            fondoPausa.SetActive(false);
             botonMapa.GetComponent<Image>().sprite = spriteMapaNormal;
             popMapa.SetActive(false);
             btnMapaClicked = false;
         }
         else
         {
+            Time.timeScale = 0;
+            fondoPausa.SetActive(true);
             botonMapa.GetComponent<Image>().sprite = spriteMapaPressed;
             popMapa.SetActive(true);
             btnMapaClicked = true;
         }
+    }
+
+    public void salirActividad()
+    {
+        if (btnExitClicked)
+        {
+            Time.timeScale = 1;
+            fondoPausa.SetActive(false);
+            popExit.SetActive(false);
+            btnExitClicked = false;
+        }
+        else
+        {
+            Time.timeScale = 0;
+            fondoPausa.SetActive(true);
+            popExit.SetActive(true);
+            btnExitClicked = true;
+        }
+    }
+
+    public void cerrarMapaPopUp()
+    {
+        Time.timeScale = 1;
+        fondoPausa.SetActive(false);
+        botonMapa.GetComponent<Image>().sprite = spriteMapaNormal;
+        popMapa.SetActive(false);
+        btnMapaClicked = false;
+    }
+
+    public void cerrarExitPopUp()
+    {
+        Time.timeScale = 1;
+        fondoPausa.SetActive(false);
+        popExit.SetActive(false);
+        btnExitClicked = false;
     }
 
 

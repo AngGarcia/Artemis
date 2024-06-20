@@ -19,6 +19,8 @@ namespace General
         [SerializeField] Button btnAyuda;
         [SerializeField] private Button btnLogin;
         [SerializeField] private Button btnCreateUser;
+        [SerializeField] private Button btnNuevoTerapeuta;
+        [SerializeField] private Button btnNuevoPaciente;
 
         [Header("TEXTOS")]
         [SerializeField]
@@ -42,9 +44,17 @@ namespace General
         [SerializeField]
         private TMP_InputField createInputPwd;
         [SerializeField]
+        private TMP_InputField createInputNickname;
+        [SerializeField]
         private TMP_InputField createInputNombre;
         [SerializeField]
         private TMP_InputField createInputApellidos;
+
+        [Header("PANELES DEL CREATE")]
+        [SerializeField]
+        private GameObject inputsTerapeuta;
+        [SerializeField]
+        private GameObject inputsPaciente;
 
         [Header("ScriptMAPA")]
         [SerializeField]
@@ -52,6 +62,7 @@ namespace General
 
         private bool activeInfoPanel;
         private bool esMedico;
+        private bool creatingPaciente;
 
         void Start()
         {
@@ -77,6 +88,9 @@ namespace General
             btnAyuda.onClick.AddListener(toggleHelp);
             btnLogin.onClick.AddListener(awaitLogin);
             btnCreateUser.onClick.AddListener(createNewUser);
+
+            btnNuevoTerapeuta.onClick.AddListener(addNewTerapeuta);
+            btnNuevoPaciente.onClick.AddListener(addNewPaciente);
         }
 
         private async void establecerUsuario()
@@ -165,62 +179,98 @@ namespace General
                 }
             }
         }
-
+        public void addNewTerapeuta()
+        {
+            createUser.SetActive(true);
+            login.SetActive(false);
+            msgTituloCrearUsuario.text = "Crear psicólogo";
+            inputsPaciente.SetActive(false);
+            inputsTerapeuta.SetActive(true);
+            creatingPaciente = false;
+        }
+        public void addNewPaciente()
+        {
+            createUser.SetActive(true);
+            login.SetActive(false);
+            msgTituloCrearUsuario.text = "Crear paciente";
+            inputsPaciente.SetActive(true);
+            inputsTerapeuta.SetActive(false);
+            creatingPaciente = true;
+        }
         public async void createNewUser()
         {
             bool emailCorrect = false;
             bool pwdCorrect = false;
+            bool nickNameCorrect = false;
 
-            //primero vemos que sea, efectivamente, un email
-            if (createInputEmail.text.Contains("@") && ((createInputEmail.text.Contains(".com") || createInputEmail.text.Contains(".es"))))
+            // se está creando un paciente que no necesitará email ni contraseña
+            if (creatingPaciente)
             {
-                emailCorrect = true;
-            }
-            else
-            {
-                Debug.Log("ERROR: email incorrecto");
-                msgErrorCrearUsuario.text = "ERROR: email incorrecto.";
-            }
-
-            //después comprobamos que la contraseña sea correcta
-            if (createInputPwd.text.Length >= 6)
-            {
-                pwdCorrect = true;
-            }
-            else
-            {
-                Debug.Log("ERROR: la contraseña debe tener mínimo 6 caracteres.");
-                msgErrorCrearUsuario.text = "ERROR: la contraseña debe tener mínimo 6 caracteres.";
-            }
-
-            if (emailCorrect && pwdCorrect)
-            {
-                string email = createInputEmail.text;
-                string password = createInputPwd.text;
-                string nombre = createInputNombre.text;
-                string apellidos = createInputApellidos.text;
-
-                Debug.Log("Creando nuevo usuario...");
-                await ConectToDatabase.Instance.CreateUser(email, password, nombre, apellidos, esMedico);
-
-                //después de registrarnos, nos loggeamos
-                ConectToDatabase.Instance.LogOut();
-                btnCreateUser.interactable = false;
-                //comprobar si el usuario actual está
-                if (esMedico)
+                if (createInputNickname.text.Length > 0)
                 {
-                    await ConectToDatabase.Instance.LoginMedico(email, password);
+                    nickNameCorrect = true;
                 }
                 else
                 {
-                    await ConectToDatabase.Instance.LoginPaciente(email, password);
+                    Debug.Log("ERROR: nickname incorrecto");
+                    msgErrorCrearUsuario.text = "ERROR: nickname incorrecto.";
                 }
-                btnCreateUser.interactable = true;
 
-                if (ConectToDatabase.Instance.isLogged())
+                if (nickNameCorrect)
                 {
-                    createUser.SetActive(false);
-                    mapa.SetActive(true);
+                    string nickname = createInputNickname.text;
+                    string nombre = createInputNombre.text;
+                    string apellidos = createInputApellidos.text;
+
+                    Debug.Log("Creando nuevo paciente...");
+                    await ConectToDatabase.Instance.CreateUser(nickname, "", nombre, apellidos, false);
+                }
+            }
+            else
+            {
+                //primero vemos que sea, efectivamente, un email
+                if (createInputEmail.text.Contains("@") && ((createInputEmail.text.Contains(".com") || createInputEmail.text.Contains(".es"))))
+                {
+                    emailCorrect = true;
+                }
+                else
+                {
+                    Debug.Log("ERROR: email incorrecto");
+                    msgErrorCrearUsuario.text = "ERROR: email incorrecto.";
+                }
+
+                //después comprobamos que la contraseña sea correcta
+                if (createInputPwd.text.Length >= 6)
+                {
+                    pwdCorrect = true;
+                }
+                else
+                {
+                    Debug.Log("ERROR: la contraseña debe tener mínimo 6 caracteres.");
+                    msgErrorCrearUsuario.text = "ERROR: la contraseña debe tener mínimo 6 caracteres.";
+                }
+
+                if (emailCorrect && pwdCorrect)
+                {
+                    string email = createInputEmail.text;
+                    string password = createInputPwd.text;
+                    string nombre = createInputNombre.text;
+                    string apellidos = createInputApellidos.text;
+
+                    Debug.Log("Creando nuevo terapeuta...");
+                    await ConectToDatabase.Instance.CreateUser(email, password, nombre, apellidos, true);
+                    ConectToDatabase.Instance.LogOut();
+                    btnCreateUser.interactable = false;
+                    //comprobar si el usuario actual está
+                    await ConectToDatabase.Instance.LoginMedico(email, password);
+
+                    btnCreateUser.interactable = true;
+
+                    if (ConectToDatabase.Instance.isLogged())
+                    {
+                        createUser.SetActive(false);
+                        mapa.SetActive(true);
+                    }
                 }
             }
         }

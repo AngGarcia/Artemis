@@ -70,28 +70,38 @@ namespace General
         //los parámetros los pasaremos cuando llamemos a esta función en el menú de login
         public async Task CreateUser(string email, string password, string nombre, string apellidos, bool esMedico)
         {
-            await auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
+
+            if (esMedico)
             {
-                if (task.IsCanceled)
+                await auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
                 {
-                    Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
-                    return;
-                }
-                if (task.IsFaulted)
-                {
-                    Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception);
-                    return;
-                }
+                    if (task.IsCanceled)
+                    {
+                        Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
+                        return;
+                    }
+                    if (task.IsFaulted)
+                    {
+                        Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+                        return;
+                    }
 
-                // Firebase user has been created.
-                Firebase.Auth.AuthResult result = task.Result;
-                Debug.LogFormat("Firebase user created successfully: {0} ({1})",
-                 result.User.DisplayName, result.User.UserId);
+                    // Firebase user has been created.
+                    Firebase.Auth.AuthResult result = task.Result;
+                    Debug.LogFormat("Firebase user created successfully: {0} ({1})",
+                     result.User.DisplayName, result.User.UserId);
 
-                //además, añadimos este usuario a nuestra base de datos
-                initializeNewUser(result.User.UserId, email, nombre, apellidos, esMedico);
+                    //además, añadimos este usuario a nuestra base de datos
+                    initializeNewUser(result.User.UserId, email, nombre, apellidos, true);
 
-            });
+                });
+            }
+        }
+
+        public void CreatePaciente(string nickname, string nombre, string apellidos)
+        {
+            //además, añadimos este usuario a nuestra base de datos
+            initializeNewUser(nickname, nickname, nombre, apellidos, false);
         }
 
         public async Task LoginMedico(string email, string password)
@@ -209,7 +219,7 @@ namespace General
             else
             {
                 //guardamos los datos del paciente
-                DocumentReference docRef = db.Collection("Pacientes").Document(currentPaciente.id);
+                DocumentReference docRef = db.Collection("Pacientes").Document(currentPaciente.nick);
 
                 await docRef.UpdateAsync(currentPaciente.returnDatosPaciente()).ContinueWithOnMainThread(task =>
                 {
@@ -224,7 +234,7 @@ namespace General
                         return;
                     }
 
-                    Debug.Log("Paciente " + currentPaciente.id + "actualizado con éxito.");
+                    Debug.Log("Paciente actualizado con éxito.");
                 });
             }
         }
@@ -299,7 +309,7 @@ namespace General
                 DocumentReference docRef = db.Collection("Pacientes").Document(id);
 
                 Paciente nuevoPaciente = new Paciente();
-                nuevoPaciente.initPaciente(id, email, nombre, apellidos);
+                nuevoPaciente.initPaciente(email, nombre, apellidos, currentMedico.id);
 
                 //UpdateAsync lo usaremos cuando queramos modificar datos
                 docRef.SetAsync(nuevoPaciente.returnDatosPaciente()).ContinueWithOnMainThread(task =>
@@ -315,10 +325,39 @@ namespace General
                         return;
                     }
 
-                    Debug.Log("Paciente " + id + "añadido con éxito a la colección Pacientes");
+                    Debug.Log("Paciente añadido con éxito a la colección Pacientes");
+                    addPacienteToTerapeuta(nuevoPaciente);
                 });
             }
         }
+
+        private async Task addPacienteToTerapeuta(Paciente paciente)
+        {
+            currentMedico.pacientes.Add(paciente);
+            await SaveData();
+            currentMedico.printValues();
+        }
+
+       /* public void getAllPacientes()
+        {
+            CollectionReference pacientesRef = db.Collection("Pacientes");
+
+            pacientesRef.GetSnapshotAsync().ContinueWithOnMainThread(task => {
+
+                if (task.IsCompleted)
+                {
+                    QuerySnapshot snapshot = task.Result;
+                    foreach (DocumentSnapshot document in snapshot.Documents)
+                    {
+                        //almacenamos los pacientes
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Error getting documents: " + task.Exception);
+                }
+            });
+        }*/
 
         private async Task getActualUser()
         {
@@ -363,7 +402,6 @@ namespace General
                 }
 
             });
-
 
         }
 

@@ -7,11 +7,15 @@ namespace General
 {
     public class MapaPrincipal : MonoBehaviour
     {
+        [SerializeField] private GameObject infoPanel;
+        [SerializeField] private GameObject fondoPausa;
+
         [SerializeField] private TMP_Text nombrePaciente;
         [SerializeField] private GameObject seleccionUser;
         [SerializeField] private GameObject mapa;
         [SerializeField] private MainMenuManager menuManager;
         [Header("BOTONES")]
+        [SerializeField] private Button btnAyuda;
         [SerializeField] private Button btnPopUpLogOut;
         [SerializeField] private Button btnPopUpSave;
         [SerializeField] private Button btnStart;
@@ -25,6 +29,10 @@ namespace General
         [SerializeField] private GameObject popSaveData;
         [SerializeField] private GameObject popDataSaved;
 
+        private bool activeInfoPanel;
+        private bool pausar;
+        private Sprite spriteBtnAyudaPressed;
+        private Sprite spriteBtnAyudaNormal;
 
         //En Awake, comprobar datos de guardado y activar los botones de nivel segun cuales esten desbloqueados
 
@@ -35,6 +43,14 @@ namespace General
 
         void Start()
         {
+            pausar = false;
+            activeInfoPanel = false;
+            infoPanel.SetActive(false);
+            fondoPausa.SetActive(false);
+            spriteBtnAyudaNormal = btnAyuda.GetComponent<Image>().sprite;
+            spriteBtnAyudaPressed = btnAyuda.GetComponent<Button>().spriteState.disabledSprite;
+
+
             btnStart.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.LibroInteractivo); });
             btnRespiracion.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.Respiracion); });
             btnHarmonyHeaven.onClick.AddListener(goToHarmonyHeaven);
@@ -43,6 +59,7 @@ namespace General
             btnMelodiaFloral.onClick.AddListener(goToMelodiaFloral);
             btnPopUpLogOut.onClick.AddListener(LogOut);
             btnPopUpSave.onClick.AddListener(SaveData);
+            btnAyuda.onClick.AddListener(toggleHelp);
         }
 
         private void OnDestroy()
@@ -55,10 +72,44 @@ namespace General
             btnMelodiaFloral.onClick.RemoveListener(goToMelodiaFloral);
             btnPopUpLogOut.onClick.RemoveListener(LogOut);
             btnPopUpSave.onClick.RemoveListener(SaveData);
+            btnAyuda.onClick.RemoveListener(toggleHelp);
+        }
+
+        public void pausarJuego()
+        {
+            pausar = !pausar;
+            fondoPausa.SetActive(pausar);
+
+            if (pausar)
+            {
+                Time.timeScale = 0;
+            }
+            else{
+
+                Time.timeScale = 1;
+            }
+        }
+
+        public void toggleHelp()
+        {
+            activeInfoPanel = !activeInfoPanel;
+            infoPanel.SetActive(activeInfoPanel);
+
+            if (activeInfoPanel)
+            {
+                btnAyuda.GetComponent<Image>().sprite = spriteBtnAyudaPressed;
+            }
+            else
+            {
+                btnAyuda.GetComponent<Image>().sprite = spriteBtnAyudaNormal;
+            }
         }
 
         private void LogOut()
         {
+            //reanudamos el juego
+            pausarJuego();
+
             ConectToDatabase.Instance.LogOut();
             menuManager.resetInputs();
             seleccionUser.SetActive(true);
