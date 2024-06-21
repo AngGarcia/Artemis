@@ -9,8 +9,7 @@ namespace PaisajeSonoro
 {
 
     [RequireComponent(typeof(Image))]
-    public class SelectInstrumento : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, 
-        IPointerExitHandler, IDeselectHandler
+    public class SelectInstrumento : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IDeselectHandler
     {
         public enum Generos
         {
@@ -185,4 +184,3 @@ namespace PaisajeSonoro
         }
     }
 }
-

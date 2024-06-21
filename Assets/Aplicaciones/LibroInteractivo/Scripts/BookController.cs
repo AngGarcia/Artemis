@@ -1,4 +1,5 @@
 using FMODUnity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +24,7 @@ public class BookController : MonoBehaviour
         }
         _nextSceneButton.gameObject.SetActive(false);
 
-        if (SceneChanger.Instance.prevScene == Scenes.Respiracion)
+        if (SceneChanger.Instance.prevScene == Scenes.Respiracion) //Si viene de respiración, activamos el libro 2
         {
             _books[1].gameObject.SetActive(true);
             _activeBook = _books[1];
@@ -78,4 +79,3 @@ public class BookController : MonoBehaviour
         SceneChanger.Instance.GoToScene(_nextScene);
     }
 }
-
