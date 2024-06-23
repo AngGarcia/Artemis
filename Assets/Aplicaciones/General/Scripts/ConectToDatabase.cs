@@ -70,7 +70,6 @@ namespace General
         //los parámetros los pasaremos cuando llamemos a esta función en el menú de login
         public async Task CreateUser(string email, string password, string nombre, string apellidos, bool esMedico)
         {
-
             if (esMedico)
             {
                 await auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task =>
@@ -92,16 +91,15 @@ namespace General
                      result.User.DisplayName, result.User.UserId);
 
                     //además, añadimos este usuario a nuestra base de datos
-                    initializeNewUser(result.User.UserId, email, nombre, apellidos, true);
+                    initializeNewTerapeuta(result.User.UserId, email, nombre, apellidos);
 
                 });
             }
         }
 
-        public void CreatePaciente(string nickname, string nombre, string apellidos)
+        public void CreatePaciente(string id, string nombre, string apellidos)
         {
-            //además, añadimos este usuario a nuestra base de datos
-            initializeNewUser(nickname, nickname, nombre, apellidos, false);
+            initializeNewPaciente(id, nombre, apellidos, currentMedico.id, currentMedico.nombre);
         }
 
         public async Task LoginMedico(string email, string password)
@@ -219,7 +217,7 @@ namespace General
             else
             {
                 //guardamos los datos del paciente
-                DocumentReference docRef = db.Collection("Pacientes").Document(currentPaciente.nick);
+                DocumentReference docRef = db.Collection("Pacientes").Document(currentPaciente.id);
 
                 await docRef.UpdateAsync(currentPaciente.returnDatosPaciente()).ContinueWithOnMainThread(task =>
                 {
@@ -276,65 +274,80 @@ namespace General
             }
         }
 
-        private void initializeNewUser(string id, string email, string nombre, string apellidos, bool esMedico)
+        private void initializeNewTerapeuta(string id, string email, string nombre, string apellidos)
         {
-            if (esMedico)
+            Debug.Log("Soy un medico");
+            DocumentReference docRef = db.Collection("Medicos").Document(id);
+
+            Medico nuevoMedico = new Medico();
+            nuevoMedico.initMedico(id, email, nombre, apellidos);
+
+            //UpdateAsync lo usaremos cuando queramos modificar datos
+            docRef.SetAsync(nuevoMedico.returnDatosMedico()).ContinueWithOnMainThread(task =>
             {
-                Debug.Log("Soy un medico");
-                DocumentReference docRef = db.Collection("Medicos").Document(id);
-
-                Medico nuevoMedico = new Medico();
-                nuevoMedico.initMedico(id, email, nombre, apellidos);
-                
-                //UpdateAsync lo usaremos cuando queramos modificar datos
-                docRef.SetAsync(nuevoMedico.returnDatosMedico()).ContinueWithOnMainThread(task =>
+                if (task.IsCanceled)
                 {
-                    if (task.IsCanceled)
-                    {
-                        Debug.LogError("Proceso de 'Añadir un nuevo médico' cancelado: " + task.Exception);
-                        return;
-                    }
-                    if (task.IsFaulted)
-                    {
-                        Debug.LogError("Proceso de 'Añadir un nuevo médico' encontró un error: " + task.Exception);
-                        return;
-                    }
-
-                    Debug.Log("Médico " + id + "añadido con éxito a la colección Médicos");
-                });
-            }
-            else
-            {
-                Debug.Log("Soy un paciente");
-                DocumentReference docRef = db.Collection("Pacientes").Document(id);
-
-                Paciente nuevoPaciente = new Paciente();
-                nuevoPaciente.initPaciente(email, nombre, apellidos, currentMedico.id);
-
-                //UpdateAsync lo usaremos cuando queramos modificar datos
-                docRef.SetAsync(nuevoPaciente.returnDatosPaciente()).ContinueWithOnMainThread(task =>
+                    Debug.LogError("Proceso de 'Añadir un nuevo médico' cancelado: " + task.Exception);
+                    return;
+                }
+                if (task.IsFaulted)
                 {
-                    if (task.IsCanceled)
-                    {
-                        Debug.LogError("Proceso de 'Añadir un nuevo paciente' cancelado: " + task.Exception);
-                        return;
-                    }
-                    if (task.IsFaulted)
-                    {
-                        Debug.LogError("Proceso de 'Añadir un nuevo paciente' encontró un error: " + task.Exception);
-                        return;
-                    }
+                    Debug.LogError("Proceso de 'Añadir un nuevo médico' encontró un error: " + task.Exception);
+                    return;
+                }
 
-                    Debug.Log("Paciente añadido con éxito a la colección Pacientes");
-                    addPacienteToTerapeuta(nuevoPaciente);
-                });
-            }
+                Debug.Log("Médico " + id + "añadido con éxito a la colección Médicos");
+            });
         }
 
-        private async Task addPacienteToTerapeuta(Paciente paciente)
+        private void initializeNewPaciente(string id, string nombre, string apellidos, string idMedico, string nombreMedico)
         {
-            currentMedico.pacientes.Add(paciente);
-            await SaveData();
+            Debug.Log("Soy un paciente");
+            DocumentReference docRef = db.Collection("Pacientes").Document(id);
+
+            Paciente nuevoPaciente = currentMedico.addNuevoPaciente(id, nombre, apellidos, idMedico, nombreMedico);
+
+            //UpdateAsync lo usaremos cuando queramos modificar datos
+            docRef.SetAsync(nuevoPaciente.returnDatosPaciente()).ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCanceled)
+                {
+                    Debug.LogError("Proceso de 'Añadir un nuevo paciente' cancelado: " + task.Exception);
+                    return;
+                }
+                if (task.IsFaulted)
+                {
+                    Debug.LogError("Proceso de 'Añadir un nuevo paciente' encontró un error: " + task.Exception);
+                    return;
+                }
+                //no hace esta funcion
+                Debug.Log("ANTES DE AÑADIR EL PACIENTE AL TERAPEUTA DE LA BBDD");
+                addPacienteToTerapeuta();
+                Debug.Log("Paciente añadido con éxito a la colección Pacientes");
+            });
+        }
+
+        private void addPacienteToTerapeuta()
+        {
+            Debug.Log("nuevo paciente: " + currentMedico.pacientes.Count);
+
+            DocumentReference docRef = db.Collection("Medicos").Document(currentMedico.id);
+            docRef.UpdateAsync(currentMedico.returnDatosMedico()).ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCanceled)
+                {
+                    Debug.LogError("Proceso de 'Guardar datos del médico' cancelado: " + task.Exception);
+                    return;
+                }
+                if (task.IsFaulted)
+                {
+                    Debug.LogError("Proceso de 'Guardar datos del médico' encontró un error: " + task.Exception);
+                    return;
+                }
+
+                Debug.Log("Médico " + currentMedico.id + "actualizado con éxito.");
+            });
+
             currentMedico.printValues();
         }
 
@@ -359,7 +372,30 @@ namespace General
             });
         }*/
 
+        //en esta versión, el usuario sólo va a ser el terapeuta
         private async Task getActualUser()
+        {
+            //hacemos lo mismo para el médico
+            CollectionReference medicosRef = db.Collection("Medicos");
+            await medicosRef.GetSnapshotAsync().ContinueWithOnMainThread(task => {
+
+                QuerySnapshot snapshot = task.Result;
+                foreach (DocumentSnapshot document in snapshot.Documents)
+                {
+                    if (auth.CurrentUser.UserId == document.Id)
+                    {
+                        esMedico = true;//la variable global de la clase
+
+                        Dictionary<string, object> documentDictionary = document.ToDictionary();
+                        currentMedico = currentMedico.DictionaryToMedico(documentDictionary);
+                    }
+                }
+
+            });
+        }
+
+
+        /*private async Task getActualUser()
         {
             //recorremos las 2 tablas hasta encontrar al que queremos
             bool esPaciente = false;//variable local para ver si tenemos que buscar tambiñen entre los médicos
@@ -403,7 +439,7 @@ namespace General
 
             });
 
-        }
+        }*/
 
     }
 }

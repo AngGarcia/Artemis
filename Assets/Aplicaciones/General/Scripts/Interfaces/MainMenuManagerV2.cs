@@ -59,6 +59,20 @@ namespace General
         private bool creatingPaciente;
         void Start()
         {
+
+            /*if (ConectToDatabase.Instance.isLogged()) //da errores idk why
+            {
+                Debug.Log("HAY UN USUARIO LOGGEADO");
+                establecerUsuario();
+            }
+            else
+            {
+                Debug.Log("NOOOOO HAY USUARIO");
+                login.SetActive(true);
+                mapa.SetActive(false);
+                fondo.SetActive(true);
+            }*/
+
             mapa.SetActive(false);
             fondo.SetActive(true);
 
@@ -94,13 +108,21 @@ namespace General
             }
         }
 
+        private async void establecerUsuario()
+        {
+            await ConectToDatabase.Instance.obtenerUsuario();
+            listaPacientes.SetActive(true);
+            login.SetActive(false);
+            ConectToDatabase.Instance.getCurrentMedico().printValues();
+        }
+
         public void addNewTerapeuta()
         {
-            listaPacientes.SetActive(false);
+            login.SetActive(false);
             createUsuario.SetActive(true);
             msgTituloCrearUsuario.text = "Crear terapeuta";
-            inputsPaciente.SetActive(true);
-            inputsTerapeuta.SetActive(false);
+            inputsPaciente.SetActive(false);
+            inputsTerapeuta.SetActive(true);
             creatingPaciente = false;
         }
         public void addNewPaciente()
@@ -184,11 +206,29 @@ namespace General
 
                     if (ConectToDatabase.Instance.isLogged())
                     {
+                        resetInputs();
                         createUsuario.SetActive(false);
                         listaPacientes.SetActive(true);
                     }
                 }
             }
+        }
+
+        public void exitCreateUser()
+        {
+            resetInputs();
+
+            if (creatingPaciente)
+            {
+                createUsuario.SetActive(false);
+                listaPacientes.SetActive(true);
+            }
+            else
+            {
+                createUsuario.SetActive(false);
+                login.SetActive(true);
+            }
+
         }
 
         public void LogOut()
