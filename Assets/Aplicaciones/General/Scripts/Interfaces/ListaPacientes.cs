@@ -1,24 +1,160 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
-public class ListaPacientes : MonoBehaviour
+
+namespace General
 {
-    // Start is called before the first frame update
-    [SerializeField] private GameObject fondo;
-    void Start()
+    public class ListaPacientes : MonoBehaviour
     {
+        [SerializeField] private GameObject prefabPacienteUI;
+        [SerializeField] private GameObject prefabTagRestoPacientes;
+        [SerializeField] private Transform spawnListaTerapeuta;
+        [SerializeField] private Transform spawnListaResto;
 
-    }
+        private List<Paciente> pacientesTotales;
+        private List<Paciente> pacientesTerapeuta;
+        private List<Paciente> restoPacientes;
+        private List<GameObject> pacientesUI; //array de los GameObjects creados
 
-    private void OnEnable()
-    {
-        
-    }
+        private int separacionAxisY = 60;
+        private int separacionAxisX = 525;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Start()
+        {
+            pacientesTotales = new List<Paciente>();
+            pacientesTerapeuta = new List<Paciente>();
+            restoPacientes = new List<Paciente>();
+            pacientesUI = new List<GameObject>();
+        }
+
+        public void startGetPacientes()
+        {
+            // StartCoroutine(getAllPacientes());
+            getAllPacientes();
+        }
+
+        private void maquetarUI()
+        {
+            Transform spawnFila = spawnListaTerapeuta;
+
+            for (int i = 0; i < pacientesTerapeuta.Count; i++)
+            {
+                GameObject filaLista = Instantiate(prefabPacienteUI, spawnFila);
+
+                filaLista.GetComponent<PacienteUI>().setID(pacientesTerapeuta[i].id);
+                filaLista.SetActive(true);
+                pacientesUI.Add(filaLista);
+
+            }
+
+            spawnFila = spawnListaResto;
+
+            for (int i = 0; i < restoPacientes.Count; i++)
+            {
+                GameObject filaLista = Instantiate(prefabPacienteUI, spawnFila);
+
+                filaLista.GetComponent<PacienteUI>().setID(restoPacientes[i].id);
+                filaLista.SetActive(true);
+                pacientesUI.Add(filaLista);
+
+            }
+        }
+
+        //creamos los componentes de la UI
+        private void maquetarUI_v1()
+        {
+            Transform spawnFila = spawnListaTerapeuta;
+            float yPos;
+            int index = 0;
+
+            for (int i=0; i < pacientesTerapeuta.Count; i++)
+            {
+                yPos = spawnFila.position.y - (i * separacionAxisY * 3);
+
+                GameObject filaLista = Instantiate(prefabPacienteUI, spawnFila);
+                filaLista.transform.position = new Vector3(spawnFila.position.x, yPos, spawnFila.position.z);
+                filaLista.GetComponent<PacienteUI>().setID(pacientesTerapeuta[i].id);
+                filaLista.SetActive(true);
+                pacientesUI.Add(filaLista);
+
+                index = i;
+            }
+
+            index++;
+            yPos = spawnFila.position.y - (index * separacionAxisY * 3);
+            GameObject tagRestoPacientes = Instantiate(prefabTagRestoPacientes, spawnFila);
+            tagRestoPacientes.transform.position = new Vector3(spawnFila.position.x - separacionAxisX, yPos, spawnFila.position.z);
+            index++;
+
+            for (int i = 0; i < restoPacientes.Count; i++)
+            {
+                yPos = spawnFila.position.y - (index * separacionAxisY * 3);
+
+                GameObject filaLista = Instantiate(prefabPacienteUI, spawnFila);
+                filaLista.transform.position = new Vector3(spawnFila.position.x, yPos, spawnFila.position.z);
+                filaLista.GetComponent<PacienteUI>().setID(restoPacientes[i].id);
+                filaLista.SetActive(true);
+                pacientesUI.Add(filaLista);
+
+                index++;
+            }
+
+        }
+
+        private async void getAllPacientes()
+        {
+            pacientesTotales = await ConectToDatabase.Instance.getAllPacientes();
+            //Debug.Log("nº pacientes totales:");
+            //Debug.Log("Tamaño: " + pacientesTotales.Count);
+            //Debug.Log("ID del medico actual: " + ConectToDatabase.Instance.getCurrentMedico().id); 
+           // printAllPacientes();
+
+            for (int i=0; i < pacientesTotales.Count; i++)
+            {
+               // Debug.Log("pacientesTotales[i].idMedico: " + pacientesTotales[i].idMedico);
+                if (pacientesTotales[i].idMedico == ConectToDatabase.Instance.getCurrentMedico().id)
+                {
+                    pacientesTerapeuta.Add(pacientesTotales[i]);
+                }
+                else
+                {
+                    restoPacientes.Add(pacientesTotales[i]);
+                }
+            }
+
+            //listaAMostrar = pacientesTerapeuta;
+            maquetarUI();
+        }
+
+        //DEBUG
+        private void printAllPacientes() {
+
+            for (int i=0; i< pacientesTotales.Count; i++)
+            {
+                pacientesTotales[i].printValues();
+            }
+        }
+
+        private void destroyUIComponents()
+        {
+            for (int i=0; i < pacientesUI.Count; i++)
+            {
+                Destroy(pacientesUI[i]);
+            }
+        }
+
+        public void resetLists()
+        {
+            //HAY QUE BORRAR LOS OBJETOS DEL CANVAS GENERADOS
+            destroyUIComponents();
+
+            pacientesTotales = new List<Paciente>();
+            pacientesTerapeuta = new List<Paciente>();
+            restoPacientes = new List<Paciente>();
+            pacientesUI = new List<GameObject>();
+        }
     }
 }

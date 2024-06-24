@@ -100,11 +100,13 @@ namespace General
             return auxTiempo;
         }
 
-        public void addNuevoEstado()
+        public void addNuevoEstado(string momento, EstadoPaciente estado)
         {
             Test testAux = new Test();
-            testAux.momento = "Comienzo";
-            testAux.estado = EstadoPaciente.Ansioso;
+
+            //momento y estado se deben pasar por parámetros
+            testAux.momento = momento;
+            testAux.estado = estado;
             progreso.Add(testAux);
         }
 
@@ -203,13 +205,23 @@ namespace General
         public Paciente DictionaryToPaciente(Dictionary<string, object> dictionary)
         {
             Paciente paciente = new Paciente();
+            paciente.sesiones = new List<Sesion>();
 
             paciente.id = dictionary["id"].ToString();
             paciente.nombre = dictionary["nombre"].ToString();
             paciente.apellidos = dictionary["apellidos"].ToString();
             paciente.medicoAsignado = dictionary["medicoAsignado"].ToString();
-            paciente.sesiones = dictionary["sesiones"] as List<Sesion>; //esto es NULL
+            paciente.idMedico = dictionary["idMedico"].ToString();
             //paciente.nivelesSuperados = dictionary["nivelesSuperados"] as Dictionary<int, bool>;
+
+            Dictionary<string, object> diccionario = dictionary["sesiones"] as Dictionary<string, object>;
+
+            foreach (KeyValuePair<string, object> entrada in diccionario)
+            {
+                Sesion sesionAux = entrada.Value as Sesion;
+                paciente.sesiones.Add(sesionAux);
+            }
+            //Debug.Log("Tamaño de sesiones: " + paciente.sesiones.Count);
 
             return paciente;
         }
@@ -219,7 +231,8 @@ namespace General
             Debug.Log("ID: " + id);
             Debug.Log("Nombre: " + nombre);
             Debug.Log("Apellidos: " + apellidos);
-            Debug.Log("Médico asignado: " + medicoAsignado  );
+            Debug.Log("Médico asignado: " + medicoAsignado);
+            Debug.Log("Id médico: " + idMedico);
             Debug.Log("Nº de sesiones: " + sesiones.Count);
             //Debug.Log("Niveles superados: " + nivelesSuperados);
         }
@@ -247,7 +260,6 @@ namespace General
 
         public Paciente addNuevoPaciente(string id, string nombre, string apellidos, string idMedico, string nombreMedico)
         {
-            //Debug.Log("Nº pacientes: ");
             Paciente aux = new Paciente();
             aux.initPaciente(id, nombre, apellidos, idMedico, nombreMedico);
 
@@ -286,7 +298,7 @@ namespace General
         public Medico DictionaryToMedico(Dictionary<string, object> dictionary)
         {
             Medico medico = new Medico();
-           medico.pacientes = new List<Paciente>();
+            medico.pacientes = new List<Paciente>();
 
             medico.id = dictionary["id"].ToString();
             medico.email = dictionary["email"].ToString();
@@ -315,7 +327,7 @@ namespace General
 
             for(int i=0; i < pacientes.Count; i++)
             {
-                Debug.Log("\t-" + pacientes[i].nombre);
+                Debug.Log("\t-" + pacientes[i].idMedico);
             }
            
         }

@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -6,17 +8,17 @@ namespace General
 {
     public class MainMenuManager : MonoBehaviour
     {
-        [SerializeField]
-        private GameObject infoPanel;
-        [SerializeField] private GameObject seleccionUsuario;
+        [SerializeField] private GameObject fondo;
+
+        [Header("INTERFACES")]
         [SerializeField] private GameObject login;
-        [SerializeField] private GameObject createUser;
+        [SerializeField] private GameObject listaPacientes;
+        [SerializeField] private GameObject datosPaciente;
+        [SerializeField] private GameObject createUsuario;
         [SerializeField] private GameObject mapa;
 
+
         [Header("BOTONES")]
-        [SerializeField] Button btnPaciente;
-        [SerializeField] Button btnMedico;
-        [SerializeField] Button btnAyuda;
         [SerializeField] private Button btnLogin;
         [SerializeField] private Button btnCreateUser;
         [SerializeField] private Button btnNuevoTerapeuta;
@@ -26,11 +28,9 @@ namespace General
         [SerializeField]
         private TMP_Text msgErrorCrearUsuario;
         [SerializeField]
-        private TMP_Text msgNuevoUsuario;
-        [SerializeField]
         private TMP_Text msgTituloCrearUsuario;
 
-        //INPUTS DE LOS LOGINS
+        //INPUTS DEL LOGIN
         [Header("INPUTS DEL LOGIN")]
         [SerializeField]
         private TMP_InputField loginInputEmail;
@@ -56,18 +56,15 @@ namespace General
         [SerializeField]
         private GameObject inputsPaciente;
 
-        [Header("ScriptMAPA")]
+        [Header("SCRIPTS")]
         [SerializeField]
-        private MapaPrincipal scriptMapa;
+        private ListaPacientes scriptListaPacientes; 
 
-        private bool activeInfoPanel;
-        private bool esMedico;
         private bool creatingPaciente;
-
         void Start()
         {
-            //si hay un paciente loggeado, vamos al mapa
-            if (ConectToDatabase.Instance.isLogged())
+
+            /*if (ConectToDatabase.Instance.isLogged()) //da errores porque aparentemente, auth es Null, pero en el script antiguo NO ES NULO
             {
                 Debug.Log("HAY UN USUARIO LOGGEADO");
                 establecerUsuario();
@@ -75,73 +72,27 @@ namespace General
             else
             {
                 Debug.Log("NOOOOO HAY USUARIO");
+                login.SetActive(true);
                 mapa.SetActive(false);
-                seleccionUsuario.SetActive(true);
-            }
+                fondo.SetActive(true);
+            }*/
 
-            infoPanel.SetActive(false);
-            activeInfoPanel = false;
+            login.SetActive(true);
             mapa.SetActive(false);
+            fondo.SetActive(true);
 
-            btnPaciente.onClick.AddListener(delegate { marcarEsMedico(false); });
-            btnMedico.onClick.AddListener(delegate { marcarEsMedico(true); });
-            btnAyuda.onClick.AddListener(toggleHelp);
             btnLogin.onClick.AddListener(awaitLogin);
-            btnCreateUser.onClick.AddListener(createNewUser);
-
             btnNuevoTerapeuta.onClick.AddListener(addNewTerapeuta);
             btnNuevoPaciente.onClick.AddListener(addNewPaciente);
-        }
-
-        private async void establecerUsuario()
-        {
-            await ConectToDatabase.Instance.obtenerUsuario();
-            mapa.SetActive(true);
-            seleccionUsuario.SetActive(false);
-            if (ConectToDatabase.Instance.getEsMedico())
-            {
-                ConectToDatabase.Instance.getCurrentMedico().printValues();
-
-            }
-            else
-            {
-                ConectToDatabase.Instance.getCurrentPaciente().printValues();
-            }
-        }
-
-        public void toggleHelp()
-        {
-            activeInfoPanel = !activeInfoPanel;
-
-            infoPanel.SetActive(activeInfoPanel);
-        }
-
-        public void marcarEsMedico(bool opcion)
-        {
-            esMedico = opcion;
-            Debug.Log("esMedico: " + esMedico);
-            //cambiamos los textos que correpondan
-            if (esMedico)
-            {
-                msgNuevoUsuario.text = "¿Nuevo psicólogo?";
-                msgTituloCrearUsuario.text = "Crear psicólogo";
-            }
-            else
-            {
-                msgNuevoUsuario.text = "¿Nuevo paciente?";
-                msgTituloCrearUsuario.text = "Crear paciente";
-            }
-
-            seleccionUsuario.SetActive(false);
-            login.SetActive(true);
+            btnCreateUser.onClick.AddListener(createNewUser);
+            Debug.Log("CHEKPOINT");
         }
 
         private void OnDestroy()
         {
-            btnMedico.onClick.RemoveAllListeners();
-            btnPaciente.onClick.RemoveAllListeners();
-            btnAyuda.onClick.RemoveListener(toggleHelp);
             btnLogin.onClick.RemoveListener(awaitLogin);
+            btnNuevoPaciente.onClick.RemoveAllListeners();
+            btnNuevoTerapeuta.onClick.RemoveAllListeners();
             btnCreateUser.onClick.RemoveListener(createNewUser);
         }
 
@@ -149,54 +100,53 @@ namespace General
         {
             string email = loginInputEmail.text;
             string password = loginInputPwd.text;
-            
+
+            //GESTIONAR SI NO SE HAN RELLENADO X CAMPOS
+
             ConectToDatabase.Instance.LogOut();
 
             btnLogin.interactable = false;
-            //comprobar si el usuario actual está
-            if(esMedico)
-            {
-                await ConectToDatabase.Instance.LoginMedico(email, password);
-            }
-            else
-            {
-                await ConectToDatabase.Instance.LoginPaciente(email, password);
-            }
+            await ConectToDatabase.Instance.LoginMedico(email, password); //este await es falso, porque en realidad no espera
+            await ConectToDatabase.Instance.getActualUser(); //obtenemos el terapeuta loggeado
             btnLogin.interactable = true;
 
-            if (ConectToDatabase.Instance.getEsMedico())
+            if (ConectToDatabase.Instance.isLogged())
             {
-                Debug.Log("COMO ES MÉDICO NO VA A IR AL MAPA, TENDRÍA QUE IR A OTRA PANTALLA");
-            }
-            else
-            {
-                //ES FALSO, NO ESPERA A QUE HAGA EL AWAIT
-                if (ConectToDatabase.Instance.isLogged())
-                {
-                    login.SetActive(false);
-                    mapa.SetActive(true);
-                    scriptMapa.establecerNombrePaciente(ConectToDatabase.Instance.getCurrentPaciente().nombre);
-                }
+                login.SetActive(false);
+                listaPacientes.SetActive(true);
+                //llamar aquí a la función que cree la lista de pacientes
+                //no se debe de hacer antes, ya que también hay que coger la lista de pacientes asignador al terapeuta loggeado
+                scriptListaPacientes.startGetPacientes();
             }
         }
+
+        private async void establecerUsuario()
+        {
+            await ConectToDatabase.Instance.obtenerUsuario();
+            listaPacientes.SetActive(true);
+            login.SetActive(false);
+            ConectToDatabase.Instance.getCurrentMedico().printValues();
+        }
+
         public void addNewTerapeuta()
         {
-            createUser.SetActive(true);
             login.SetActive(false);
-            msgTituloCrearUsuario.text = "Crear psicólogo";
+            createUsuario.SetActive(true);
+            msgTituloCrearUsuario.text = "Crear terapeuta";
             inputsPaciente.SetActive(false);
             inputsTerapeuta.SetActive(true);
             creatingPaciente = false;
         }
         public void addNewPaciente()
         {
-            createUser.SetActive(true);
-            login.SetActive(false);
+            listaPacientes.SetActive(false);
+            createUsuario.SetActive(true);
             msgTituloCrearUsuario.text = "Crear paciente";
             inputsPaciente.SetActive(true);
             inputsTerapeuta.SetActive(false);
             creatingPaciente = true;
         }
+
         public async void createNewUser()
         {
             bool emailCorrect = false;
@@ -223,7 +173,7 @@ namespace General
                     string apellidos = createInputApellidos.text;
 
                     Debug.Log("Creando nuevo paciente...");
-                    await ConectToDatabase.Instance.CreateUser(nickname, "", nombre, apellidos, false);
+                    ConectToDatabase.Instance.CreatePaciente(nickname, nombre, apellidos);
                 }
             }
             else
@@ -268,11 +218,30 @@ namespace General
 
                     if (ConectToDatabase.Instance.isLogged())
                     {
-                        createUser.SetActive(false);
-                        mapa.SetActive(true);
+                        resetInputs();
+                        createUsuario.SetActive(false);
+                        fondo.SetActive(false);
+                        listaPacientes.SetActive(true);
                     }
                 }
             }
+        }
+
+        public void exitCreateUser()
+        {
+            resetInputs();
+
+            if (creatingPaciente)
+            {
+                createUsuario.SetActive(false);
+                listaPacientes.SetActive(true);
+            }
+            else
+            {
+                createUsuario.SetActive(false);
+                login.SetActive(true);
+            }
+
         }
 
         public void LogOut()
@@ -285,11 +254,11 @@ namespace General
             loginInputEmail.text = "";
             loginInputPwd.text = "";
 
+            createInputNickname.text = "";
             createInputEmail.text = "";
             createInputPwd.text = "";
             createInputNombre.text = "";
             createInputApellidos.text = "";
         }
-
-}
+    }
 }

@@ -92,7 +92,6 @@ namespace General
 
                     //además, añadimos este usuario a nuestra base de datos
                     initializeNewTerapeuta(result.User.UserId, email, nombre, apellidos);
-
                 });
             }
         }
@@ -182,7 +181,7 @@ namespace General
                             Dictionary<string, object> documentDictionary = document.ToDictionary();
                             //establecemos el objeto 'currentPaciente' con el usuario actual para poder usuarlo en el resto de la aplicación
                             currentPaciente = currentPaciente.DictionaryToPaciente(documentDictionary);
-                            currentPaciente.printValues();
+                            //currentPaciente.printValues();
                         }
                     }
 
@@ -264,7 +263,9 @@ namespace General
 
         public bool isLogged()
         {
-            if (auth.CurrentUser != null)
+            Debug.Log(auth);
+
+            if (auth != null || auth.CurrentUser != null)
             {
                 return true;
             }
@@ -351,11 +352,13 @@ namespace General
             currentMedico.printValues();
         }
 
-       /* public void getAllPacientes()
+        public async Task<List<Paciente>> getAllPacientes()
         {
+            List<Paciente> allPacientes = new List<Paciente>();
+
             CollectionReference pacientesRef = db.Collection("Pacientes");
 
-            pacientesRef.GetSnapshotAsync().ContinueWithOnMainThread(task => {
+            await pacientesRef.GetSnapshotAsync().ContinueWithOnMainThread(task => {
 
                 if (task.IsCompleted)
                 {
@@ -363,6 +366,11 @@ namespace General
                     foreach (DocumentSnapshot document in snapshot.Documents)
                     {
                         //almacenamos los pacientes
+                        Paciente pacienteAux = new Paciente();
+                        Dictionary<string, object> documentDictionary = document.ToDictionary();
+                        pacienteAux = pacienteAux.DictionaryToPaciente(documentDictionary);
+                        pacienteAux.printValues();
+                        allPacientes.Add(pacienteAux);
                     }
                 }
                 else
@@ -370,10 +378,12 @@ namespace General
                     Debug.LogError("Error getting documents: " + task.Exception);
                 }
             });
-        }*/
+
+            return allPacientes; //está mandando el array vacío
+        }
 
         //en esta versión, el usuario sólo va a ser el terapeuta
-        private async Task getActualUser()
+        public async Task getActualUser()
         {
             //hacemos lo mismo para el médico
             CollectionReference medicosRef = db.Collection("Medicos");
@@ -393,54 +403,6 @@ namespace General
 
             });
         }
-
-
-        /*private async Task getActualUser()
-        {
-            //recorremos las 2 tablas hasta encontrar al que queremos
-            bool esPaciente = false;//variable local para ver si tenemos que buscar tambiñen entre los médicos
-
-            CollectionReference pacientesRef = db.Collection("Pacientes");
-            await pacientesRef.GetSnapshotAsync().ContinueWithOnMainThread(task => {
-
-                QuerySnapshot snapshot = task.Result;
-                foreach (DocumentSnapshot document in snapshot.Documents)
-                {
-                    if (auth.CurrentUser.UserId == document.Id)
-                    {
-                        esPaciente = true;
-                        esMedico = false; //la variable global de la clase
-
-                        Dictionary<string, object> documentDictionary = document.ToDictionary();
-                        currentPaciente = currentPaciente.DictionaryToPaciente(documentDictionary);
-                    }
-                }
-
-                if (!esPaciente)
-                {
-                    //hacemos lo mismo para el médico
-                    CollectionReference medicosRef = db.Collection("Medicos");
-                    medicosRef.GetSnapshotAsync().ContinueWithOnMainThread(task => {
-
-                        QuerySnapshot snapshot = task.Result;
-                        foreach (DocumentSnapshot document in snapshot.Documents)
-                        {
-                            if (auth.CurrentUser.UserId == document.Id)
-                            {
-                                esMedico = true;//la variable global de la clase
-
-                                Dictionary<string, object> documentDictionary = document.ToDictionary();
-                                currentMedico = currentMedico.DictionaryToMedico(documentDictionary);
-                            }
-                        }
-
-                    });
-                }
-
-            });
-
-        }*/
-
     }
 }
 
