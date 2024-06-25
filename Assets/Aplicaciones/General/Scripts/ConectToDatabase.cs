@@ -61,6 +61,16 @@ namespace General
             return currentMedico;
         }
 
+        public void setCurrentPaciente(Paciente nuevoPaciente)
+        {
+            currentPaciente = nuevoPaciente;
+        }
+
+        public void resetCurrentPaciente()
+        {
+            currentPaciente = new Paciente();
+        }
+
         public Paciente getCurrentPaciente()
         {
             return currentPaciente;
@@ -369,7 +379,7 @@ namespace General
                         Paciente pacienteAux = new Paciente();
                         Dictionary<string, object> documentDictionary = document.ToDictionary();
                         pacienteAux = pacienteAux.DictionaryToPaciente(documentDictionary);
-                        pacienteAux.printValues();
+                        //pacienteAux.printValues();
                         allPacientes.Add(pacienteAux);
                     }
                 }

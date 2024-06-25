@@ -14,6 +14,15 @@ namespace General
         [SerializeField] private Transform spawnListaTerapeuta;
         [SerializeField] private Transform spawnListaResto;
 
+        [Header("INTERFACES")]
+        [SerializeField] private GameObject interfazDatosPaciente;
+        [SerializeField] private GameObject interfazListaPacientes;
+        [SerializeField] private GameObject interfazInicioPaciente;
+
+        [Header("SCRIPTS")]
+        [SerializeField] private IngresoDatosPaciente scriptDatosPaciente;
+        [SerializeField] private InicioPaciente scriptInicioPaciente;
+
         private List<Paciente> pacientesTotales;
         private List<Paciente> pacientesTerapeuta;
         private List<Paciente> restoPacientes;
@@ -43,11 +52,11 @@ namespace General
             for (int i = 0; i < pacientesTerapeuta.Count; i++)
             {
                 GameObject filaLista = Instantiate(prefabPacienteUI, spawnFila);
-
-                filaLista.GetComponent<PacienteUI>().setID(pacientesTerapeuta[i].id);
                 filaLista.SetActive(true);
+                filaLista.GetComponent<PacienteUI>().setPaciente(pacientesTerapeuta[i]);
+                filaLista.GetComponent<PacienteUI>().setInterfaces(interfazDatosPaciente, interfazListaPacientes, interfazInicioPaciente);
+                filaLista.GetComponent<PacienteUI>().setScripts(scriptDatosPaciente, scriptInicioPaciente);
                 pacientesUI.Add(filaLista);
-
             }
 
             spawnFila = spawnListaResto;
@@ -55,11 +64,11 @@ namespace General
             for (int i = 0; i < restoPacientes.Count; i++)
             {
                 GameObject filaLista = Instantiate(prefabPacienteUI, spawnFila);
-
-                filaLista.GetComponent<PacienteUI>().setID(restoPacientes[i].id);
                 filaLista.SetActive(true);
+                filaLista.GetComponent<PacienteUI>().setPaciente(restoPacientes[i]);
+                filaLista.GetComponent<PacienteUI>().setInterfaces(interfazDatosPaciente, interfazListaPacientes, interfazInicioPaciente);
+                filaLista.GetComponent<PacienteUI>().setScripts(scriptDatosPaciente, scriptInicioPaciente);
                 pacientesUI.Add(filaLista);
-
             }
         }
 
@@ -76,7 +85,7 @@ namespace General
 
                 GameObject filaLista = Instantiate(prefabPacienteUI, spawnFila);
                 filaLista.transform.position = new Vector3(spawnFila.position.x, yPos, spawnFila.position.z);
-                filaLista.GetComponent<PacienteUI>().setID(pacientesTerapeuta[i].id);
+                filaLista.GetComponent<PacienteUI>().setPaciente(pacientesTerapeuta[i]);
                 filaLista.SetActive(true);
                 pacientesUI.Add(filaLista);
 
@@ -95,7 +104,7 @@ namespace General
 
                 GameObject filaLista = Instantiate(prefabPacienteUI, spawnFila);
                 filaLista.transform.position = new Vector3(spawnFila.position.x, yPos, spawnFila.position.z);
-                filaLista.GetComponent<PacienteUI>().setID(restoPacientes[i].id);
+                filaLista.GetComponent<PacienteUI>().setPaciente(restoPacientes[i]);
                 filaLista.SetActive(true);
                 pacientesUI.Add(filaLista);
 
