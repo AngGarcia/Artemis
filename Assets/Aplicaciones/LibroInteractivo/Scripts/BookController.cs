@@ -67,6 +67,7 @@ public class BookController : MonoBehaviour
     private void CheckPage()
     {
         RuntimeManager.PlayOneShot(EventReference);
+        _activeBook.GetComponent<BookTextBoxes>().ActivateBox(_activeBook.currentPage);
 
         if (_activeBook.currentPage >= _activeBook.bookPages.Length)
         {
