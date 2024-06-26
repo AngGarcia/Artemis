@@ -106,10 +106,11 @@ namespace General
             }
         }
 
-        private void LogOut()
+        private async void LogOut()
         {
             //reanudamos el juego
             pausarJuego();
+            await ConectToDatabase.Instance.SaveDataPaciente();
             ConectToDatabase.Instance.resetCurrentPaciente();
             popLogOut.SetActive(false);
             interfazListaPacientes.SetActive(true);

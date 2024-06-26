@@ -48,7 +48,7 @@ namespace General
         {
             inicioPaciente.SetActive(true);
             ConectToDatabase.Instance.stopTimeSesion();
-            await ConectToDatabase.Instance.SaveDataPaciente();
+            //await ConectToDatabase.Instance.SaveDataPaciente();
             mapa.SetActive(false);
         }
 

@@ -55,7 +55,6 @@ namespace General {
         private void verDatosPaciente()
         {
             DatosPaciente.SetActive(true);
-            paciente.printValues();
             //establecemos el current paciente para cuando modifiquemos sus datos en la interfaz IngresoDatosPaciente
             ConectToDatabase.Instance.setCurrentPaciente(paciente);
             Debug.Log("PACIENTE ACTUAL");

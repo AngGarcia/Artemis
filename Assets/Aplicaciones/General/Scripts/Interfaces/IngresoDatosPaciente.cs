@@ -49,7 +49,6 @@ namespace General
 
         void Start()
         {
-            sesionesUI = new List<GameObject>();
             btnBack.onClick.AddListener(goToListaPacientes);
             btnCreatePaciente.onClick.AddListener(createNewPaciente);
             //HACER EL MODO DE EDITAR EL PACIENTE
@@ -109,9 +108,10 @@ namespace General
             }
             else
             {
+                sesionesUI = new List<GameObject>();
+                destroyUIComponents();
                 avisoSinDatos.SetActive(false);
                 scroll.SetActive(true);
-                sesionesUI = new List<GameObject>();
 
                 //poner en el scroll las sesiones del paciente
                 for (int i=0; i < paciente.sesiones.Count; i++)
@@ -127,7 +127,6 @@ namespace General
 
         private void createNewPaciente()
         {
-
             bool apellidosCorrect = false;
             bool datosCorrect = false;
 
@@ -203,11 +202,12 @@ namespace General
             {
                 Destroy(sesionesUI[i]);
             }
+
+            sesionesUI = new List<GameObject>();
         }
 
         public void resetInputs()
         {
-            Debug.Log("RESETEANDO");
             nicknamePaciente.text = "";
             inputPacienteNombre.text = "";
             inputPacienteApellidos.text = "";
@@ -216,8 +216,8 @@ namespace General
             labelPacienteApellidos.text = "";
             medicoAsignado.text = "";
 
+            paciente = new Paciente();
             destroyUIComponents();
-            sesionesUI = new List<GameObject>();
         }
     }
 }

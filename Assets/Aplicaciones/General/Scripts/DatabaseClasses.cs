@@ -64,7 +64,7 @@ namespace General
             observaciones = "Esto es una prueba";  //de pruebas
             numVecesPausa = "0";
             progreso = new List<Test>();
-            addNuevoEstado("Comienzo", EstadoPaciente.Bastante_ansiedad); //de pruebas
+           // addNuevoEstado("Comienzo", EstadoPaciente.Bastante_ansiedad); //de pruebas
         }
 
         public void setObservaciones(string texto)
@@ -218,7 +218,7 @@ namespace General
             this.medicoAsignado = medicoAsignado;
             sesiones = new List<Sesion>();
            
-            addNuevaSesion(); //de prueba, para ver cómo se guardan los datos
+           // addNuevaSesion(); //de prueba, para ver cómo se guardan los datos
 
             nivelesSuperados = new Dictionary<int, bool>
             {

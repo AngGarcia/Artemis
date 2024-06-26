@@ -45,7 +45,7 @@ namespace General
 
         void Start()
         {
-            
+
             /*if (ConectToDatabase.Instance.isLogged()) //da errores porque aparentemente, auth es Null, pero en el script antiguo NO ES NULO
             {
                 Debug.Log("HAY UN USUARIO LOGGEADO");
@@ -57,7 +57,6 @@ namespace General
                 login.SetActive(true);
                 mapa.SetActive(false);
             }*/
-
             login.SetActive(true);
             mapa.SetActive(false);
             avisoEmail.SetActive(false);
