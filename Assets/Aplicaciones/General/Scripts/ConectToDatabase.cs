@@ -15,8 +15,12 @@ namespace General
         //lso 2 tipos de usuarios que pueden estar loggeados en la aplicación
         private Medico currentMedico;
         private Paciente currentPaciente;
+        private Sesion currentSesion; //currentSesion siempre va a ser la última sesión de la lista de sesiones de currentPaciente
 
         private bool esMedico; //variable para saber si tenemos que usar currentMedico o currentPaciente
+        public bool usuarioCorrecto;
+        private bool contarTiempoSesion;
+        private float tiempoJuego;
 
         void Start()
         {
@@ -43,6 +47,19 @@ namespace General
 
             currentMedico = new Medico();
             currentPaciente = new Paciente();
+            currentSesion = new Sesion();
+            usuarioCorrecto = false;
+            contarTiempoSesion = false;
+            tiempoJuego = 0;
+        }
+
+        private void Update()
+        {
+            //contamos el tiempo (en segundos) que pasa un usuario dentro del juego
+            if (contarTiempoSesion)
+            {
+                tiempoJuego += Time.deltaTime;
+            }
         }
 
         public async Task obtenerUsuario()
@@ -76,8 +93,28 @@ namespace General
             return currentPaciente;
         }
 
-        //en este script crearemos todas las funciones que tengan que ver con conectarse a la BBDD
-        //los parámetros los pasaremos cuando llamemos a esta función en el menú de login
+        public void setCurrentSesion(Sesion nuevaSesion)
+        {
+            currentSesion = nuevaSesion;
+        }
+
+        public Sesion getCurrentSesion()
+        {
+            return currentSesion;
+        }
+
+        public void startTimeSesion()
+        {
+            contarTiempoSesion = true;
+        }
+
+        public void stopTimeSesion()
+        {
+            contarTiempoSesion = false;
+            currentSesion.setDuracion(tiempoJuego);
+            tiempoJuego = 0;
+        }
+
         public async Task CreateUser(string email, string password, string nombre, string apellidos, bool esMedico)
         {
             if (esMedico)
@@ -121,11 +158,14 @@ namespace General
             await auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWith(task => {
                 if (task.IsCanceled)
                 {
+                    usuarioCorrecto = false;
                     Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
                     return;
                 }
                 if (task.IsFaulted)
                 {
+                    //esto pasa si se loggea con un usuario que no existe, y se queda en el await
+                    usuarioCorrecto = false;
                     Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
                     return;
                 }
@@ -134,7 +174,8 @@ namespace General
                 Debug.LogFormat("User signed in successfully: {0} ({1})",
                     result.User.DisplayName, result.User.UserId);
 
-                //ahora hacer lo de antes aquí
+
+                usuarioCorrecto = true;
                 esMedico = true;
                 CollectionReference medicosRef = db.Collection("Medicos");
                 medicosRef.GetSnapshotAsync().ContinueWithOnMainThread(task => {
@@ -149,7 +190,7 @@ namespace General
                             //establecemos el objeto 'currentMedico' con el usuario actual para poder usuarlo en el resto de la aplicación
                             currentMedico = currentMedico.DictionaryToMedico(documentDictionary);
                             currentMedico.printValues();
-                         }
+                        }
                     }
 
                 });
@@ -199,76 +240,59 @@ namespace General
             });
         }
 
-        public async Task SaveData()
+        public async Task SaveDataTerapeuta()
         {
-            if (esMedico)
+            DocumentReference docRef = db.Collection("Medicos").Document(currentMedico.id);
+
+            await docRef.UpdateAsync(currentMedico.returnDatosMedico()).ContinueWithOnMainThread(task =>
             {
-                //guardamos los datos del médico
-                DocumentReference docRef = db.Collection("Medicos").Document(currentMedico.id);
-
-                await docRef.UpdateAsync(currentMedico.returnDatosMedico()).ContinueWithOnMainThread(task =>
+                if (task.IsCanceled)
                 {
-                    if (task.IsCanceled)
-                    {
-                        Debug.LogError("Proceso de 'Guardar datos del médico' cancelado: " + task.Exception);
-                        return;
-                    }
-                    if (task.IsFaulted)
-                    {
-                        Debug.LogError("Proceso de 'Guardar datos del médico' encontró un error: " + task.Exception);
-                        return;
-                    }
-
-                    Debug.Log("Médico " + currentMedico.id + "actualizado con éxito.");
-                });
-
-            }
-            else
-            {
-                //guardamos los datos del paciente
-                DocumentReference docRef = db.Collection("Pacientes").Document(currentPaciente.id);
-
-                await docRef.UpdateAsync(currentPaciente.returnDatosPaciente()).ContinueWithOnMainThread(task =>
+                    Debug.LogError("Proceso de 'Guardar datos del médico' cancelado: " + task.Exception);
+                    return;
+                }
+                if (task.IsFaulted)
                 {
-                    if (task.IsCanceled)
-                    {
-                        Debug.LogError("Proceso de 'Guardar datos del paciente' cancelado: " + task.Exception);
-                        return;
-                    }
-                    if (task.IsFaulted)
-                    {
-                        Debug.LogError("Proceso de 'Guardar datos del paciente' encontró un error: " + task.Exception);
-                        return;
-                    }
+                    Debug.LogError("Proceso de 'Guardar datos del médico' encontró un error: " + task.Exception);
+                    return;
+                }
 
-                    Debug.Log("Paciente actualizado con éxito.");
-                });
-            }
+                Debug.Log("Médico " + currentMedico.id + "actualizado con éxito.");
+            });
         }
 
+        public async Task SaveDataPaciente()
+        {
+            //ESTAMOS GUARDANDO LOS DATOS EN LA TABLA 'PACIENTES' NO EN EL ARRAY DE PACIENTES DEL TERAPEUTA
+            SaveDataSesion();
+            DocumentReference docRef = db.Collection("Pacientes").Document(currentPaciente.id);
+
+            await docRef.UpdateAsync(currentPaciente.returnDatosPaciente()).ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCanceled)
+                {
+                    Debug.LogError("Proceso de 'Guardar datos del paciente' cancelado: " + task.Exception);
+                    return;
+                }
+                if (task.IsFaulted)
+                {
+                    Debug.LogError("Proceso de 'Guardar datos del paciente' encontró un error: " + task.Exception);
+                    return;
+                }
+
+                Debug.Log("Paciente actualizado con éxito.");
+            });
+        }
+
+        public void SaveDataSesion()
+        {
+            currentPaciente.sesiones[currentPaciente.sesiones.Count - 1] = currentSesion;
+        }
 
         public void LogOut()
         {
             //Para salir de la sesión de un usuario
             auth.SignOut();
-        }
-
-        public string getCurrentUserID()
-        {
-            Firebase.Auth.FirebaseUser user = auth.CurrentUser;
-            string uid = null;
-            if (user != null)
-            {
-                //string name = user.DisplayName;
-                //string email = user.Email;
-
-                // The user's Id, unique to the Firebase project.
-                // Do NOT use this value to authenticate with your backend server, if you
-                // have one; use User.TokenAsync() instead.
-                uid = user.UserId;
-            }
-
-            return uid;
         }
 
         public bool isLogged()

@@ -25,6 +25,8 @@ namespace General
         [Header("INPUTS DEL LOGIN")]
         [SerializeField] private TMP_InputField loginInputEmail;
         [SerializeField] private TMP_InputField loginInputPwd;
+        [SerializeField] private GameObject avisoDatosIncorrectos;
+        [SerializeField] private GameObject avisoUsuarioIncorrecto;
 
         //INPUTS DE CREAR TERAPEUTA
         [Header("INGRESAR TERAPEUTA")]
@@ -34,6 +36,8 @@ namespace General
         [SerializeField] private TMP_InputField inputTerapeutaApellidos;
         [SerializeField] private GameObject avisoEmail;
         [SerializeField] private GameObject avisoContraseña;
+        [SerializeField] private GameObject avisoNombre;
+        [SerializeField] private GameObject avisoApellidos;
 
         [Header("SCRIPTS")]
         [SerializeField] private ListaPacientes scriptListaPacientes;
@@ -41,7 +45,7 @@ namespace General
 
         void Start()
         {
-
+            
             /*if (ConectToDatabase.Instance.isLogged()) //da errores porque aparentemente, auth es Null, pero en el script antiguo NO ES NULO
             {
                 Debug.Log("HAY UN USUARIO LOGGEADO");
@@ -58,6 +62,10 @@ namespace General
             mapa.SetActive(false);
             avisoEmail.SetActive(false);
             avisoContraseña.SetActive(false);
+            avisoNombre.SetActive(false);
+            avisoApellidos.SetActive(false);
+            avisoDatosIncorrectos.SetActive(false);
+            avisoUsuarioIncorrecto.SetActive(false);
 
             btnLogin.onClick.AddListener(awaitLogin);
             btnNuevoTerapeuta.onClick.AddListener(addNewTerapeuta);
@@ -75,25 +83,59 @@ namespace General
 
         public async void awaitLogin()
         {
-            string email = loginInputEmail.text;
-            string password = loginInputPwd.text;
+            bool emailCorrect = false;
+            bool pwdCorrect = false;
 
-            //GESTIONAR SI NO SE HAN RELLENADO X CAMPOS
-
-            ConectToDatabase.Instance.LogOut();
-
-            btnLogin.interactable = false;
-            await ConectToDatabase.Instance.LoginMedico(email, password); //este await es falso, porque en realidad no espera
-            await ConectToDatabase.Instance.getActualUser(); //obtenemos el terapeuta loggeado
-            btnLogin.interactable = true;
-
-            if (ConectToDatabase.Instance.isLogged())
+            //vemos si ambos campos contienen información
+            if (loginInputEmail.text.Length > 0)
             {
-                login.SetActive(false);
-                listaPacientes.SetActive(true);
-                //llamar aquí a la función que cree la lista de pacientes
-                //no se debe de hacer antes, ya que también hay que coger la lista de pacientes asignador al terapeuta loggeado
-                scriptListaPacientes.startGetPacientes();
+                emailCorrect = true;
+            }
+            
+            if (loginInputPwd.text.Length > 0)
+            {
+                pwdCorrect = true;
+            }
+
+
+            if (emailCorrect && pwdCorrect)
+            {
+                avisoDatosIncorrectos.SetActive(false);
+                string email = loginInputEmail.text;
+                string password = loginInputPwd.text;
+
+                ConectToDatabase.Instance.LogOut();
+
+                btnLogin.interactable = false;
+                await ConectToDatabase.Instance.LoginMedico(email, password);
+
+                //comprobar si el usuario es correcto
+                if (ConectToDatabase.Instance.usuarioCorrecto)
+                {
+                    avisoUsuarioIncorrecto.SetActive(false);
+                    await ConectToDatabase.Instance.getActualUser(); //obtenemos el terapeuta loggeado
+                    btnLogin.interactable = true;
+
+                    if (ConectToDatabase.Instance.isLogged())
+                    {
+                        login.SetActive(false);
+                        listaPacientes.SetActive(true);
+                        //llamar aquí a la función que cree la lista de pacientes
+                        //no se debe de hacer antes, ya que también hay que coger la lista de pacientes asignador al terapeuta loggeado
+                        scriptListaPacientes.startGetPacientes();
+                    }
+                }
+                else
+                {
+                    avisoUsuarioIncorrecto.SetActive(true);
+                    btnLogin.interactable = true;
+                }
+                
+            }
+            else
+            {
+                avisoUsuarioIncorrecto.SetActive(false);
+                avisoDatosIncorrectos.SetActive(true);
             }
         }
 
@@ -119,6 +161,8 @@ namespace General
 
         public async void createNewTerapeuta()
         {
+            bool nombreCorrect = false;
+            bool apellidosCorrect = false;
             bool emailCorrect = false;
             bool pwdCorrect = false;
 
@@ -146,7 +190,29 @@ namespace General
                 avisoContraseña.SetActive(true);
             }
 
-            if (emailCorrect && pwdCorrect)
+            //vemos si el nombre y apellidos se han rellenado
+
+            if (inputTerapeutaNombre.text.Length > 0)
+            {
+                nombreCorrect = true;
+                avisoNombre.SetActive(false);
+            }
+            else
+            {
+                avisoNombre.SetActive(true);
+            }
+
+            if (inputTerapeutaApellidos.text.Length > 0)
+            {
+                apellidosCorrect = true;
+                avisoApellidos.SetActive(false);
+            }
+            else
+            {
+                avisoApellidos.SetActive(true);
+            }
+
+            if (emailCorrect && pwdCorrect && nombreCorrect && apellidosCorrect)
             {
                 string email = inputEmail.text;
                 string password = inputPwd.text;
@@ -181,7 +247,6 @@ namespace General
             loginInputEmail.text = "";
             loginInputPwd.text = "";
 
-            //createInputNickname.text = "";
             inputEmail.text = "";
             inputPwd.text = "";
             inputTerapeutaNombre.text = "";

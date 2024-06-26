@@ -23,6 +23,7 @@ namespace General
         [Header("BOTONES")]
         [SerializeField] private Button btnCreatePaciente;
         [SerializeField] private Button btnEditarPaciente;
+        [SerializeField] private Button btnBack;
 
         [Header("COMPONENTES")]
         [SerializeField] private GameObject scroll;
@@ -33,6 +34,15 @@ namespace General
         [SerializeField] private GameObject tagApellidos;
         [SerializeField] private GameObject BotonCrearPaciente;
         [SerializeField] private GameObject BotonEditarPaciente;
+        [SerializeField] private GameObject avisoApellidos;
+        [SerializeField] private GameObject avisoDatos;
+
+        [Header("INTERFACES")]
+        [SerializeField] private GameObject listaPacientes; 
+        [SerializeField] private GameObject ingresoDatosPaciente;
+
+        [Header("SCRIPTS")]
+        [SerializeField] private ListaPacientes scriptListaPacientes;
 
         private Paciente paciente;
         private List<GameObject> sesionesUI;
@@ -40,12 +50,15 @@ namespace General
         void Start()
         {
             sesionesUI = new List<GameObject>();
+            btnBack.onClick.AddListener(goToListaPacientes);
             btnCreatePaciente.onClick.AddListener(createNewPaciente);
+            //HACER EL MODO DE EDITAR EL PACIENTE
         }
 
         // Update is called once per frame
         private void OnDestroy()
         {
+            btnBack.onClick.RemoveListener(goToListaPacientes);
             btnCreatePaciente.onClick.RemoveAllListeners();
         }
 
@@ -63,6 +76,8 @@ namespace General
             inputApellidos.SetActive(true);
             tagNombre.SetActive(false);
             tagApellidos.SetActive(false);
+            avisoApellidos.SetActive(false);
+            avisoDatos.SetActive(false);
         }
 
         public void verDatosPaciente(Paciente pacienteActual)
@@ -74,6 +89,8 @@ namespace General
             inputApellidos.SetActive(false);
             tagNombre.SetActive(true);
             tagApellidos.SetActive(true);
+            avisoApellidos.SetActive(false);
+            avisoDatos.SetActive(false);
 
             //obtener los datos del paciente
             paciente = pacienteActual;
@@ -101,7 +118,7 @@ namespace General
                 {
                     GameObject filaLista = Instantiate(prefabSesion, spawnLista);
                     filaLista.SetActive(true);
-                    filaLista.GetComponent<SesionUI>().setData(sesionModal, paciente.sesiones[i].getFecha(), i+1);
+                    filaLista.GetComponent<SesionUI>().setData(sesionModal, paciente.sesiones[i], i+1);
                     sesionesUI.Add(filaLista);
                 }
             }
@@ -110,27 +127,74 @@ namespace General
 
         private void createNewPaciente()
         {
-            string nombre = inputPacienteNombre.text;
-            string apellidos = inputPacienteApellidos.text;
 
-            //CREAMOS EL NICKNAME/ID A PARTIR DE LAS INICIALES DEL NOMBRE COMPLETO
-            //ELISA ALONSO SÁEZ --> EAS
-            //EXIGIR QUE SEAN 2 APELLIDOS PARA PODER PONER EL NICKNAME
+            bool apellidosCorrect = false;
+            bool datosCorrect = false;
 
-            string[] apellidosAux = apellidos.Split(' ');
-            string firstApellido = apellidosAux[0];
-            string secondApellido = apellidosAux[1];
+            if (inputPacienteNombre.text.Length > 0 && inputPacienteApellidos.text.Length > 0)
+            {
+                datosCorrect = true;
+                avisoDatos.SetActive(false);
+            }
+            else
+            {
+                avisoDatos.SetActive(true);
+            }
 
-            char letterOne = nombre[0];
-            char letterTwo = firstApellido[0];
-            char letterThree = secondApellido[0];
+            if (datosCorrect)
+            {
+                //comprobamos que el campo 'Apellidos' tenga 2 apellidos, ni más ni menos
+                string[] apellidosAux = inputPacienteApellidos.text.Split(' ');
 
-            string nickname = $"{letterOne}{letterTwo}{letterThree}";
+                if (apellidosAux.Length == 2)
+                {
+                    apellidosCorrect = true;
+                    avisoApellidos.SetActive(false);
+                }
+                else
+                {
+                    avisoApellidos.SetActive(true);
+                }
 
-            Debug.Log("ID: " + nickname);
+            }
 
-            Debug.Log("Creando nuevo paciente...");
-            ConectToDatabase.Instance.CreatePaciente(nickname, nombre, apellidos);
+
+            if (datosCorrect && apellidosCorrect)
+            {
+                string nombre = inputPacienteNombre.text;
+                string apellidos = inputPacienteApellidos.text;
+
+                //CREAMOS EL NICKNAME/ID A PARTIR DE LAS INICIALES DEL NOMBRE COMPLETO
+                //ELISA ALONSO SÁEZ --> EAS
+
+                string[] apellidosAux = apellidos.Split(' ');
+                string firstApellido = apellidosAux[0];
+                string secondApellido = apellidosAux[1];
+
+                char letterOne = nombre[0];
+                char letterTwo = firstApellido[0];
+                char letterThree = secondApellido[0];
+
+                string nickname = $"{letterOne}{letterTwo}{letterThree}";
+
+                Debug.Log("ID: " + nickname);
+
+                Debug.Log("Creando nuevo paciente...");
+                ConectToDatabase.Instance.CreatePaciente(nickname, nombre, apellidos);
+
+                //ir a la pantalla de lista de pacientes
+                listaPacientes.SetActive(true);
+                scriptListaPacientes.resetLists();
+                scriptListaPacientes.startGetPacientes();
+                ingresoDatosPaciente.SetActive(false);
+            }
+        }
+
+        private void goToListaPacientes()
+        {
+            resetInputs();
+            listaPacientes.SetActive(true);
+            ingresoDatosPaciente.SetActive(false);
         }
 
         private void destroyUIComponents()
@@ -143,6 +207,7 @@ namespace General
 
         public void resetInputs()
         {
+            Debug.Log("RESETEANDO");
             nicknamePaciente.text = "";
             inputPacienteNombre.text = "";
             inputPacienteApellidos.text = "";

@@ -15,9 +15,11 @@ namespace General
         [Header("INTERFACES")]
         [SerializeField] private GameObject interfazListaPacientes;
         [SerializeField] private GameObject interfazInicioPaciente;
+        [SerializeField] private GameObject mapa;
 
         [Header("BOTONES")]
         [SerializeField] private Button btnAyuda;
+        [SerializeField] private Button btnJugar;
         [SerializeField] private Button btnPopUpLogOut;
         [SerializeField] private Button btnPopUpSave;
         [Header("POP-UPS")]
@@ -35,11 +37,13 @@ namespace General
             infoPanel.SetActive(false);
             activeInfoPanel = false;
             fondoPausa.SetActive(false);
+            mapa.SetActive(false);
 
             spriteBtnAyudaNormal = btnAyuda.GetComponent<Image>().sprite;
             spriteBtnAyudaPressed = btnAyuda.GetComponent<Button>().spriteState.disabledSprite;
 
             btnAyuda.onClick.AddListener(toggleHelp);
+            btnJugar.onClick.AddListener(irAlJuego);
             btnPopUpLogOut.onClick.AddListener(LogOut);
             btnPopUpSave.onClick.AddListener(SaveData);
         }
@@ -47,6 +51,7 @@ namespace General
         private void OnDestroy()
         {
             btnAyuda.onClick.RemoveListener(toggleHelp);
+            btnJugar.onClick.RemoveListener(irAlJuego);
             btnPopUpLogOut.onClick.RemoveListener(LogOut);
             btnPopUpSave.onClick.RemoveListener(SaveData);
         }
@@ -54,10 +59,20 @@ namespace General
         public void setPaciente(Paciente pacienteActual)
         {
             ConectToDatabase.Instance.setCurrentPaciente(pacienteActual);
-            nombrePaciente.text = pacienteActual.nombre;
+            nombrePaciente.text = ConectToDatabase.Instance.getCurrentPaciente().nombre + "!";
 
             Debug.Log("PACIENTE ACTUAL");
             ConectToDatabase.Instance.getCurrentPaciente().printValues();
+        }
+
+        private void irAlJuego()
+        {
+            ConectToDatabase.Instance.getCurrentPaciente().addNuevaSesion();
+            //establecemos la última sesión añadida como la actual; cada vez que ingresemos en el juego, se crea una nueva sesión
+            ConectToDatabase.Instance.setCurrentSesion(ConectToDatabase.Instance.getCurrentPaciente().sesiones[ConectToDatabase.Instance.getCurrentPaciente().sesiones.Count - 1]);
+            ConectToDatabase.Instance.startTimeSesion();
+            mapa.SetActive(true);
+            interfazInicioPaciente.SetActive(false);
         }
 
         public void toggleHelp()
@@ -104,7 +119,7 @@ namespace General
         private async void SaveData()
         {
             //guardamos los datos
-            await ConectToDatabase.Instance.SaveData();
+            await ConectToDatabase.Instance.SaveDataPaciente();
             popSaveData.SetActive(false);
             popDataSaved.SetActive(true);
         }

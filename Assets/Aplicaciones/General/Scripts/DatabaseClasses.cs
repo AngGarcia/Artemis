@@ -9,11 +9,11 @@ namespace General
     {
         //sin ansiedad, con un poco de ansiedad, con un poco más de ansiedad, con bastante ansiedad, con mucha ansiedad, con ansiedad extrema.
         Sin_ansiedad = 0,
-        un_poco_de_ansiedad = 1,
-        algo_de_ansiedad = 2,
-        bastante_ansiedad = 3,
-        mucha_ansiedad = 4,
-        ansiedad_extrema = 5
+        Un_poco_de_ansiedad = 1,
+        Algo_de_ansiedad = 2,
+        Bastante_ansiedad = 3,
+        Mucha_ansiedad = 4,
+        Ansiedad_extrema = 5
     }
 
     public struct Test
@@ -35,7 +35,7 @@ namespace General
         public Test DictionaryToTest(object dictionaryAux)
         {
             Dictionary<string, object> dictionary = dictionaryAux as Dictionary<string, object>;
-            Debug.Log("Diccionario a test?: " + dictionary);
+            //Debug.Log("Diccionario a test?: " + dictionary);
 
             Test test = new Test();
             test.momento = dictionary["momento"].ToString();
@@ -47,21 +47,24 @@ namespace General
 
     public class Sesion
     {
+        public string id;  // el ID de la sesión coincidirá con su posición en el array (si es 1, la posición es 0)
         private string fecha; //fecha de realización
-        public string duracion; //tiempo en segundos de cuanto tiempo ha durado la sesión
+        private string duracion; //tiempo en segundos de cuanto tiempo ha durado la sesión
         private string observaciones; //comentarios del terapeuta
         public List<Test> progreso; //diccionario con todos los momentos donde se debe realizar el test psicométrico; son 12
         public string numVecesPausa;
 
         //CADA VEZ QUE SE LE DE AL BOTÓN DE 'IR AL MAPA' EN LA LISTA DE PACIENTES, SE INICIARÁ UNA NUEVA SESIÓN
-        public void initSesion()
+        public void initSesion(int numID)
         {
+            id = numID.ToString();
             setFecha(DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);//lo inicializamos a la del día que se crea la sesión
+            //setDuracion(120f);  //de pruebas
             setDuracion(0f);
-            observaciones = "";
+            observaciones = "Esto es una prueba";  //de pruebas
             numVecesPausa = "0";
             progreso = new List<Test>();
-            addNuevoEstado("Comienzo", EstadoPaciente.bastante_ansiedad); //de pruebas
+            addNuevoEstado("Comienzo", EstadoPaciente.Bastante_ansiedad); //de pruebas
         }
 
         public void setObservaciones(string texto)
@@ -96,8 +99,9 @@ namespace General
             float minutos = 0f;
             string segundos;
 
-            if (segundosNum > 60)
+            if (segundosNum >= 60)
             {
+                segundosNum = segundosNum / 60;
                 minutos = Mathf.FloorToInt(segundosNum);
                 segundos = ((int)(((segundosNum - minutos) * 100) % 100)).ToString("00");
             }
@@ -144,6 +148,7 @@ namespace General
 
             Dictionary<string, object> sesion = new Dictionary<string, object>
             {
+                { "id", id },
                 { "fecha" , getFecha() },
                 { "duracion", getDuracion() },
                 { "observaciones", observaciones },
@@ -157,11 +162,12 @@ namespace General
         public Sesion DictionaryToSesion(object dictionaryAux)
         {
             Dictionary<string, object> dictionary = dictionaryAux as Dictionary<string, object>;
-            Debug.Log("Diccionario a sesion?: " + dictionary);
+           // Debug.Log("Diccionario a sesion?: " + dictionary);
 
             Sesion sesion = new Sesion();
             sesion.progreso = new List<Test>();
 
+            sesion.id = dictionary["id"].ToString();
             sesion.fecha = dictionary["fecha"].ToString();
             sesion.duracion = dictionary["duracion"].ToString();
             sesion.observaciones = dictionary["observaciones"].ToString();
@@ -176,13 +182,14 @@ namespace General
                 sesion.progreso.Add(testAux);
             }
 
-            Debug.Log("Tamaño del progreso: " + sesion.progreso.Count);
+           // Debug.Log("Tamaño del progreso: " + sesion.progreso.Count);
 
             return sesion;
         }
 
         public void printSesionValues()
         {
+            Debug.Log("ID: " + id);
             Debug.Log("Fecha: " + fecha);
             Debug.Log("Duración: " + duracion);
             Debug.Log("Observaciones: " + "");
@@ -194,7 +201,6 @@ namespace General
     public class Paciente
     {
         public string id = "";
-        public bool esMedico = false;
         public string idMedico = "";
         public string medicoAsignado = "";
         public string nombre = "";
@@ -227,7 +233,7 @@ namespace General
         public void addNuevaSesion()
         {
             Sesion aux = new Sesion();
-            aux.initSesion();
+            aux.initSesion(sesiones.Count);
             sesiones.Add(aux);
         }
 
@@ -245,7 +251,6 @@ namespace General
             Dictionary<string, object> paciente = new Dictionary<string, object>
             {
                 { "id" , id },
-                { "esMedico", esMedico },
                 { "idMedico" , idMedico },
                 { "medicoAsignado", medicoAsignado },
                 { "nombre" , nombre },
@@ -261,7 +266,7 @@ namespace General
         public Paciente DictionaryToPaciente(object dictionaryAux)
         {
             Dictionary<string, object> dictionary = dictionaryAux as Dictionary<string, object>;
-            Debug.Log("Diccionario a paciente?: " + dictionary);
+            //Debug.Log("Diccionario a paciente?: " + dictionary);
 
             Paciente paciente = new Paciente();
             paciente.sesiones = new List<Sesion>();
@@ -282,7 +287,7 @@ namespace General
                 paciente.sesiones.Add(sesionAux);
             }
 
-            Debug.Log("Tamaño de sesiones: " + paciente.sesiones.Count);
+            //Debug.Log("Tamaño de sesiones: " + paciente.sesiones.Count);
 
             return paciente;
         }
@@ -376,12 +381,12 @@ namespace General
 
             foreach (KeyValuePair<string, object> entrada in diccionario)
             {
-                //Paciente pacienteAux = entrada.Value as Paciente; //ESTO ES NULO
                 Paciente pacienteAux = new Paciente();
                 pacienteAux = pacienteAux.DictionaryToPaciente(entrada.Value);
                 medico.pacientes.Add(pacienteAux);
             }
-            Debug.Log("Tamaño de pacientes: " + medico.pacientes.Count);
+            //Debug.Log("Tamaño de pacientes: " + medico.pacientes.Count);
+
             return medico;
         }
 

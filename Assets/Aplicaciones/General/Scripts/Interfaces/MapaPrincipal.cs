@@ -7,11 +7,13 @@ namespace General
 {
     public class MapaPrincipal : MonoBehaviour
     {
-        [SerializeField] private TMP_Text nombrePaciente;
-        [SerializeField] private GameObject seleccionUser;
+
+        [Header("INTERFACES")]
+        [SerializeField] private GameObject inicioPaciente;
         [SerializeField] private GameObject mapa;
-        [SerializeField] private MainMenuManager menuManager;
+
         [Header("BOTONES")]
+        [SerializeField] private Button btnBack;
         [SerializeField] private Button btnStart;
         [SerializeField] private Button btnRespiracion;
         [SerializeField] private Button btnHarmonyHeaven;
@@ -20,15 +22,9 @@ namespace General
         [SerializeField] private Button btnMelodiaFloral;
 
 
-        //En Awake, comprobar datos de guardado y activar los botones de nivel segun cuales esten desbloqueados
-
-        private void OnEnable()
-        {
-            nombrePaciente.text = ConectToDatabase.Instance.getCurrentPaciente().nombre;
-        }
-
         void Start()
         {
+            btnBack.onClick.AddListener(goBack);
             btnStart.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.LibroInteractivo); });
             btnRespiracion.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.Respiracion); });
             btnHarmonyHeaven.onClick.AddListener(goToHarmonyHeaven);
@@ -39,6 +35,7 @@ namespace General
 
         private void OnDestroy()
         {
+            btnBack.onClick.RemoveListener(goBack);
             btnStart.onClick.RemoveListener(delegate { SceneChanger.Instance.GoToScene(Scenes.LibroInteractivo); });
             btnRespiracion.onClick.RemoveListener(delegate { SceneChanger.Instance.GoToScene(Scenes.Respiracion); });
             btnHarmonyHeaven.onClick.RemoveListener(goToHarmonyHeaven);
@@ -47,6 +44,14 @@ namespace General
             btnMelodiaFloral.onClick.RemoveListener(goToMelodiaFloral);
         }
         
+        private async void goBack()
+        {
+            inicioPaciente.SetActive(true);
+            ConectToDatabase.Instance.stopTimeSesion();
+            await ConectToDatabase.Instance.SaveDataPaciente();
+            mapa.SetActive(false);
+        }
+
         private void goToHarmonyHeaven()
         {
             SceneChanger.Instance.actualScene = Scenes.Respiracion;
@@ -63,12 +68,6 @@ namespace General
         {
             SceneChanger.Instance.actualScene = Scenes.PaisajeSonoro;
             SceneChanger.Instance.GoToScene(Scenes.LibroInteractivo);
-        }
-
-        public void establecerNombrePaciente(string nombre)
-        {
-            Debug.Log("PONEMOS EL NOMBRE DEL PACIENTE: " + nombre);
-            nombrePaciente.text = nombre;
         }
     }
 }

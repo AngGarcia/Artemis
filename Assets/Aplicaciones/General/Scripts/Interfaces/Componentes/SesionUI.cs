@@ -14,6 +14,8 @@ namespace General
         [SerializeField] private TMP_Text numSesion;
         [SerializeField] private TMP_Text fecha;
 
+        private Sesion sesion;
+
         void Start()
         {
             btnOpenModal.onClick.AddListener(openModal);
@@ -24,16 +26,18 @@ namespace General
             btnOpenModal.onClick.RemoveListener(openModal);
         }
 
-        public void setData(GameObject modalSesion, string fecha, int numSesion)
+        public void setData(GameObject modalSesion, Sesion sesionActual, int numSesion)
         {
             modal = modalSesion;
-            this.fecha.text = fecha;
+            sesion = sesionActual;
+            fecha.text = sesion.getFecha();
             this.numSesion.text = numSesion.ToString();
+            ConectToDatabase.Instance.setCurrentSesion(sesion);
         }
 
         private void openModal()
         {
-            modal.SetActive(true);
+            modal.GetComponent<SesionModal>().openModal(sesion, numSesion.text);
         }
     }
 }

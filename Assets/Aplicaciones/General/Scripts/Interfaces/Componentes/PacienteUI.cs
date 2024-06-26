@@ -12,12 +12,12 @@ namespace General {
         [SerializeField] private Button btnVerDatos;
         [SerializeField] private Button btnJuego;
 
-        public GameObject DatosPaciente;
-        public GameObject ListaPacientes;
-        public GameObject InicioPaciente;
+        private GameObject DatosPaciente;
+        private GameObject ListaPacientes;
+        private GameObject InicioPaciente;
 
-        public IngresoDatosPaciente scriptDatosPaciente;
-        public InicioPaciente scriptInicioPaciente;
+        private IngresoDatosPaciente scriptDatosPaciente;
+        private InicioPaciente scriptInicioPaciente;
 
         private Paciente paciente;
 
@@ -56,6 +56,11 @@ namespace General {
         {
             DatosPaciente.SetActive(true);
             paciente.printValues();
+            //establecemos el current paciente para cuando modifiquemos sus datos en la interfaz IngresoDatosPaciente
+            ConectToDatabase.Instance.setCurrentPaciente(paciente);
+            Debug.Log("PACIENTE ACTUAL");
+            ConectToDatabase.Instance.getCurrentPaciente().printValues();
+
             scriptDatosPaciente.verDatosPaciente(paciente);
             ListaPacientes.SetActive(false);
         }
