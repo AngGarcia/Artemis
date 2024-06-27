@@ -57,8 +57,21 @@ namespace General
                 login.SetActive(true);
                 mapa.SetActive(false);
             }*/
-            login.SetActive(true);
-            mapa.SetActive(false);
+
+            //COMPROBAR SI HAY UNA SESION INICIADA
+            if (ConectToDatabase.Instance.getCurrentMedico() is null)
+            {
+                //NO HAY SESIÓN INICIADA
+                login.SetActive(true);
+                mapa.SetActive(false);
+            }
+            else
+            {
+                Debug.Log("currentPaciente: " + ConectToDatabase.Instance.getCurrentPaciente());
+                login.SetActive(false);
+                mapa.SetActive(true);
+            }
+
             avisoEmail.SetActive(false);
             avisoContraseña.SetActive(false);
             avisoNombre.SetActive(false);

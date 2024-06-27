@@ -34,6 +34,12 @@ namespace General
 
         void Start()
         {
+
+            if (ConectToDatabase.Instance.getCurrentPaciente() != null)
+            {
+                setPaciente(ConectToDatabase.Instance.getCurrentPaciente());
+            }
+
             infoPanel.SetActive(false);
             activeInfoPanel = false;
             fondoPausa.SetActive(false);

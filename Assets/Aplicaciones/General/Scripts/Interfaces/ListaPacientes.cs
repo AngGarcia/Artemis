@@ -28,8 +28,8 @@ namespace General
         private List<Paciente> restoPacientes;
         private List<GameObject> pacientesUI; //array de los GameObjects creados
 
-        private int separacionAxisY = 60;
-        private int separacionAxisX = 525;
+       // private int separacionAxisY = 60;
+       // private int separacionAxisX = 525;
 
         private void Start()
         {
@@ -37,11 +37,15 @@ namespace General
             pacientesTerapeuta = new List<Paciente>();
             restoPacientes = new List<Paciente>();
             pacientesUI = new List<GameObject>();
+
+            if (ConectToDatabase.Instance.getCurrentMedico() != null)
+            {
+                startGetPacientes();
+            }
         }
 
         public void startGetPacientes()
         {
-            // StartCoroutine(getAllPacientes());
             getAllPacientes();
         }
 
@@ -73,7 +77,7 @@ namespace General
         }
 
         //creamos los componentes de la UI
-        private void maquetarUI_v1()
+       /* private void maquetarUI_v1()
         {
             Transform spawnFila = spawnListaTerapeuta;
             float yPos;
@@ -111,19 +115,14 @@ namespace General
                 index++;
             }
 
-        }
+        }*/
 
         private async void getAllPacientes()
         {
             pacientesTotales = await ConectToDatabase.Instance.getAllPacientes();
-            //Debug.Log("nº pacientes totales:");
-            //Debug.Log("Tamaño: " + pacientesTotales.Count);
-            //Debug.Log("ID del medico actual: " + ConectToDatabase.Instance.getCurrentMedico().id); 
-           // printAllPacientes();
 
             for (int i=0; i < pacientesTotales.Count; i++)
             {
-               // Debug.Log("pacientesTotales[i].idMedico: " + pacientesTotales[i].idMedico);
                 if (pacientesTotales[i].idMedico == ConectToDatabase.Instance.getCurrentMedico().id)
                 {
                     pacientesTerapeuta.Add(pacientesTotales[i]);
@@ -134,17 +133,7 @@ namespace General
                 }
             }
 
-            //listaAMostrar = pacientesTerapeuta;
             maquetarUI();
-        }
-
-        //DEBUG
-        private void printAllPacientes() {
-
-            for (int i=0; i< pacientesTotales.Count; i++)
-            {
-                pacientesTotales[i].printValues();
-            }
         }
 
         private void destroyUIComponents()

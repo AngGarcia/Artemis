@@ -10,6 +10,7 @@ namespace General {
     {
         // Start is called before the first frame update
         [SerializeField] private GameObject interfazTest;
+        [SerializeField] private DisplayTest testPsicometrico;
         [Space]
         [Header("Botones")]
         [SerializeField] private GameObject botonSalir;
@@ -157,6 +158,13 @@ namespace General {
         private void guardarTest()
         {
             //guardaríamos los datos recopilados del termómetro
+            int valorTest = (int)testPsicometrico.getValor();
+
+            //En teoría, los test se hacen en momentos determinados del juego (como se ve al ver la sesión concreta del paciente)
+            //pero no sé si lo tenemos que imponer en el juego, o el terapeuta activamente sabe cúando ponerlo.
+            //Por ahora nos pondremos en este segundo caso para la demo del viernes 28 de junio 2024
+            ConectToDatabase.Instance.getCurrentSesion().addNuevoEstado("momento", (EstadoPaciente)valorTest);
+            ConectToDatabase.Instance.getCurrentSesion().printSesionValues();
         }
 
     }

@@ -43,6 +43,11 @@ namespace General
 
             return test;
         }
+
+        public void printTestValues()
+        {
+            Debug.Log("Momento: " + momento + " - Estado: " + estado);
+        }
     }
 
     public class Sesion
@@ -193,6 +198,12 @@ namespace General
             Debug.Log("Fecha: " + fecha);
             Debug.Log("Duración: " + duracion);
             Debug.Log("Observaciones: " + "");
+            Debug.Log("Progreso: ");
+
+            for (int i=0; i < progreso.Count; i++)
+            {
+                progreso[i].printTestValues();
+            }
         }
 
     }

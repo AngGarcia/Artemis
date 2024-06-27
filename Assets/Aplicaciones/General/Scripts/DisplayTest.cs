@@ -30,4 +30,9 @@ public class DisplayTest : MonoBehaviour
         _faceImage.sprite = _faces[v];
         _fillImage.color = _colors[v];
     }
+
+    public float getValor()
+    {
+        return _slider.value;
+    }
 }

@@ -82,6 +82,8 @@ namespace General
         public void verDatosPaciente(Paciente pacienteActual)
         {
             paciente = new Paciente();
+            sesionesUI = new List<GameObject>();
+
             BotonCrearPaciente.SetActive(false);
             BotonEditarPaciente.SetActive(true);
             inputNombre.SetActive(false);
@@ -108,7 +110,6 @@ namespace General
             }
             else
             {
-                sesionesUI = new List<GameObject>();
                 destroyUIComponents();
                 avisoSinDatos.SetActive(false);
                 scroll.SetActive(true);
