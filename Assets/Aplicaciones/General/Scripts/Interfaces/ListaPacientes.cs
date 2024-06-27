@@ -38,8 +38,9 @@ namespace General
             restoPacientes = new List<Paciente>();
             pacientesUI = new List<GameObject>();
 
-            if (ConectToDatabase.Instance.getCurrentMedico() != null)
+            if (ConectToDatabase.Instance.getCurrentPaciente().nombre != "") 
             {
+                Debug.Log("HAY UN PACIENTE ACTIVO");
                 startGetPacientes();
             }
         }

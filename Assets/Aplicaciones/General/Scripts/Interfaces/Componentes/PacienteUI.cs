@@ -37,7 +37,7 @@ namespace General {
         {
             paciente = new Paciente();
             paciente = pacienteActual;
-            paciente.printValues();
+            //paciente.printValues();
             ID.text = paciente.id;
         }
 
@@ -58,7 +58,7 @@ namespace General {
             //establecemos el current paciente para cuando modifiquemos sus datos en la interfaz IngresoDatosPaciente
             ConectToDatabase.Instance.setCurrentPaciente(paciente);
             Debug.Log("PACIENTE ACTUAL");
-            ConectToDatabase.Instance.getCurrentPaciente().printValues();
+           // ConectToDatabase.Instance.getCurrentPaciente().printValues();
 
             scriptDatosPaciente.verDatosPaciente(paciente);
             ListaPacientes.SetActive(false);
@@ -68,7 +68,7 @@ namespace General {
         {
             InicioPaciente.SetActive(true);
             scriptInicioPaciente.setPaciente(paciente);
-            paciente.printValues();
+            //paciente.printValues();
             ListaPacientes.SetActive(false);
         }
     }

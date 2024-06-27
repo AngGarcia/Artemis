@@ -65,7 +65,7 @@ namespace General
             id = numID.ToString();
             setFecha(DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);//lo inicializamos a la del día que se crea la sesión
             //setDuracion(120f);  //de pruebas
-            setDuracion(0f);
+            setDuracion(0);
             observaciones = "Esto es una prueba";  //de pruebas
             numVecesPausa = "0";
             progreso = new List<Test>();
@@ -91,7 +91,6 @@ namespace General
             int year = fechaAux.Year;
 
             fecha = day + "/" + month + "/" + year;
-            Debug.Log("fecha: " + fecha);
         }
 
         public string getFecha()
@@ -99,7 +98,7 @@ namespace General
             return fecha;
         }
 
-        public void setDuracion(float segundosNum)
+        public void setDuracion(int segundosNum)
         {
             float minutos = 0f;
             string segundos;
@@ -186,8 +185,6 @@ namespace General
                 testAux = testAux.DictionaryToTest(entrada.Value);
                 sesion.progreso.Add(testAux);
             }
-
-           // Debug.Log("Tamaño del progreso: " + sesion.progreso.Count);
 
             return sesion;
         }
@@ -277,7 +274,6 @@ namespace General
         public Paciente DictionaryToPaciente(object dictionaryAux)
         {
             Dictionary<string, object> dictionary = dictionaryAux as Dictionary<string, object>;
-            //Debug.Log("Diccionario a paciente?: " + dictionary);
 
             Paciente paciente = new Paciente();
             paciente.sesiones = new List<Sesion>();
@@ -297,8 +293,6 @@ namespace General
                 sesionAux = sesionAux.DictionaryToSesion(entrada.Value);
                 paciente.sesiones.Add(sesionAux);
             }
-
-            //Debug.Log("Tamaño de sesiones: " + paciente.sesiones.Count);
 
             return paciente;
         }
@@ -347,8 +341,6 @@ namespace General
             aux.initPaciente(id, nombre, apellidos, idMedico, nombreMedico);
 
             pacientes.Add(aux);
-            Debug.Log("Tamaño de pacientes: ");
-            Debug.Log(pacientes.Count);
 
             return aux;
         }
@@ -396,7 +388,6 @@ namespace General
                 pacienteAux = pacienteAux.DictionaryToPaciente(entrada.Value);
                 medico.pacientes.Add(pacienteAux);
             }
-            //Debug.Log("Tamaño de pacientes: " + medico.pacientes.Count);
 
             return medico;
         }

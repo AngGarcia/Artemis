@@ -21,6 +21,7 @@ namespace General
         public bool usuarioCorrecto;
         private bool contarTiempoSesion;
         private float tiempoJuego;
+        private bool firstLogin = true;
 
         void Start()
         {
@@ -45,6 +46,7 @@ namespace General
                 }
             });
 
+            firstLogin = true;
             currentMedico = new Medico();
             currentPaciente = new Paciente();
             currentSesion = new Sesion();
@@ -59,6 +61,7 @@ namespace General
             if (contarTiempoSesion)
             {
                 tiempoJuego += Time.deltaTime;
+                //Debug.Log("tiempoJuego: " + tiempoJuego);
             }
         }
 
@@ -111,8 +114,18 @@ namespace General
         public void stopTimeSesion()
         {
             contarTiempoSesion = false;
-            currentSesion.setDuracion(tiempoJuego);
+            currentSesion.setDuracion((int)tiempoJuego);
             tiempoJuego = 0;
+        }
+
+        public bool loggedFirstTime()
+        {
+            return firstLogin;
+        }
+
+        public void userLogged()
+        {
+            firstLogin = false;
         }
 
         public async Task CreateUser(string email, string password, string nombre, string apellidos, bool esMedico)
@@ -174,7 +187,7 @@ namespace General
                 Debug.LogFormat("User signed in successfully: {0} ({1})",
                     result.User.DisplayName, result.User.UserId);
 
-
+                firstLogin = false;
                 usuarioCorrecto = true;
                 esMedico = true;
                 CollectionReference medicosRef = db.Collection("Medicos");
@@ -189,7 +202,7 @@ namespace General
                             Dictionary<string, object> documentDictionary = document.ToDictionary();
                             //establecemos el objeto 'currentMedico' con el usuario actual para poder usuarlo en el resto de la aplicación
                             currentMedico = currentMedico.DictionaryToMedico(documentDictionary);
-                            currentMedico.printValues();
+                            //currentMedico.printValues();
                         }
                     }
 

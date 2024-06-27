@@ -117,7 +117,7 @@ namespace General
             //reanudamos el juego
             pausarJuego();
             await ConectToDatabase.Instance.SaveDataPaciente();
-            ConectToDatabase.Instance.resetCurrentPaciente();
+           // ConectToDatabase.Instance.resetCurrentPaciente();
             popLogOut.SetActive(false);
             interfazListaPacientes.SetActive(true);
             interfazInicioPaciente.SetActive(false);

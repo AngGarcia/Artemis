@@ -59,7 +59,8 @@ namespace General
             }*/
 
             //COMPROBAR SI HAY UNA SESION INICIADA
-            if (ConectToDatabase.Instance.getCurrentMedico() is null)
+            Debug.Log(ConectToDatabase.Instance.loggedFirstTime());
+            if (ConectToDatabase.Instance.loggedFirstTime())
             {
                 //NO HAY SESIÓN INICIADA
                 login.SetActive(true);
