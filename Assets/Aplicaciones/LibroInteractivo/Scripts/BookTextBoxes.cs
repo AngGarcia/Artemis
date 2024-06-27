@@ -54,12 +54,13 @@ public class BookTextBoxes : MonoBehaviour
     private void Awake()
     {
         string name = ConectToDatabase.Instance.getCurrentPaciente().nombre;
-
+        TMP_Text textBox;
         foreach (var op in options)
         {
-            if (op.box.GetComponent<TMP_Text>())
+            textBox = op.box.GetComponentInChildren<TMP_Text>();
+            if (textBox != null)
             {
-                op.box.GetComponent<TMP_Text>().text.Replace("%n", name);
+                textBox.text = textBox.text.Replace("%n", name);
             }
         }
     }
