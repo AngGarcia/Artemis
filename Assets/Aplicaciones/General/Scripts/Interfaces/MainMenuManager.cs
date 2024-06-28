@@ -121,6 +121,7 @@ namespace General
 
                 btnLogin.interactable = false;
                 await ConectToDatabase.Instance.LoginMedico(email, password);
+                ConectToDatabase.Instance.obtenerTextoBuild();
 
                 //comprobar si el usuario es correcto
                 if (ConectToDatabase.Instance.usuarioCorrecto)
@@ -253,6 +254,12 @@ namespace General
         public void LogOut()
         {
             ConectToDatabase.Instance.LogOut();
+        }
+
+        public void QuitGame()
+        {
+            LogOut();
+            Application.Quit();
         }
 
         public void resetInputs()

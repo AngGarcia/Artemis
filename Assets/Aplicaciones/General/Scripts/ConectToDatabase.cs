@@ -23,6 +23,8 @@ namespace General
         private float tiempoJuego;
         private bool firstLogin = true;
 
+        private string textoBuild;
+
         void Start()
         {
             auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
@@ -63,6 +65,11 @@ namespace General
                 tiempoJuego += Time.deltaTime;
                 //Debug.Log("tiempoJuego: " + tiempoJuego);
             }
+        }
+
+        public string obtenerTextoBuild()
+        {
+            return textoBuild;
         }
 
         public async Task obtenerUsuario()
@@ -173,6 +180,7 @@ namespace General
                 {
                     usuarioCorrecto = false;
                     Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
+                    textoBuild = "Cancelado loggeo";
                     return;
                 }
                 if (task.IsFaulted)
@@ -180,6 +188,7 @@ namespace General
                     //esto pasa si se loggea con un usuario que no existe, y se queda en el await
                     usuarioCorrecto = false;
                     Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+                    textoBuild = "Error al loggearse";
                     return;
                 }
 
@@ -189,6 +198,7 @@ namespace General
 
                 firstLogin = false;
                 usuarioCorrecto = true;
+                textoBuild = "Loggeo exitoso";
                 esMedico = true;
                 CollectionReference medicosRef = db.Collection("Medicos");
                 medicosRef.GetSnapshotAsync().ContinueWithOnMainThread(task => {
@@ -202,6 +212,7 @@ namespace General
                             Dictionary<string, object> documentDictionary = document.ToDictionary();
                             //establecemos el objeto 'currentMedico' con el usuario actual para poder usuarlo en el resto de la aplicación
                             currentMedico = currentMedico.DictionaryToMedico(documentDictionary);
+                            textoBuild = "Loggeo exitoso";
                             //currentMedico.printValues();
                         }
                     }

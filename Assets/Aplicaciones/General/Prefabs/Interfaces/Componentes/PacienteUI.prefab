@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -176, y: 9}
+  m_AnchoredPosition: {x: -301, y: 9}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &46790460827310829
@@ -172,7 +172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 257, y: 25}
+  m_AnchoredPosition: {x: 291, y: 25}
   m_SizeDelta: {x: 110.2229, y: 32.451}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &101751065726637119
@@ -294,7 +294,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 138, y: 25}
+  m_AnchoredPosition: {x: 172, y: 25}
   m_SizeDelta: {x: 110.2229, y: 32.451}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6920942992761514548
@@ -435,11 +435,6 @@ MonoBehaviour:
   ID: {fileID: 5406115022008066521}
   btnVerDatos: {fileID: 9059341370843921843}
   btnJuego: {fileID: 2019827700278749060}
-  DatosPaciente: {fileID: 0}
-  ListaPacientes: {fileID: 0}
-  InicioPaciente: {fileID: 0}
-  scriptDatosPaciente: {fileID: 0}
-  scriptInicioPaciente: {fileID: 0}
 --- !u!1 &1181001470590010921
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,8 +470,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.2938, y: 25.000002}
-  m_SizeDelta: {x: 629.9009, y: 40.9209}
+  m_AnchoredPosition: {x: 11.1172, y: 25.000002}
+  m_SizeDelta: {x: 916.1612, y: 40.9209}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7930626049683138489
 CanvasRenderer:
