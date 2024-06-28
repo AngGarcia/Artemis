@@ -18,8 +18,8 @@ EditorBuildSettings:
     path: Assets/Aplicaciones/HarmonyHeaven/Scenes/EscenaDeJuego.unity
     guid: 60105a88be80e774b953c9170a813c67
   - enabled: 1
-    path: Assets/Aplicaciones/RitmoVegetal/Scenes/TestSceneV2.unity
-    guid: 2f9503f0b88e1904e9b4ad010f878679
+    path: Assets/Aplicaciones/RitmoVegetal/Scenes/TestSceneV3.unity
+    guid: 242222bf0789daf478b909c5b9738122
   - enabled: 1
     path: Assets/Aplicaciones/PaisajeSonoro/Escenas/PaisajeSonoro.unity
     guid: c147a01a98f29084bac2c82e8f574e51
