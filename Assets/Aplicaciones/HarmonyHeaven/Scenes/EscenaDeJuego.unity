@@ -1801,6 +1801,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1552690307612164644, guid: 4602c11e2d9f4e64eb63ab08713788f8, type: 3}
+      propertyPath: nextScene
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1762677114403952487, guid: 4602c11e2d9f4e64eb63ab08713788f8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

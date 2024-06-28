@@ -27,10 +27,10 @@ namespace General
             btnBack.onClick.AddListener(goBack);
             btnStart.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.LibroInteractivo); });
             btnRespiracion.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.Respiracion); });
-            btnHarmonyHeaven.onClick.AddListener(goToHarmonyHeaven);
+            btnHarmonyHeaven.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.HarmonyHeaven); });
             btnRitmoVegetal.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.RitmoVegetal); });
-            btnPaisajeSonoro.onClick.AddListener(goToPaisajeSonoro);
-            btnMelodiaFloral.onClick.AddListener(goToMelodiaFloral);
+            btnPaisajeSonoro.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.PaisajeSonoro); });
+            btnMelodiaFloral.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.MelodiaFloral); });
         }
 
         private void OnDestroy()
@@ -38,13 +38,13 @@ namespace General
             btnBack.onClick.RemoveListener(goBack);
             btnStart.onClick.RemoveListener(delegate { SceneChanger.Instance.GoToScene(Scenes.LibroInteractivo); });
             btnRespiracion.onClick.RemoveListener(delegate { SceneChanger.Instance.GoToScene(Scenes.Respiracion); });
-            btnHarmonyHeaven.onClick.RemoveListener(goToHarmonyHeaven);
+            btnHarmonyHeaven.onClick.RemoveListener(delegate { SceneChanger.Instance.GoToScene(Scenes.HarmonyHeaven); });
             btnRitmoVegetal.onClick.RemoveListener(delegate { SceneChanger.Instance.GoToScene(Scenes.RitmoVegetal); });
-            btnPaisajeSonoro.onClick.RemoveListener(goToPaisajeSonoro);
-            btnMelodiaFloral.onClick.RemoveListener(goToMelodiaFloral);
+            btnPaisajeSonoro.onClick.RemoveListener(delegate { SceneChanger.Instance.GoToScene(Scenes.PaisajeSonoro); });
+            btnMelodiaFloral.onClick.RemoveListener(delegate { SceneChanger.Instance.GoToScene(Scenes.MelodiaFloral); });
         }
         
-        private async void goBack()
+        private void goBack()
         {
             inicioPaciente.SetActive(true);
             ConectToDatabase.Instance.stopTimeSesion();

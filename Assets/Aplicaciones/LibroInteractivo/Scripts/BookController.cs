@@ -30,7 +30,7 @@ public class BookController : MonoBehaviour
             _activeBook = _books[1];
             _nextScene = Scenes.HarmonyHeaven;
         }
-        else if (SceneChanger.Instance.prevScene == Scenes.HarmonyHeaven || SceneChanger.Instance.prevScene == Scenes.RitmoVegetal)
+        else if (SceneChanger.Instance.prevScene == Scenes.RitmoVegetal)
         {
             _books[2].gameObject.SetActive(true);
             _activeBook = _books[2];
