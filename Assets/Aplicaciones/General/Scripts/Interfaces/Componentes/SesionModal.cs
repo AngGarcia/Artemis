@@ -8,6 +8,8 @@ namespace General
 {
     public class SesionModal : MonoBehaviour
     {
+        [SerializeField] private GameObject prefabTest;
+        [SerializeField] private Transform spawnLista;
         [Header("COMPONENTES")]
         [SerializeField] private GameObject modal;
         [SerializeField] private TMP_Text numSesion;
@@ -15,10 +17,10 @@ namespace General
         [SerializeField] private TMP_Text tiempo;
         [SerializeField] private TMP_InputField observaciones;
         [SerializeField] private Button btnCloseModal;
-
-        [SerializeField] private TMP_Text[] estados;
+        [SerializeField] private GameObject listaTests;
 
         private Sesion sesion;
+        private List<GameObject> testsUI;
 
         void Start()
         {
@@ -42,9 +44,15 @@ namespace General
             observaciones.text = sesion.getObservaciones();
             tiempo.text = sesion.getDuracion();
 
-            for (int i=0; i < sesion.progreso.Count; i++) // el máximo siempre será 12, el mismo tamaño que el array 'estados'
+            //tenemos que crear la lista de test
+            testsUI = new List<GameObject>();
+
+            for (int i=0; i< sesion.progreso.Count; i++)
             {
-                estados[i].text = sesion.progreso[i].estado.ToString(); //se pondrá el número? si se pone hacemos un switch
+                GameObject filaLista = Instantiate(prefabTest, spawnLista);
+                filaLista.SetActive(true);
+                filaLista.GetComponent<TestUI>().setInfo(sesion.progreso[i].momento, sesion.progreso[i].estado, sesion.progreso[i].tiempo);
+                testsUI.Add(filaLista);
             }
         }
 
@@ -66,12 +74,17 @@ namespace General
 
             observaciones.text = "";
             tiempo.text = "";
+            destroyUIComponents();
+        }
 
-            for (int i = 0; i < estados.Length; i++) 
+        private void destroyUIComponents()
+        {
+            for (int i = 0; i < testsUI.Count; i++)
             {
-                estados[i].text = "-";
+                Destroy(testsUI[i]);
             }
 
+            testsUI = new List<GameObject>();
         }
     }
 }

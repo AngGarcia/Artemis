@@ -8,9 +8,9 @@ namespace General
 {
     public class SesionUI : MonoBehaviour
     {
+        [Header("COMPONENTES")]
         [SerializeField] private Button btnOpenModal;
         [SerializeField] private GameObject modal;
-
         [SerializeField] private TMP_Text numSesion;
         [SerializeField] private TMP_Text fecha;
 

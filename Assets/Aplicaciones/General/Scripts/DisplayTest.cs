@@ -31,7 +31,7 @@ public class DisplayTest : MonoBehaviour
         _fillImage.color = _colors[v];
     }
 
-    public float getValor()
+    public float getValue()
     {
         return _slider.value;
     }

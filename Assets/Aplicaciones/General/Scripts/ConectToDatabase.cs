@@ -118,6 +118,11 @@ namespace General
             contarTiempoSesion = true;
         }
 
+        public float getCurrentTimeSesion()
+        {
+            return tiempoJuego;
+        }
+
         public void stopTimeSesion()
         {
             contarTiempoSesion = false;

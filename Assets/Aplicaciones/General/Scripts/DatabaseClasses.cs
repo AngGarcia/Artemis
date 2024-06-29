@@ -20,33 +20,61 @@ namespace General
     {
         public string momento;
         public EstadoPaciente estado;
+        public string tiempo;
 
         public Dictionary<string, object> TestToDictionary()
         {
             Dictionary<string, object> test = new Dictionary<string, object>
             {
                 { "momento", momento },
-                { "estado", estado }
+                { "estado", estado },
+                { "tiempo", tiempo }
             };
 
             return test;
         }
 
+        public void setTiempo(int segundosNum)
+        {
+            float minutos = 0f;
+            string segundos;
+
+            if (segundosNum >= 60)
+            {
+                segundosNum = segundosNum / 60;
+                minutos = Mathf.FloorToInt(segundosNum);
+                segundos = ((int)(((segundosNum - minutos) * 100) % 100)).ToString("00");
+            }
+            else
+            {
+                if (segundosNum < 10)
+                {
+                    segundos = "0" + segundosNum.ToString();
+                }
+                else
+                {
+                    segundos = segundosNum.ToString();
+                }
+            }
+
+            tiempo = minutos.ToString() + ":" + segundos;
+        }
+
         public Test DictionaryToTest(object dictionaryAux)
         {
             Dictionary<string, object> dictionary = dictionaryAux as Dictionary<string, object>;
-            //Debug.Log("Diccionario a test?: " + dictionary);
 
             Test test = new Test();
             test.momento = dictionary["momento"].ToString();
             test.estado = (EstadoPaciente)int.Parse(dictionary["estado"].ToString());
+            test.tiempo = dictionary["tiempo"].ToString();
 
             return test;
         }
 
         public void printTestValues()
         {
-            Debug.Log("Momento: " + momento + " - Estado: " + estado);
+            Debug.Log("Momento: " + momento + " - Estado: " + estado + " - Tiempo: " + tiempo);
         }
     }
 
@@ -130,13 +158,14 @@ namespace General
             return duracion;
         }
 
-        public void addNuevoEstado(string momento, EstadoPaciente estado)
+        public void addNuevoEstado(string momento, EstadoPaciente estado, int tiempo)
         {
             Test testAux = new Test();
 
             //momento y estado se deben pasar por parámetros
             testAux.momento = momento;
             testAux.estado = estado;
+            testAux.setTiempo(tiempo);
             progreso.Add(testAux);
         }
 

@@ -157,13 +157,23 @@ namespace General {
 
         private void guardarTest()
         {
-            //guardaríamos los datos recopilados del termómetro
-            int valorTest = (int)testPsicometrico.getValor();
+            int valorTest = (int)testPsicometrico.getValue();
+            int tiempoActualSesion = (int)ConectToDatabase.Instance.getCurrentTimeSesion();
+            //Debug.Log("tiempoActualSesion: " + tiempoActualSesion);
+            Scenes escena = SceneChanger.Instance.actualScene;
+            string momento;
 
-            //En teoría, los test se hacen en momentos determinados del juego (como se ve al ver la sesión concreta del paciente)
-            //pero no sé si lo tenemos que imponer en el juego, o el terapeuta activamente sabe cúando ponerlo.
-            //Por ahora nos pondremos en este segundo caso para la demo del viernes 28 de junio 2024
-            ConectToDatabase.Instance.getCurrentSesion().addNuevoEstado("momento", (EstadoPaciente)valorTest);
+            if (escena == Scenes.MainMenu)
+            {
+                momento = "Mapa";
+            }
+            else
+            {
+                momento = escena.ToString();
+            }
+
+            //"momento" es de prueba, hay que detectar en qué escena está
+            ConectToDatabase.Instance.getCurrentSesion().addNuevoEstado(momento, (EstadoPaciente)valorTest, tiempoActualSesion);
             ConectToDatabase.Instance.getCurrentSesion().printSesionValues();
         }
 
