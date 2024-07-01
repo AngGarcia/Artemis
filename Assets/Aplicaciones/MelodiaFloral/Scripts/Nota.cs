@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace AlteracionMelodia
 {
-    public class Nota : MonoBehaviour
+    public class Nota : MonoBehaviour//, IPointerDownHandler, IDragHandler, IPointerUpHandler
     {
         public enum TiposNotasLocal
         {
@@ -17,15 +17,15 @@ namespace AlteracionMelodia
             Corchea = 4
         }
 
-
         public ListaNotasFMOD listaNotasFMOD;
 
         [Header("VARIABLES GENERALES")]
         public GestionNota gestorNota; //gestor del panel/menú de cada nota (es el mismo para todas)
         public GestionPentagrama gestionPentagrama; //gestor del pentagrama general, que dice qué notas estan activadas en cada momento
+        [SerializeField] private Slider sliderValorNota;
 
-        [SerializeField]
-        private GameObject brillo;
+        [SerializeField] private GameObject brillo;
+        [SerializeField] private GameObject notaSonando;
         private Vector3 lastTouchPosition; //última posición del dedo
 
         private int sonidoActual;  //tendríamos que usar enumerados aquí
@@ -35,6 +35,7 @@ namespace AlteracionMelodia
         private int instrumentoActual;
 
         private bool sePuedeModificar;  //variable que activa las funciones de modificación de la nota
+        private bool notaModificandose; //para el slider, ver si se ha tocado por primera vez
 
         // 25-10-2023 --> ya no usamos activamente esta variable para que el jugador pueda saltar a modificar una nota fácilmente
         private bool bloqueada;  //variable que bloquea la nota; si la nota está bloqueada, no podemos interactuar con ella de ninguna manera
@@ -48,6 +49,7 @@ namespace AlteracionMelodia
 
         void Start()
         {
+            notaModificandose = false;
             notaMoviendose = false;
             sePuedeModificar = false;
             bloqueada = false;
@@ -55,7 +57,9 @@ namespace AlteracionMelodia
             sePuedeMover = false;
             tipoNotaActual = TiposNotasLocal.Negra;
             brillo.SetActive(false);
+            notaSonando.SetActive(false);
             instrumentoActual = 0; //piano
+            sliderValorNota.onValueChanged.AddListener(modificarNota);
 
             //el tipo de nota inicial es una negra
             for (int i = 0; i < tiposNotas.Length; i++)
@@ -79,11 +83,10 @@ namespace AlteracionMelodia
 
         private void Update()
         {
-            if (!bloqueada)
+            /*if (!bloqueada)
             {
                 if (notaMoviendose)
                 {
-
                     if (!sePuedeModificar)
                     {
                         //le mando al gestor del pentagrama que me bloqueé el resto de notas;
@@ -93,7 +96,7 @@ namespace AlteracionMelodia
                     }
                     else if (sePuedeModificar && sePuedeMover)
                     {
-                        if (Input.touchCount > 0)
+                        /*if (Input.touchCount > 0)
                         {
                             Touch touch = Input.GetTouch(0); // cogemos el Input del dedo
 
@@ -109,7 +112,7 @@ namespace AlteracionMelodia
                         }
                     }
                 }
-            }
+            }*/
         }
         //GET y SET de la variable sePuedeModificar
         public void setPuedeModificarse(bool modificacion)
@@ -147,6 +150,28 @@ namespace AlteracionMelodia
             return instrumentoActual;
         }
 
+        //para poner la nota al establecer una melodía nueva a través de AlmacenMelodias
+        public void cambiarValorSlider(float newVal)
+        {
+            sliderValorNota.value = newVal;
+            cambiarNota((int)sliderValorNota.value);
+        }
+
+        //VERSION UI, se ejecuta cada vez que movemos el slider de la nota
+        private void modificarNota(float value)
+        {
+            if (notaModificandose) //seguimos en la misma nota
+            {
+                cambiarNota((int)value);
+            }
+            else //entra si es la primera vez que lo tocamos (después de haber modificado otra nota)
+            {
+                gestionPentagrama.establecerNotaActual(this.gameObject);
+                activarModificacion();
+            }
+        }
+
+        //VERSION ANTIGUA, NO UI
         public void cambiarNota(int num)
         {
             if (tipoNotaActual == TiposNotasLocal.Silencio)
@@ -156,10 +181,24 @@ namespace AlteracionMelodia
             else
             {
                 sonidoActual = num;
+
+                switch (num)
+                {
+                    case -1: //La3
+                        agregarPalitoPentagrama(0);
+                        break;
+                    case 0: //Si3
+                        agregarPalitoPentagrama(1);
+                        break;
+                    case 1: //Do4
+                        agregarPalitoPentagrama(2);
+                        break;
+                    default: //notas dentro del pentagrama que no necesitan palo
+                        agregarPalitoPentagrama(-1);
+                        break;
+                }
             }
             tocarNota();
-            //nota.clip = notas[sonidoActual];
-            //nota.Play();
         }
 
         public void cambiarInstrumento(int instrumento)
@@ -189,8 +228,11 @@ namespace AlteracionMelodia
 
             //Aquí, en vez de esa línea de código, pondríamos la del FMOD
             //primero comprobamos el instrumento y después la nota
+            if(sonidoActual != -1)
+            {
+                listaNotasFMOD.tocarNotaFMOD(instrumentoActual, sonidoActual, (int)tipoNotaActual);
+            }
 
-            listaNotasFMOD.tocarNotaFMOD(instrumentoActual, sonidoActual, (int)tipoNotaActual);
         }
 
         public void agregarPalitoPentagrama(int tipoPalo)
@@ -213,7 +255,6 @@ namespace AlteracionMelodia
 
         public void establecerTipoNota(int numTipo)
         {
-
             tipoNotaActual = (TiposNotasLocal)numTipo;
             string tipoNotaActualStr = tipoNotaActual.ToString();
             Debug.Log(tipoNotaActualStr);
@@ -240,6 +281,7 @@ namespace AlteracionMelodia
             brillo.SetActive(true);
             gestorNota.activarMenus(this.gameObject);
             sePuedeMover = true;
+            notaModificandose = true;
         }
 
         public void finalizarModificacion()
@@ -247,6 +289,7 @@ namespace AlteracionMelodia
             brillo.SetActive(false);
             sePuedeMover = false;
             sePuedeModificar = false;
+            notaModificandose = false;
 
             //decirle al gestor del pentagrama que ponga en activas el resto de notas
             gestionPentagrama.restablecerSeleccion();
@@ -257,38 +300,11 @@ namespace AlteracionMelodia
         void OnMouseDrag()
         {
             notaMoviendose = true;
-
-            /* if (!bloqueada)
-             {
-                 if (sePuedeMover && sePuedeModificar)
-                 {
-
-                     float mouseY = Input.GetAxis("Mouse Y");
-
-                     Vector3 posicionActual = transform.position;
-                     posicionActual.y += mouseY * 0.4f;
-
-                     transform.position = posicionActual;
-                 }
-             }*/
         }
         private void OnMouseDown()
         {
             notaMoviendose = true;
             lastTouchPosition = Input.mousePosition;
-
-            /* if (!bloqueada) //primero vemos que la nota no esté bloqueada
-             {
-
-                 if (!sePuedeModificar) //si está desbloqueada pero no esta seleccionada
-                 {
-                     //le mando al gestor del pentagrama que me bloqueé el resto de notas;
-                     // Esto es lo primero que va a suceder al intentar modificar la nota, el resto de funciones que permiten mover, tocar o modificar la nota dependen de esta
-                     gestionPentagrama.establecerNotaActual(this.gameObject);
-                     activarModificacion();
-                 }
-             }*/
-
         }
 
         private void OnMouseUp()
@@ -299,13 +315,14 @@ namespace AlteracionMelodia
         //cambiamos el tamaño de la nota para indicar que su audio se está reproduciendo
         public void cambiarTallaGrande()
         {
-            this.GetComponent<Transform>().localScale = new Vector3(0.8f, 0.8f, 0.8f);
+            //this.GetComponent<Transform>().localScale = new Vector3(0.8f, 0.8f, 0.8f);
+            notaSonando.SetActive(true);
         }
 
         public void cambiarTallaNormal()
         {
-            this.GetComponent<Transform>().localScale = new Vector3(0.74f, 0.74f, 0.74f);
+            //this.GetComponent<Transform>().localScale = new Vector3(0.74f, 0.74f, 0.74f);
+            notaSonando.SetActive(false);
         }
-
     }
 }

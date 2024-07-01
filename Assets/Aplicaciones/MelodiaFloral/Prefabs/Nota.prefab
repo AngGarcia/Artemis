@@ -127,7 +127,9 @@ MonoBehaviour:
   listaNotasFMOD: {fileID: 0}
   gestorNota: {fileID: 0}
   gestionPentagrama: {fileID: 0}
+  sliderValorNota: {fileID: 0}
   brillo: {fileID: 8911392246669538501}
+  notaSonando: {fileID: 0}
   tiposNotas:
   - {fileID: 8911392247530331715}
   - {fileID: 8911392248111993316}

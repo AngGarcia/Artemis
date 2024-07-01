@@ -41,7 +41,20 @@ namespace AlteracionMelodia
         public static float LA = -2.6f;
         public static float SI = -1.87f;
         public static float DO_OCT = -1.37f;
+    }
 
+    public class ValorNotasSlider
+    {
+        public static float LA3 = -1;
+        public static float SI3 = 0;
+        public static float DO4 = 1;
+        public static float RE4 = 2;
+        public static float MI4 = 3;
+        public static float FA4 = 4;
+        public static float SOL4= 5;
+        public static float LA4 = 6;
+        public static float SI4 = 7;
+        public static float DO5 = 8;
     }
 }
 

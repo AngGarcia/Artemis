@@ -24,6 +24,8 @@ public class SceneChanger : PersistentSingleton<SceneChanger>
         prevScene = actualScene;
         actualScene++;
 
+        Debug.Log("Actual scene: " + actualScene + ", Prev scene: " + prevScene);
+
         SceneManager.LoadScene((int) actualScene);
     }
 
@@ -32,8 +34,7 @@ public class SceneChanger : PersistentSingleton<SceneChanger>
         prevScene = actualScene;
         actualScene = s;
 
-        Debug.Log(actualScene);
-        Debug.Log(prevScene);
+        Debug.Log("Actual scene: " + actualScene + ", Prev scene: " + prevScene);
 
         SceneManager.LoadScene((int)actualScene);
     }

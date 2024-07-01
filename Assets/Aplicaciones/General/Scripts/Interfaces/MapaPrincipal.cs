@@ -7,72 +7,49 @@ namespace General
 {
     public class MapaPrincipal : MonoBehaviour
     {
-        [SerializeField] private TMP_Text nombrePaciente;
-        [SerializeField] private GameObject seleccionUser;
+
+        [Header("INTERFACES")]
+        [SerializeField] private GameObject inicioPaciente;
         [SerializeField] private GameObject mapa;
-        [SerializeField] private MainMenuManager menuManager;
+
         [Header("BOTONES")]
-        [SerializeField] private Button btnPopUpLogOut;
-        [SerializeField] private Button btnPopUpSave;
+        [SerializeField] private Button btnBack;
         [SerializeField] private Button btnStart;
         [SerializeField] private Button btnRespiracion;
         [SerializeField] private Button btnHarmonyHeaven;
         [SerializeField] private Button btnRitmoVegetal;
         [SerializeField] private Button btnPaisajeSonoro;
         [SerializeField] private Button btnMelodiaFloral;
-        [Header("POP-UPS")]
-        [SerializeField] private GameObject popLogOut;
-        [SerializeField] private GameObject popSaveData;
-        [SerializeField] private GameObject popDataSaved;
 
-
-        //En Awake, comprobar datos de guardado y activar los botones de nivel segun cuales esten desbloqueados
-
-        private void OnEnable()
-        {
-            nombrePaciente.text = ConectToDatabase.Instance.getCurrentPaciente().nombre;
-        }
 
         void Start()
         {
+            btnBack.onClick.AddListener(goBack);
             btnStart.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.LibroInteractivo); });
             btnRespiracion.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.Respiracion); });
-            btnHarmonyHeaven.onClick.AddListener(goToHarmonyHeaven);
+            btnHarmonyHeaven.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.HarmonyHeaven); });
             btnRitmoVegetal.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.RitmoVegetal); });
-            btnPaisajeSonoro.onClick.AddListener(goToPaisajeSonoro);
-            btnMelodiaFloral.onClick.AddListener(goToMelodiaFloral);
-            btnPopUpLogOut.onClick.AddListener(LogOut);
-            btnPopUpSave.onClick.AddListener(SaveData);
+            btnPaisajeSonoro.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.PaisajeSonoro); });
+            btnMelodiaFloral.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.MelodiaFloral); });
         }
 
         private void OnDestroy()
         {
+            btnBack.onClick.RemoveListener(goBack);
             btnStart.onClick.RemoveListener(delegate { SceneChanger.Instance.GoToScene(Scenes.LibroInteractivo); });
             btnRespiracion.onClick.RemoveListener(delegate { SceneChanger.Instance.GoToScene(Scenes.Respiracion); });
-            btnHarmonyHeaven.onClick.RemoveListener(goToHarmonyHeaven);
+            btnHarmonyHeaven.onClick.RemoveListener(delegate { SceneChanger.Instance.GoToScene(Scenes.HarmonyHeaven); });
             btnRitmoVegetal.onClick.RemoveListener(delegate { SceneChanger.Instance.GoToScene(Scenes.RitmoVegetal); });
-            btnPaisajeSonoro.onClick.RemoveListener(goToPaisajeSonoro);
-            btnMelodiaFloral.onClick.RemoveListener(goToMelodiaFloral);
-            btnPopUpLogOut.onClick.RemoveListener(LogOut);
-            btnPopUpSave.onClick.RemoveListener(SaveData);
-        }
-
-        private void LogOut()
-        {
-            ConectToDatabase.Instance.LogOut();
-            menuManager.resetInputs();
-            seleccionUser.SetActive(true);
-            mapa.SetActive(false);
-            popLogOut.SetActive(false);
+            btnPaisajeSonoro.onClick.RemoveListener(delegate { SceneChanger.Instance.GoToScene(Scenes.PaisajeSonoro); });
+            btnMelodiaFloral.onClick.RemoveListener(delegate { SceneChanger.Instance.GoToScene(Scenes.MelodiaFloral); });
         }
         
-        private async void SaveData()
+        private void goBack()
         {
-            //guardamos los datos
-            await ConectToDatabase.Instance.SaveData();
-            popSaveData.SetActive(false);
-            popDataSaved.SetActive(true);
-
+            inicioPaciente.SetActive(true);
+            ConectToDatabase.Instance.stopTimeSesion();
+            //await ConectToDatabase.Instance.SaveDataPaciente();
+            mapa.SetActive(false);
         }
 
         private void goToHarmonyHeaven()
@@ -91,12 +68,6 @@ namespace General
         {
             SceneChanger.Instance.actualScene = Scenes.PaisajeSonoro;
             SceneChanger.Instance.GoToScene(Scenes.LibroInteractivo);
-        }
-
-        public void establecerNombrePaciente(string nombre)
-        {
-            Debug.Log("PONEMOS EL NOMBRE DEL PACIENTE: " + nombre);
-            nombrePaciente.text = nombre;
         }
     }
 }
