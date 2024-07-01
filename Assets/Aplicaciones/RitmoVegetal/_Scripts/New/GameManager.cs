@@ -10,12 +10,19 @@ public class GameManager : TemporalSingleton<GameManager>
 
     [SerializeField] GameObject temporalCharacter;
 
+    private FMOD.Studio.EventInstance instance;
+
     public void Start()
     {
         ResetTransform(temporalCharacter);
+
+        instance = FMODUnity.RuntimeManager.CreateInstance("event:/02RitmoVegetalApp3/MelodiaRelajante");
+        instance.start();
     }
 
     public void ResetTransform(GameObject gameObject) {
+        instance.setParameterByName("RitmoVegetalGameStates", Random.Range(0, 3));
+
         gameObject.transform.position = cannonTransform.position;
         gameObject.transform.rotation = cannonTransform.rotation;
 
