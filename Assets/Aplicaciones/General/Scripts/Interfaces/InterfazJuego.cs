@@ -9,22 +9,15 @@ namespace General {
     public class InterfazJuego : MonoBehaviour
     {
         // Start is called before the first frame update
-        [SerializeField] private GameObject interfazTest;
-        [SerializeField] private DisplayTest testPsicometrico;
-        [Space]
         [Header("Botones")]
         [SerializeField] private GameObject botonSalir;
         [SerializeField] private GameObject botonPausa;
         [SerializeField] private GameObject botonMapa;
         [SerializeField] private Button botonSiguiente;
-        [SerializeField] private Button botonRealizarTest;
         [SerializeField] private Button botonPopUpIrMapa;
         [SerializeField] private Button botonPopUpExitActividad;
-        [SerializeField] private Button botonQuitTest;
-        [SerializeField] private Button botonSaveTest;
 
         [Header("Elementos")]
-        [SerializeField] private TMP_Text nombrePacienteTest;
         [SerializeField] private GameObject popExit;
         [SerializeField] private GameObject popMapa;
         [SerializeField] private GameObject juegoPausa;
@@ -47,7 +40,6 @@ namespace General {
             popMapa.SetActive(false);
             popExit.SetActive(false);
             fondoPausa.SetActive(false);
-            interfazTest.SetActive(false);
             btnMapaClicked = false;
             btnPausaClicked = false;
             btnExitClicked = false;
@@ -63,10 +55,6 @@ namespace General {
             botonSiguiente.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(nextScene); });
 
             botonPopUpExitActividad.onClick.AddListener(delegate { SceneChanger.Instance.GoToScene(Scenes.MainMenu); });
-
-            botonRealizarTest.onClick.AddListener(hacerTest);
-            botonQuitTest.onClick.AddListener(cerrarTest);
-            botonSaveTest.onClick.AddListener(guardarTest);
         }
 
         public void pausarJuego()
@@ -141,41 +129,5 @@ namespace General {
             popExit.SetActive(false);
             btnExitClicked = false;
         }
-
-        private void hacerTest()
-        {
-            nombrePacienteTest.text = ConectToDatabase.Instance.getCurrentPaciente().nombre + "?";
-            Time.timeScale = 0;
-            interfazTest.SetActive(true);
-        }
-
-        private void cerrarTest()
-        {
-            interfazTest.SetActive(false);
-            Time.timeScale = 1;
-        }
-
-        private void guardarTest()
-        {
-            int valorTest = (int)testPsicometrico.getValue();
-            int tiempoActualSesion = (int)ConectToDatabase.Instance.getCurrentTimeSesion();
-            //Debug.Log("tiempoActualSesion: " + tiempoActualSesion);
-            Scenes escena = SceneChanger.Instance.actualScene;
-            string momento;
-
-            if (escena == Scenes.MainMenu)
-            {
-                momento = "Mapa";
-            }
-            else
-            {
-                momento = escena.ToString();
-            }
-
-            //"momento" es de prueba, hay que detectar en qué escena está
-            ConectToDatabase.Instance.getCurrentSesion().addNuevoEstado(momento, (EstadoPaciente)valorTest, tiempoActualSesion);
-            ConectToDatabase.Instance.getCurrentSesion().printSesionValues();
-        }
-
     }
 }

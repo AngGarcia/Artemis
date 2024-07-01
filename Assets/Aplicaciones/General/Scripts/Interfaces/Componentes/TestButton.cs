@@ -18,6 +18,8 @@ namespace General
         [SerializeField] private Button btnOpenTest;
         [SerializeField] private Button btnSaveTest;
         [SerializeField] private Button btnCloseTest;
+        [Space]
+        [SerializeField] private GameObject btnNextScene;
 
         void Start()
         {
@@ -37,11 +39,20 @@ namespace General
         {
             nombrePacienteTest.text = ConectToDatabase.Instance.getCurrentPaciente().nombre + "?";
             Time.timeScale = 0;
+
+            if (btnNextScene != null)
+            {
+                btnNextScene.SetActive(false);
+            }
             interfazTest.SetActive(true);
         }
 
         private void closeInterfazTest()
         {
+            if (btnNextScene != null)
+            {
+                btnNextScene.SetActive(true);
+            }
             interfazTest.SetActive(false);
             Time.timeScale = 1;
         }

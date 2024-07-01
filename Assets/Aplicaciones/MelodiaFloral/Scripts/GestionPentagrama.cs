@@ -119,8 +119,6 @@ namespace AlteracionMelodia
                         break;
 
                 }
-                //notas[i].GetComponent<Nota>().tocarNota();
-                //yield return new WaitForSeconds(segundosEntreNotas);
                 notas[i].GetComponent<Nota>().cambiarTallaNormal();
             }
 

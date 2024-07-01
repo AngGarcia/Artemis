@@ -11,47 +11,54 @@ namespace AlteracionMelodia
     {
         public struct Melodia
         {
-            public List<float> posNotas;
+            //public List<float> posNotas;
+            public List<float> valNotas;
             public List<int> tipoNotas;
         }
 
         [SerializeField]
         private GameObject btnBibliotecaMelodias;
-        [SerializeField]
-        private GameObject menu; 
+        [SerializeField] private GameObject menu;
+        [SerializeField] private Button btnCloseMenu;
         public GameObject[] notas; //las notas físicas del pentagrama
 
         private List<Melodia> melodiasDisponibles;
 
-        private bool menuActivado;
-        private bool ultimoToqueSobreMenu = false; // necesitamos saber si en el toque anterior hemos pulsado el menú o no
+        //private bool menuActivado;
+        //private bool ultimoToqueSobreMenu = false; // necesitamos saber si en el toque anterior hemos pulsado el menú o no
 
         private Sprite spriteBTNPressed;
         private Sprite spriteBTNNormal;
 
         private void Start()
         {
-            menuActivado = false;
+            //menuActivado = false;
             melodiasDisponibles = new List<Melodia>();
 
             spriteBTNPressed = btnBibliotecaMelodias.GetComponent<Button>().spriteState.pressedSprite;
             spriteBTNNormal = btnBibliotecaMelodias.GetComponent<Image>().sprite;
+            btnCloseMenu.onClick.AddListener(desactivarMenu);
 
             inicializarMelodias();
         }
 
-        private void Update()
+        private void OnDestroy()
+        {
+            btnCloseMenu.onClick.RemoveListener(desactivarMenu);
+        }
+
+        /*private void Update()
         {
             if (menuActivado)
             {
                 ClickFueraMenu();
             }
-        }
+        }*/
 
         public void activarMenu()
         {
             menu.SetActive(true);
-            menuActivado = true;
+            //menuActivado = true;
             btnBibliotecaMelodias.GetComponent<Image>().sprite = spriteBTNPressed;
 
         }
@@ -59,7 +66,7 @@ namespace AlteracionMelodia
         public void desactivarMenu()
         {
             menu.SetActive(false);
-            menuActivado = false;
+           // menuActivado = false;
             btnBibliotecaMelodias.GetComponent<Image>().sprite = spriteBTNNormal;
         }
 
@@ -68,18 +75,20 @@ namespace AlteracionMelodia
         {
 
             Melodia melodiaActual = new Melodia();
-            melodiaActual.posNotas = new List<float>();
+            // melodiaActual.posNotas = new List<float>();
+            melodiaActual.valNotas = new List<float>();
             melodiaActual.tipoNotas = new List<int>();
 
             melodiaActual = melodiasDisponibles[index];
-            Vector3 newPos = new Vector3(0, 0, 0);
+            //Vector3 newPos = new Vector3(0, 0, 0);
 
-            for (int i = 0; i < melodiaActual.posNotas.Count; i++)
+            for (int i = 0; i < melodiaActual.valNotas.Count; i++)
             {
                 //cambiamos la posición de la nota (en este caso sólo se mueve la Y)
-                newPos = notas[i].GetComponent<Nota>().transform.localPosition;
-                newPos.y = melodiaActual.posNotas[i];
-                notas[i].GetComponent<Nota>().transform.localPosition = newPos;
+                /* newPos = notas[i].GetComponent<Nota>().transform.localPosition;
+                 newPos.y = melodiaActual.posNotas[i];
+                 notas[i].GetComponent<Nota>().transform.localPosition = newPos;*/
+                notas[i].GetComponent<Nota>().cambiarValorSlider(melodiaActual.valNotas[i]);
             }
 
             for (int i = 0; i < melodiaActual.tipoNotas.Count; i++)
@@ -95,53 +104,53 @@ namespace AlteracionMelodia
             //HABRÁ QUE AUTOMATIZARLO PARA PODER AÑADIR Y GUARDAR
 
             Melodia felizCumpleaños = new Melodia();
-            felizCumpleaños.posNotas = new List<float>();
+            felizCumpleaños.valNotas = new List<float>();
             felizCumpleaños.tipoNotas = new List<int>();
             Melodia juegoDeTronos = new Melodia();
-            juegoDeTronos.posNotas = new List<float>();
+            juegoDeTronos.valNotas = new List<float>();
             juegoDeTronos.tipoNotas = new List<int>();
 
             //cada tupla por cada nota de la melodia
-            felizCumpleaños.posNotas.Add(PosicionAxisYNotas.DO);
+            felizCumpleaños.valNotas.Add(ValorNotasSlider.DO4);
             felizCumpleaños.tipoNotas.Add(TiposNotas.CORCHEA);
-            felizCumpleaños.posNotas.Add(PosicionAxisYNotas.DO);
+            felizCumpleaños.valNotas.Add(ValorNotasSlider.DO4);
             felizCumpleaños.tipoNotas.Add(TiposNotas.CORCHEA);
-            felizCumpleaños.posNotas.Add(PosicionAxisYNotas.RE);
+            felizCumpleaños.valNotas.Add(ValorNotasSlider.RE4);
             felizCumpleaños.tipoNotas.Add(TiposNotas.NEGRA);
-            felizCumpleaños.posNotas.Add(PosicionAxisYNotas.DO);
+            felizCumpleaños.valNotas.Add(ValorNotasSlider.DO4);
             felizCumpleaños.tipoNotas.Add(TiposNotas.NEGRA);
-            felizCumpleaños.posNotas.Add(PosicionAxisYNotas.FA);
+            felizCumpleaños.valNotas.Add(ValorNotasSlider.FA4);
             felizCumpleaños.tipoNotas.Add(TiposNotas.NEGRA);
-            felizCumpleaños.posNotas.Add(PosicionAxisYNotas.MI);
+            felizCumpleaños.valNotas.Add(ValorNotasSlider.MI4);
             felizCumpleaños.tipoNotas.Add(TiposNotas.BLANCA);
-            felizCumpleaños.posNotas.Add(PosicionAxisYNotas.DO);
+            felizCumpleaños.valNotas.Add(ValorNotasSlider.DO4);
             felizCumpleaños.tipoNotas.Add(TiposNotas.NEGRA);
-            felizCumpleaños.posNotas.Add(PosicionAxisYNotas.DO);
+            felizCumpleaños.valNotas.Add(ValorNotasSlider.DO4);
             felizCumpleaños.tipoNotas.Add(TiposNotas.NEGRA);
-            felizCumpleaños.posNotas.Add(PosicionAxisYNotas.DO);
+            felizCumpleaños.valNotas.Add(ValorNotasSlider.DO4);
             felizCumpleaños.tipoNotas.Add(TiposNotas.NEGRA);
-            felizCumpleaños.posNotas.Add(PosicionAxisYNotas.DO);
+            felizCumpleaños.valNotas.Add(ValorNotasSlider.DO4);
             felizCumpleaños.tipoNotas.Add(TiposNotas.NEGRA);
 
-            juegoDeTronos.posNotas.Add(PosicionAxisYNotas.LA);
+            juegoDeTronos.valNotas.Add(ValorNotasSlider.LA4);
             juegoDeTronos.tipoNotas.Add(TiposNotas.NEGRA);
-            juegoDeTronos.posNotas.Add(PosicionAxisYNotas.RE);
+            juegoDeTronos.valNotas.Add(ValorNotasSlider.RE4);
             juegoDeTronos.tipoNotas.Add(TiposNotas.NEGRA);
-            juegoDeTronos.posNotas.Add(PosicionAxisYNotas.FA);
+            juegoDeTronos.valNotas.Add(ValorNotasSlider.FA4);
             juegoDeTronos.tipoNotas.Add(TiposNotas.CORCHEA);
-            juegoDeTronos.posNotas.Add(PosicionAxisYNotas.SOL);
+            juegoDeTronos.valNotas.Add(ValorNotasSlider.SOL4);
             juegoDeTronos.tipoNotas.Add(TiposNotas.CORCHEA);
-            juegoDeTronos.posNotas.Add(PosicionAxisYNotas.LA);
+            juegoDeTronos.valNotas.Add(ValorNotasSlider.LA4);
             juegoDeTronos.tipoNotas.Add(TiposNotas.NEGRA);
-            juegoDeTronos.posNotas.Add(PosicionAxisYNotas.RE);
+            juegoDeTronos.valNotas.Add(ValorNotasSlider.RE4);
             juegoDeTronos.tipoNotas.Add(TiposNotas.NEGRA);
-            juegoDeTronos.posNotas.Add(PosicionAxisYNotas.FA);
+            juegoDeTronos.valNotas.Add(ValorNotasSlider.FA4);
             juegoDeTronos.tipoNotas.Add(TiposNotas.CORCHEA);
-            juegoDeTronos.posNotas.Add(PosicionAxisYNotas.SOL);
+            juegoDeTronos.valNotas.Add(ValorNotasSlider.SOL4);
             juegoDeTronos.tipoNotas.Add(TiposNotas.CORCHEA);
-            juegoDeTronos.posNotas.Add(PosicionAxisYNotas.LA);
+            juegoDeTronos.valNotas.Add(ValorNotasSlider.LA4);
             juegoDeTronos.tipoNotas.Add(TiposNotas.NEGRA);
-            juegoDeTronos.posNotas.Add(PosicionAxisYNotas.RE);
+            juegoDeTronos.valNotas.Add(ValorNotasSlider.RE4);
             juegoDeTronos.tipoNotas.Add(TiposNotas.NEGRA);
 
 
@@ -150,7 +159,7 @@ namespace AlteracionMelodia
 
         }
 
-        public void ClickFueraMenu()
+        /*public void ClickFueraMenu()
         {
 
             //Implementado esta manera, saldríamos del menú al hacer dobletap fuera del menú
@@ -169,7 +178,7 @@ namespace AlteracionMelodia
                 //indicamos que el último toque se hizo sobre el menú (true)
                 ultimoToqueSobreMenu = toqueSobreUI;
             }
-        }
+        }*/
     }
 
 }
