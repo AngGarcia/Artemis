@@ -2004,6 +2004,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6993841208128791041, guid: 4602c11e2d9f4e64eb63ab08713788f8, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 6993841208128791041, guid: 4602c11e2d9f4e64eb63ab08713788f8, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 6993841208128791043, guid: 4602c11e2d9f4e64eb63ab08713788f8, type: 3}
       propertyPath: m_Name
       value: CanvasJuego
