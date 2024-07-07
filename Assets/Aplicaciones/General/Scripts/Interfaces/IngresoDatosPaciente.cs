@@ -30,8 +30,8 @@ namespace General
         [SerializeField] private GameObject avisoSinDatos;
         [SerializeField] private GameObject inputNombre;
         [SerializeField] private GameObject inputApellidos;
-        [SerializeField] private GameObject tagNombre;
-        [SerializeField] private GameObject tagApellidos;
+        //[SerializeField] private GameObject tagNombre;
+        //[SerializeField] private GameObject tagApellidos;
         [SerializeField] private GameObject BotonCrearPaciente;
         [SerializeField] private GameObject BotonEditarPaciente;
         [SerializeField] private GameObject avisoApellidos;
@@ -71,10 +71,13 @@ namespace General
             nicknamePaciente.text = "";
             medicoAsignado.text = ConectToDatabase.Instance.getCurrentMedico().nombre;
 
-            inputNombre.SetActive(true);
-            inputApellidos.SetActive(true);
-            tagNombre.SetActive(false);
-            tagApellidos.SetActive(false);
+            inputPacienteNombre.interactable = true;
+            inputPacienteApellidos.interactable = true;
+
+            //inputNombre.SetActive(true);
+            //inputApellidos.SetActive(true);
+            //tagNombre.SetActive(false);
+            //tagApellidos.SetActive(false);
             avisoApellidos.SetActive(false);
             avisoDatos.SetActive(false);
         }
@@ -86,10 +89,10 @@ namespace General
 
             BotonCrearPaciente.SetActive(false);
             BotonEditarPaciente.SetActive(true);
-            inputNombre.SetActive(false);
-            inputApellidos.SetActive(false);
-            tagNombre.SetActive(true);
-            tagApellidos.SetActive(true);
+            //inputNombre.SetActive(false);
+            //inputApellidos.SetActive(false);
+            //tagNombre.SetActive(true);
+            //tagApellidos.SetActive(true);
             avisoApellidos.SetActive(false);
             avisoDatos.SetActive(false);
 
@@ -98,8 +101,10 @@ namespace General
             paciente.printValues();
 
             nicknamePaciente.text = paciente.id;
-            labelPacienteNombre.text = paciente.nombre;
-            labelPacienteApellidos.text = paciente.apellidos;
+            inputPacienteNombre.text = paciente.nombre;
+            inputPacienteNombre.interactable = false;
+            inputPacienteApellidos.text = paciente.apellidos;
+            inputPacienteApellidos.interactable = false;
             medicoAsignado.text = paciente.medicoAsignado;
 
             //poner en el scroll las sesiones; si está vacio, dejar los datos previos
