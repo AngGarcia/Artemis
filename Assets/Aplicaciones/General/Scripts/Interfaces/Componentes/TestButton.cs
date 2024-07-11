@@ -59,7 +59,7 @@ namespace General
 
         private void saveTestData()
         {
-            int valorTest = (int)testPsicometrico.getValue();
+            int valorTest = (int)testPsicometrico.GetValue();
             int tiempoActualSesion = (int)ConectToDatabase.Instance.getCurrentTimeSesion();
             //Debug.Log("tiempoActualSesion: " + tiempoActualSesion);
             SceneChanger.Scenes escena = SceneChanger.Instance.actualScene;

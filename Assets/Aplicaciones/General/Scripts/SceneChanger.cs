@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -36,6 +34,11 @@ public class SceneChanger : PersistentSingleton<SceneChanger>
 
         Debug.Log("Actual scene: " + actualScene + ", Prev scene: " + prevScene);
 
+        SceneManager.LoadScene((int)actualScene);
+    }
+
+    public void ReloadCurrentScene()
+    {
         SceneManager.LoadScene((int)actualScene);
     }
 }

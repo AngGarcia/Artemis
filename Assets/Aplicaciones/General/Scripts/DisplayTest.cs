@@ -14,7 +14,7 @@ public class DisplayTest : MonoBehaviour
     private void Start()
     {
         _slider.onValueChanged.AddListener(UpdateUI);
-
+        _fillImage.color = _colors[0];
         _slider.value = 0;
     }
 
@@ -31,7 +31,7 @@ public class DisplayTest : MonoBehaviour
         _fillImage.color = _colors[v];
     }
 
-    public float getValue()
+    public float GetValue()
     {
         return _slider.value;
     }
