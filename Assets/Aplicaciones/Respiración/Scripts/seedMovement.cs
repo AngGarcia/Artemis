@@ -1,37 +1,59 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class seedMovement : MonoBehaviour
 {
 
-    private Vector2 direction;
-    private Vector2 mousePosDown;
-    private Vector2 mousePosUp;
+    private Vector2 _direction;
+    private Vector2 _mousePosDown;
+    private Vector2 _mousePosUp;
 
-    [SerializeField]
-    private ConstantForce2D force;
+    private Rigidbody2D _rigidbody;
+    private ConstantForce2D _force;
+    private Vector3 _originalPos;
+    private Quaternion _originalRot;
+    
+    private void Start()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _force = GetComponent<ConstantForce2D>();
 
-    void Update()
+        _originalPos = transform.position;
+        _originalRot = transform.rotation;
+    }
+
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            mousePosDown = Input.mousePosition;
+            _mousePosDown = Input.mousePosition;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            mousePosUp = Input.mousePosition;
+            _mousePosUp = Input.mousePosition;
 
-            direction = mousePosUp - mousePosDown;
+            _direction = _mousePosUp - _mousePosDown;
             //Debug.Log("Direction: " + direction);
 
             Vector2 variation = new Vector2(Random.Range(-10.0f, 10.0f), Random.Range(-50.0f, 50.0f));
             //Debug.Log("Variation: " + variation);
 
-            Vector2 finalDirection = direction + variation;
+            Vector2 finalDirection = _direction + variation;
 
-            force.enabled = true;
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            GetComponent<Rigidbody2D>().AddForce(finalDirection * 50 * Time.deltaTime);
+            _force.enabled = true;
+            _rigidbody.bodyType = RigidbodyType2D.Dynamic;
+            _rigidbody.AddForce(finalDirection * 50 * Time.deltaTime);
         }
+    }
+
+    public void Reload()
+    {
+        _rigidbody.bodyType = RigidbodyType2D.Kinematic;
+        _rigidbody.velocity = Vector3.zero;
+        _force.enabled = false;
+
+        transform.position = _originalPos;
+        transform.rotation = _originalRot;
     }
 }

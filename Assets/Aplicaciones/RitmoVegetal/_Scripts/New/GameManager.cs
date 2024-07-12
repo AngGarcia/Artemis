@@ -20,6 +20,11 @@ public class GameManager : TemporalSingleton<GameManager>
         instance.start();
     }
 
+    private void OnDestroy()
+    {
+        instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
     public void ResetTransform(GameObject gameObject) {
         instance.setParameterByName("RitmoVegetalGameStates", Random.Range(0, 3));
 

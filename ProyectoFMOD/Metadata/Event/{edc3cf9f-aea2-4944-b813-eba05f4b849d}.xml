@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{edc3cf9f-aea2-4944-b813-eba05f4b849d}">
+		<property name="note" />
 		<property name="color">
 			<value>Magenta</value>
 		</property>
@@ -83,7 +84,11 @@
 			<destination>{59892bdc-41da-4a52-9157-f89691f328a5}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{103fe298-d6fe-478d-b8bc-af41666188de}" />
+	<object class="EventAutomatableProperties" id="{103fe298-d6fe-478d-b8bc-af41666188de}">
+		<property name="maxVoices">
+			<value>1</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{e9b9fab1-ae8b-4074-baa2-5f0494266d9d}" />
 	<object class="MarkerTrack" id="{fe610020-ab73-41f3-9d63-22867711e33c}" />
 	<object class="MarkerTrack" id="{1dce5cb0-e306-423e-834e-bc7f6f31293e}" />
